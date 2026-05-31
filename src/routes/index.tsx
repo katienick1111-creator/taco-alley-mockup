@@ -905,7 +905,7 @@ function FindUsMap() {
             🌮 TACO ALLEY <span style={{ color: "var(--burnt)" }}>AHEAD</span>
           </h2>
           <p className="mt-3 max-w-xl mx-auto text-base md:text-lg" style={{ color: "var(--cream)", fontFamily: "var(--font-item)" }}>
-            Just follow the moving taco and the red pin. You're almost there.
+            Just follow the taco trail to the RT-38 badge. You're almost there.
           </p>
         </div>
 
