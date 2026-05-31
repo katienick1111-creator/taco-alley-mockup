@@ -89,7 +89,7 @@ function Hero() {
       {/* Floating decor */}
       <Pepper size={70} className="absolute top-24 left-6 wiggle hidden md:block" />
       <Pepper size={50} className="absolute top-[420px] left-[4%] bob hidden lg:block" />
-      <Pepper size={44} className="absolute top-[180px] right-[6%] wiggle hidden md:block" style={{ transform: "rotate(25deg)" } as any} />
+      <Pepper size={44} className="absolute top-[180px] right-[6%] wiggle hidden md:block" style={{ transform: "rotate(25deg)" }} />
       <Sunflower size={60} className="absolute top-32 right-10 spin-slow hidden md:block" />
       <Star className="absolute top-44 left-1/3 bob" />
       <Star className="absolute top-60 right-1/4 bob" color="#FF6B1A" />
