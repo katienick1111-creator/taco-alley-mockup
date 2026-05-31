@@ -275,8 +275,8 @@ const ITEMS = [
   { name: "Birria Ramen", price: "15.00", desc: "Slow-braised beef · ramen noodles · consomé dip", emoji: "🍜", tag: "🔥 Hot" },
   { name: "Quesabirria Tacos", price: "4.89", desc: "Crispy cheese tortilla · birria · onion · cilantro · dip", emoji: "🧀", tag: "Trending" },
   { name: "Dozen Tamales", price: "30.00", desc: "Pork, chicken, or rajas con queso · masa from scratch", emoji: "🫔", tag: "Family" },
-  { name: "Huskie Special", price: "15.99", desc: "Two tacos · burrito · drink · NIU students only", emoji: "🐺", tag: "NIU" },
   { name: "Churro Cheesecake", price: "6.50", desc: "Cinnamon sugar · cream cheese · caramel drizzle", emoji: "🍰", tag: "Sweet" },
+  { name: "Huskie Special", price: "15.99", desc: "Two tacos · burrito · drink · NIU students only", emoji: "🐺", tag: "NIU" },
 ];
 
 function OnlineOrdering() {
