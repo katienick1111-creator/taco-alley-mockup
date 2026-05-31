@@ -307,26 +307,9 @@
 }
 
 /* ===== Find Us / Taco Trail map ===== */
-@keyframes taco-bounce {
-  0%, 100% { transform: translateY(0) rotate(-8deg); }
-  50% { transform: translateY(-8px) rotate(6deg); }
-}
-@keyframes taco-march {
-  0%   { offset-distance: 0%; }
-  100% { offset-distance: 100%; }
-}
-@keyframes trail-pop {
-  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
-}
-@keyframes pin-pulse-ring {
-  0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0.9; }
-  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
-}
-@keyframes pin-bob {
-  0%, 100% { transform: translate(-50%, -100%) translateY(0); }
-  50%      { transform: translate(-50%, -100%) translateY(-6px); }
+@keyframes taco-wiggle {
+  0%, 100% { transform: translate(-10px, 6px) rotate(-8deg); }
+  50% { transform: translate(-10px, 2px) rotate(6deg); }
 }
 @keyframes steam-rise {
   0%   { transform: translate(-50%, 0) scale(0.8); opacity: 0; }
@@ -334,19 +317,9 @@
   100% { transform: translate(-50%, -60px) scale(1.6); opacity: 0; }
 }
 
-.taco-runner {
-  position: absolute;
-  top: 0; left: 0;
-  /* Down the yellow road on the left, then right across the yellow parking row to the red pin */
-  offset-path: path("M 280 20 L 280 320 Q 285 360 330 372 L 780 336");
-  offset-rotate: 0deg;
-  animation: taco-march 8s linear infinite;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.55));
-  pointer-events: none;
-}
-.taco-runner > span {
-  display: inline-block;
-  font-size: 22px;
-  line-height: 1;
-  animation: taco-bounce 0.7s ease-in-out infinite;
+.taco-runner-svg {
+  font-size: 20px;
+  dominant-baseline: middle;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.6));
+  animation: taco-wiggle 0.7s ease-in-out infinite;
 }
