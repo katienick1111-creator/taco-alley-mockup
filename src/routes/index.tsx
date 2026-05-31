@@ -100,13 +100,15 @@ function Hero() {
         alt="Quesabirria tacos dipping in consomé"
         width={520}
         height={520}
-        className="absolute right-0 top-10 w-[280px] md:w-[420px] lg:w-[520px] pointer-events-none hidden md:block bob"
-        style={{ filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.7)) drop-shadow(0 0 60px rgba(255,107,26,0.35))", transform: "rotate(-6deg)" }}
+        className="absolute -right-16 top-[340px] w-[260px] lg:w-[360px] pointer-events-none hidden lg:block bob"
+        style={{ filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.7)) drop-shadow(0 0 60px rgba(255,107,26,0.35))", transform: "rotate(-6deg)", zIndex: 1 }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative">
+
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative z-10">
         {/* Top row: brand */}
-        <div className="text-center">
+        <div className="text-center relative z-10">
+
           <div className="inline-block relative">
             <div className="absolute inset-0 rounded-full glow-pulse" style={{ background: "radial-gradient(circle, rgba(255,107,26,0.4), transparent 70%)" }} />
             <img
