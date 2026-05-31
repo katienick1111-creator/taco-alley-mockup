@@ -109,7 +109,17 @@ function Hero() {
         <div className="text-center">
           <div className="inline-block relative">
             <div className="absolute inset-0 rounded-full glow-pulse" style={{ background: "radial-gradient(circle, rgba(255,107,26,0.4), transparent 70%)" }} />
-            <img src={logo} alt="RT-38 Taco Alley / Tamales Los Girasoles" className="relative w-56 md:w-72 mx-auto drop-shadow-2xl" width={288} height={288} />
+            <img
+              src={logo}
+              alt="RT-38 Taco Alley / Tamales Los Girasoles"
+              className="relative w-56 md:w-72 mx-auto"
+              width={288}
+              height={288}
+              style={{
+                filter:
+                  "drop-shadow(0 0 22px rgba(255,107,26,0.55)) drop-shadow(0 0 40px rgba(255,210,63,0.35)) drop-shadow(0 12px 18px rgba(0,0,0,0.7))",
+              }}
+            />
           </div>
 
           <p className="mt-4 text-2xl md:text-4xl text-gold" style={{ fontFamily: "var(--font-script)", color: "var(--gold)" }}>
