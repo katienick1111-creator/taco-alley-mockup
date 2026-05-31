@@ -87,12 +87,24 @@ function Hero() {
       <PapelPicado />
 
       {/* Floating decor */}
-      <Pepper className="absolute top-24 left-6 wiggle hidden md:block" />
+      <Pepper size={70} className="absolute top-24 left-6 wiggle hidden md:block" />
+      <Pepper size={50} className="absolute top-[420px] left-[4%] bob hidden lg:block" />
+      <Pepper size={44} className="absolute top-[180px] right-[6%] wiggle hidden md:block" style={{ transform: "rotate(25deg)" } as any} />
       <Sunflower size={60} className="absolute top-32 right-10 spin-slow hidden md:block" />
       <Star className="absolute top-44 left-1/3 bob" />
       <Star className="absolute top-60 right-1/4 bob" color="#FF6B1A" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12">
+      {/* Hero birria-dipping tacos — floating right of brand */}
+      <img
+        src={birriaDip}
+        alt="Quesabirria tacos dipping in consomé"
+        width={520}
+        height={520}
+        className="absolute right-0 top-10 w-[280px] md:w-[420px] lg:w-[520px] pointer-events-none hidden md:block bob"
+        style={{ filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.7)) drop-shadow(0 0 60px rgba(255,107,26,0.35))", transform: "rotate(-6deg)" }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative">
         {/* Top row: brand */}
         <div className="text-center">
           <div className="inline-block relative">
