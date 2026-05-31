@@ -1031,6 +1031,7 @@ function Index() {
       <FindUsMap />
       <LocationsSection />
       <Aztec />
+      <RealSigns />
       <MenuBoard />
       <FamilyStory />
       <LoyaltyReviews />
