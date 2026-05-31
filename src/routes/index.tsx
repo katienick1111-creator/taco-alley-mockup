@@ -957,8 +957,8 @@ function FindUsMap() {
               aria-hidden
               className="absolute rounded-full"
               style={{
-                left: `${74 + i * 3}%`,
-                top: "30%",
+                left: `${14 + i * 3}%`,
+                top: "70%",
                 width: 18,
                 height: 18,
                 background: "radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 70%)",
