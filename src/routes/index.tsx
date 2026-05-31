@@ -119,29 +119,30 @@ function Hero() {
         {/* Top row: brand */}
         <div className="text-center relative z-10">
 
-          <div className="inline-block relative">
-            <div className="absolute inset-0 rounded-full glow-pulse" style={{ background: "radial-gradient(circle, rgba(255,107,26,0.45), transparent 70%)" }} />
-            {/* Cream oval plate so the curved TAMALES / LOS GIRASOLES text is readable on dark hero */}
-            <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] rounded-[50%]"
-              style={{
-                background: "radial-gradient(ellipse at center, #FBEFD4 0%, #F5E6C8 55%, rgba(245,230,200,0) 78%)",
-                filter: "blur(2px)",
-              }}
+          <div
+            className="inline-flex items-center justify-center relative rounded-full p-3 md:p-4"
+            style={{
+              background: "radial-gradient(circle at 30% 25%, #FBEFD4 0%, #F5E6C8 55%, #E9D29A 100%)",
+              border: "6px solid var(--burnt)",
+              boxShadow:
+                "0 0 0 3px var(--gold), 0 0 0 9px rgba(0,0,0,0.35), 0 18px 40px rgba(0,0,0,0.55), 0 0 60px rgba(255,107,26,0.45)",
+            }}
+          >
+            <span
               aria-hidden
+              className="absolute inset-2 rounded-full pointer-events-none"
+              style={{ border: "2px dashed rgba(193,69,33,0.45)" }}
             />
             <img
               src={logo}
               alt="RT-38 Taco Alley / Tamales Los Girasoles"
-              className="relative w-56 md:w-72 mx-auto"
+              className="relative w-48 md:w-64 rounded-full"
               width={288}
               height={288}
-              style={{
-                filter:
-                  "drop-shadow(0 0 22px rgba(255,107,26,0.55)) drop-shadow(0 0 40px rgba(255,210,63,0.35)) drop-shadow(0 12px 18px rgba(0,0,0,0.7))",
-              }}
+              style={{ filter: "drop-shadow(0 6px 10px rgba(0,0,0,0.35))" }}
             />
           </div>
+
 
 
           <p className="mt-4 text-2xl md:text-4xl text-gold" style={{ fontFamily: "var(--font-script)", color: "var(--gold)" }}>
