@@ -12,6 +12,7 @@ import sopesTrio from "@/assets/food/sopes-trio.jpg";
 import pastorQues from "@/assets/food/pastor-quesadilla.jpg";
 import chili from "@/assets/chili.png";
 import birriaDip from "@/assets/birria-dip.png";
+import horchata from "@/assets/horchata.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
