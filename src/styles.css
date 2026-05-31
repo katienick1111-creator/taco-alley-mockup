@@ -28,14 +28,14 @@
   --color-lime: var(--lime);
   --color-pink: var(--pink);
   --color-teal: var(--teal);
-  --font-display: "Chango", cursive;
-  --font-action: "Alfa Slab One", serif;
-  --font-bang: "Lilita One", cursive;
-  --font-marker: "Bungee", cursive;
-  --font-chalk: "Rye", serif;
-  --font-script: "Rubik Dirt", cursive;
-  --font-hand: "Barlow Condensed", sans-serif;
-  --font-item: "Bowlby One SC", sans-serif;
+  --font-display: "Titan One", cursive;
+  --font-action: "Ultra", serif;
+  --font-bang: "Bowlby One", cursive;
+  --font-marker: "Sigmar One", cursive;
+  --font-chalk: "Cabin Sketch", cursive;
+  --font-script: "Workbench", cursive;
+  --font-hand: "Oswald", sans-serif;
+  --font-item: "Anton", sans-serif;
 }
 
 :root {
