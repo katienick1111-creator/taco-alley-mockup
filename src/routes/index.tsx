@@ -135,7 +135,7 @@ function Hero() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <LocationCard
-              img={storefront}
+              img={pozole}
               tilt="tilt-l"
               emoji="🏠"
               title="The Restaurant"
