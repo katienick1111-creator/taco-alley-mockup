@@ -366,7 +366,51 @@ function OnlineOrdering() {
   );
 }
 
-function ItemCard({ item, delay, oversized }: { item: typeof ITEMS[number]; delay: number; oversized?: boolean }) {
+function ItemCard({ item, delay, oversized, niu }: { item: typeof ITEMS[number]; delay: number; oversized?: boolean; niu?: boolean }) {
+  if (niu) {
+    return (
+      <div className={`pop-in relative rounded-2xl overflow-hidden lift sm:col-span-2`}
+        style={{
+          animationDelay: `${delay}s`,
+          background: "linear-gradient(135deg, #6b0a0a 0%, #1a0505 55%, #000 100%)",
+          border: "3px solid #C8102E",
+          boxShadow: "0 0 0 2px #000, 0 0 30px rgba(200,16,46,0.55), 0 18px 40px rgba(0,0,0,0.6)",
+        }}>
+        {/* Corner ribbon */}
+        <div className="absolute -right-12 top-6 rotate-45 px-14 py-1 text-xs tracking-[0.3em] text-white z-10"
+          style={{ background: "#000", border: "2px solid #C8102E", fontFamily: "var(--font-bang)" }}>
+          NIU ONLY
+        </div>
+        {/* Glow pulse bg */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none" style={{ background: "radial-gradient(circle at 20% 30%, rgba(200,16,46,0.8), transparent 60%)" }} />
+        <div className="relative p-6 flex items-center gap-5">
+          <div className="w-20 h-20 rounded-full flex items-center justify-center text-5xl border-4 shrink-0"
+            style={{ background: "#000", borderColor: "#C8102E", boxShadow: "0 0 20px rgba(200,16,46,0.8)" }}>
+            🐺
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-[10px] px-2 py-0.5 rounded-full text-white tracking-[0.2em]"
+                style={{ background: "#C8102E", fontFamily: "var(--font-bang)" }}>HUSKIES</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full text-white"
+                style={{ background: "transparent", border: "1px solid #C8102E", fontFamily: "var(--font-bang)" }}>STUDENT ID REQUIRED</span>
+            </div>
+            <h3 className="text-4xl md:text-5xl mt-1 leading-none" style={{ fontFamily: "var(--font-display)", color: "#fff", textShadow: "0 0 12px rgba(200,16,46,0.9), 2px 2px 0 #000" }}>
+              HUSKIE SPECIAL
+            </h3>
+            <p className="text-sm mt-2" style={{ color: "#f4d4d4", fontFamily: "var(--font-hand)", fontSize: "1.1rem" }}>{item.desc}</p>
+            <div className="mt-3 flex items-center justify-between gap-4">
+              <div className="text-4xl" style={{ fontFamily: "var(--font-display)", color: "#FFD23F", textShadow: "2px 2px 0 #000" }}>${item.price}</div>
+              <button className="px-6 py-2 rounded-full text-white text-lg hover:scale-105 transition"
+                style={{ background: "#C8102E", border: "2px solid #000", fontFamily: "var(--font-action)", boxShadow: "0 0 18px rgba(200,16,46,0.7)" }}>
+                ORDER NOW →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={`pop-in rounded-2xl border-2 overflow-hidden lift ${oversized ? "sm:col-span-2" : ""}`}
       style={{ background: "var(--card)", borderColor: "var(--gold)", animationDelay: `${delay}s` }}>
