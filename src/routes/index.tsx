@@ -13,6 +13,8 @@ import pastorQues from "@/assets/food/pastor-quesadilla.jpg";
 import chili from "@/assets/chili.png";
 import birriaDip from "@/assets/birria-dip.png";
 import horchata from "@/assets/horchata.png";
+import plazaAerial from "@/assets/plaza-aerial.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
