@@ -120,7 +120,16 @@ function Hero() {
         <div className="text-center relative z-10">
 
           <div className="inline-block relative">
-            <div className="absolute inset-0 rounded-full glow-pulse" style={{ background: "radial-gradient(circle, rgba(255,107,26,0.4), transparent 70%)" }} />
+            <div className="absolute inset-0 rounded-full glow-pulse" style={{ background: "radial-gradient(circle, rgba(255,107,26,0.45), transparent 70%)" }} />
+            {/* Cream oval plate so the curved TAMALES / LOS GIRASOLES text is readable on dark hero */}
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] rounded-[50%]"
+              style={{
+                background: "radial-gradient(ellipse at center, #FBEFD4 0%, #F5E6C8 55%, rgba(245,230,200,0) 78%)",
+                filter: "blur(2px)",
+              }}
+              aria-hidden
+            />
             <img
               src={logo}
               alt="RT-38 Taco Alley / Tamales Los Girasoles"
@@ -133,6 +142,7 @@ function Hero() {
               }}
             />
           </div>
+
 
           <p className="mt-4 text-2xl md:text-4xl text-gold" style={{ fontFamily: "var(--font-script)", color: "var(--gold)" }}>
             El Sabor de la Tradición
