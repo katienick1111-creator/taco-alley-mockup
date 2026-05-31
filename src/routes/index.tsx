@@ -233,8 +233,6 @@ function LocationCard({ img, tilt, emoji, title, addr, hours, phone, accent, liv
         </div>
         <div className="relative">
           <img src={img} alt={title} className="w-full h-72 object-cover" loading="lazy" width={1024} height={576} />
-          <Sunflower size={48} className="absolute -top-3 -left-3 spin-slow" />
-          <Sunflower size={40} className="absolute bottom-2 right-2 wiggle" />
           {live && (
             <span className="absolute top-3 right-3 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold"
               style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>
