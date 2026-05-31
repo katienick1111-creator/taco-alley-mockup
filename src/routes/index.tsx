@@ -160,7 +160,7 @@ function Hero() {
 
         {/* Status strip */}
         <div className="mt-10 rounded-2xl border-2 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x text-sm"
-          style={{ borderColor: "var(--gold)", background: "rgba(44,26,14,0.7)", borderColor_: "" as any }}>
+          style={{ borderColor: "var(--gold)", background: "rgba(44,26,14,0.7)" }}>
           <div className="p-4 text-center">
             <div className="text-xs uppercase tracking-widest" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Restaurant</div>
             <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>10 AM – 9 PM · 815-825-3069</div>
