@@ -1,243 +1,334 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import logo from "@/assets/rt38-logo.png";
-import tacoSpread from "@/assets/taco-spread.jpg";
-import birria from "@/assets/birria.jpg";
+import storefront from "@/assets/storefront.jpg";
 import foodTruck from "@/assets/food-truck.jpg";
+import sope from "@/assets/food/sope.jpg";
+import shrimpPlate from "@/assets/food/shrimp-plate.jpg";
+import pozole from "@/assets/food/pozole.jpg";
+import shrimpRice from "@/assets/food/shrimp-rice.jpg";
+import trompo from "@/assets/food/al-pastor-trompo.jpg";
+import sopesTrio from "@/assets/food/sopes-trio.jpg";
+import pastorQues from "@/assets/food/pastor-quesadilla.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RT-38 Taco Alley & Tamales Los Girasoles — DeKalb, IL" },
-      { name: "description", content: "Family-owned Mexican kitchen by Teresa & Efraen Garcia. Two locations + a food truck slinging quesabirrias, tamales, al pastor de trompo and more in DeKalb County, Illinois." },
-      { property: "og:title", content: "RT-38 Taco Alley & Tamales Los Girasoles" },
-      { property: "og:description", content: "Quesabirrias. Tamales. Al pastor de trompo. Hecho con amor in DeKalb, IL." },
+      { title: "RT-38 Taco Alley × MYB Platform Mockup" },
+      { name: "description", content: "Pitch mockup: RT-38 Taco Alley / Tamales Los Girasoles on the Mind Ya Biz all-in-one digital platform — online ordering, food truck tracker, loyalty, and admin dashboard." },
+      { property: "og:title", content: "RT-38 Taco Alley × MYB Platform Mockup" },
+      { property: "og:description", content: "Family-owned Mexican restaurant & food truck in DeKalb, IL — powered by Mind Ya Biz." },
+      { property: "og:image", content: logo },
+      { property: "og:type", content: "website" },
     ],
   }),
   component: Index,
 });
 
-/* ---------- Decorative bits ---------- */
+/* ============== Decorative atoms ============== */
+const PAPEL = ["#F47B3E", "#FFD23F", "#D62828", "#FF4F8B", "#2EC4B6", "#6BBF59"];
 
-const Papel = () => (
-  <div className="papel-row" aria-hidden>
-    {Array.from({ length: 16 }).map((_, i) => {
-      const colors = ["text-[var(--hot)]", "text-[var(--gold)]", "text-[var(--chili)]", "text-[var(--lime)]", "text-[var(--pink)]", "text-[var(--teal)]"];
-      return <div key={i} className={`papel-flag ${colors[i % colors.length]}`} />;
-    })}
-  </div>
-);
+function PapelPicado({ count = 14 }: { count?: number }) {
+  return (
+    <div className="papel-row" aria-hidden>
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} className="papel-flag" style={{ color: PAPEL[i % PAPEL.length], backgroundColor: PAPEL[i % PAPEL.length] }} />
+      ))}
+    </div>
+  );
+}
 
-const AztecBar = () => <div className="aztec-border w-full" aria-hidden />;
+function Sunflower({ size = 36, className = "" }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" className={className} aria-hidden>
+      {Array.from({ length: 12 }).map((_, i) => (
+        <ellipse key={i} cx="50" cy="22" rx="9" ry="20" fill="#FFD23F" stroke="#F47B3E" strokeWidth="2"
+          transform={`rotate(${i * 30} 50 50)`} />
+      ))}
+      <circle cx="50" cy="50" r="14" fill="#2C1A0E" />
+      <circle cx="46" cy="46" r="3" fill="#FFD23F" opacity="0.7" />
+    </svg>
+  );
+}
 
-const Sunflower = ({ size = 80, className = "" }: { size?: number; className?: string }) => (
-  <svg viewBox="0 0 100 100" width={size} height={size} className={className} aria-hidden>
-    {Array.from({ length: 12 }).map((_, i) => (
-      <ellipse
-        key={i}
-        cx="50"
-        cy="20"
-        rx="8"
-        ry="18"
-        fill="#FFD23F"
-        stroke="#2C1A0E"
-        strokeWidth="2"
-        transform={`rotate(${i * 30} 50 50)`}
-      />
-    ))}
-    <circle cx="50" cy="50" r="14" fill="#2C1A0E" />
-    <circle cx="50" cy="50" r="10" fill="#F47B3E" />
-  </svg>
-);
+function Pepper({ className = "" }: { className?: string }) {
+  return (
+    <svg width="40" height="60" viewBox="0 0 40 60" className={className} aria-hidden>
+      <path d="M20 8 Q14 6 14 2 L22 2 Q22 6 20 8" fill="#6BBF59" />
+      <path d="M20 8 C8 12, 4 30, 12 50 C18 60, 28 58, 32 46 C36 30, 30 14, 20 8 Z" fill="#D62828" stroke="#7a1414" strokeWidth="1" />
+      <path d="M18 14 C14 22, 14 36, 18 48" stroke="#ff6b6b" strokeWidth="2" fill="none" opacity="0.7" />
+    </svg>
+  );
+}
 
-const Star = ({ className = "" }: { className?: string }) => (
-  <div className={`starburst bg-[var(--gold)] ${className}`} />
-);
+function Star({ className = "", color = "#FFD23F" }: { className?: string; color?: string }) {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" className={className} aria-hidden>
+      <path d="M12 2 L14.5 9 L22 9 L16 13.5 L18.5 21 L12 16.5 L5.5 21 L8 13.5 L2 9 L9.5 9 Z" fill={color} stroke="#2C1A0E" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
-const Pepper = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 60 100" className={className} aria-hidden>
-    <path d="M30 95 C 10 80, 5 50, 20 25 C 28 12, 38 12, 42 22 C 50 45, 48 80, 30 95 Z" fill="#D62828" stroke="#2C1A0E" strokeWidth="3" />
-    <path d="M20 25 C 22 12, 30 8, 36 10 L 38 22" fill="#6BBF59" stroke="#2C1A0E" strokeWidth="3" />
-  </svg>
-);
+function Aztec() {
+  return <div className="aztec-border" aria-hidden />;
+}
 
-/* ---------- Sections ---------- */
-
+/* ============== Hero ============== */
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[var(--brown)] text-[var(--cream)] pt-6">
-      <Papel />
-      <div className="relative px-6 md:px-12 py-16 md:py-24">
-        {/* deco */}
-        <Sunflower size={140} className="absolute -top-6 -left-10 spin-slow opacity-90" />
-        <Sunflower size={110} className="absolute bottom-10 right-4 wiggle opacity-90" />
-        <Pepper className="absolute top-20 right-20 w-16 wiggle hidden md:block" />
-        <Star className="absolute top-10 right-1/3 w-12 h-12 hidden md:block" />
+    <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1A0E07 0%, #2C1A0E 100%)" }}>
+      <PapelPicado />
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center relative">
-          <div>
-            <p className="font-[family-name:var(--font-script)] text-[var(--gold)] text-2xl md:text-3xl mb-2">
-              ¡Bienvenidos a la familia!
-            </p>
-            <h1 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl leading-[0.95] text-[var(--gold)] drop-shadow-[4px_4px_0_var(--chili)]">
-              TACO ALLEY
-            </h1>
-            <h2 className="font-[family-name:var(--font-action)] text-3xl md:text-5xl text-[var(--hot)] mt-2 text-stroke">
-              & TAMALES LOS GIRASOLES
-            </h2>
-            <p className="font-[family-name:var(--font-hand)] text-2xl md:text-3xl text-[var(--cream)]/90 mt-6 max-w-lg">
-              Two kitchens, one food truck, and a whole lot of <span className="text-[var(--gold)] font-bold">birria</span>.
-              Hecho con amor by Teresa & Efraen Garcia in DeKalb County, IL since 2023.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#menu" className="bg-[var(--hot)] text-white font-[family-name:var(--font-bang)] tracking-wider text-2xl px-8 py-4 rounded-xl shadow-pop hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all border-4 border-[var(--brown)]">
-                🌮 SEE THE MENU
-              </a>
-              <a href="#locations" className="bg-[var(--gold)] text-[var(--brown)] font-[family-name:var(--font-bang)] tracking-wider text-2xl px-8 py-4 rounded-xl shadow-pop hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all border-4 border-[var(--brown)]">
-                📍 FIND US
-              </a>
-            </div>
-            <div className="mt-8 flex gap-6 font-[family-name:var(--font-marker)] text-[var(--cream)]/80 text-sm uppercase">
-              <span>★ Since 2023</span>
-              <span>★ 2 Locations</span>
-              <span>★ 1 Food Truck</span>
-            </div>
+      {/* Floating decor */}
+      <Pepper className="absolute top-24 left-6 wiggle hidden md:block" />
+      <Sunflower size={60} className="absolute top-32 right-10 spin-slow hidden md:block" />
+      <Star className="absolute top-44 left-1/3 bob" />
+      <Star className="absolute top-60 right-1/4 bob" color="#FF6B1A" />
+
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12">
+        {/* Top row: brand */}
+        <div className="text-center">
+          <div className="inline-block relative">
+            <div className="absolute inset-0 rounded-full glow-pulse" style={{ background: "radial-gradient(circle, rgba(255,107,26,0.4), transparent 70%)" }} />
+            <img src={logo} alt="RT-38 Taco Alley / Tamales Los Girasoles" className="relative w-56 md:w-72 mx-auto drop-shadow-2xl" width={288} height={288} />
           </div>
 
-          <div className="relative">
-            <div className="absolute -inset-4 bg-[var(--gold)] rounded-3xl rotate-3" />
-            <div className="absolute -inset-4 bg-[var(--hot)] rounded-3xl -rotate-2" />
-            <img
-              src={tacoSpread}
-              alt="Spread of tacos, tamales, and salsas at RT-38 Taco Alley"
-              width={1920}
-              height={1080}
-              className="relative rounded-2xl border-8 border-[var(--brown)] shadow-pop-lg"
+          <p className="mt-4 text-2xl md:text-4xl text-gold" style={{ fontFamily: "var(--font-script)", color: "var(--gold)" }}>
+            El Sabor de la Tradición
+          </p>
+
+          <h1 className="mt-3 text-4xl md:text-6xl leading-none" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+            RT-38 TACO <span style={{ color: "var(--burnt)" }}>ALLEY</span>
+          </h1>
+          <p className="mt-2 text-lg md:text-xl tracking-widest" style={{ fontFamily: "var(--font-marker)", color: "var(--burnt)" }}>
+            ✦ TAMALES LOS GIRASOLES ✦
+          </p>
+
+          {/* Open pill + CTAs */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:gap-4">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wider"
+              style={{ background: "var(--lime)", color: "#0d2410", fontFamily: "var(--font-bang)" }}>
+              <span className="w-3 h-3 rounded-full bg-white pulse-dot" />
+              We're Open
+            </span>
+            <a href="#order" className="px-7 py-3 rounded-full text-xl shadow-glow gradient-fiesta gradient-shift text-white border-4 border-gold lift"
+              style={{ fontFamily: "var(--font-action)", letterSpacing: "0.08em" }}>
+              ORDER NOW 🌮
+            </a>
+            <a href="#menu" className="px-7 py-3 rounded-full text-xl border-4 lift"
+              style={{ fontFamily: "var(--font-action)", borderColor: "var(--gold)", color: "var(--gold)", letterSpacing: "0.08em" }}>
+              VIEW MENU
+            </a>
+          </div>
+        </div>
+
+        {/* Find us at both spots */}
+        <div className="mt-16">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
+              ✦ Find us at both spots ✦
+            </h2>
+            <p className="text-sm uppercase tracking-[0.3em] mt-1" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>
+              Two homes · One familia
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <LocationCard
+              img={storefront}
+              tilt="tilt-l"
+              emoji="🏠"
+              title="The Restaurant"
+              addr="817 W Lincoln Hwy · DeKalb, IL"
+              hours="Mon–Sun · 10am – 9pm"
+              phone="815-825-3069"
+              accent="var(--burnt)"
             />
-            <div className="absolute -top-6 -right-6 bg-[var(--chili)] text-white font-[family-name:var(--font-bang)] text-xl px-4 py-2 rounded-full border-4 border-[var(--brown)] -rotate-12 shadow-pop">
-              ¡MUY RICO!
-            </div>
-            <img src={logo} alt="" aria-hidden className="absolute -bottom-10 -left-10 w-28 h-28 bg-white rounded-full border-4 border-[var(--brown)] shadow-pop wiggle" />
+            <LocationCard
+              img={foodTruck}
+              tilt="tilt-r"
+              emoji="🚚"
+              title="The Food Truck"
+              addr="Currently at NIU Campus"
+              hours="Today · 11am – 8pm · LIVE"
+              phone="815-517-3718"
+              accent="var(--gold)"
+              live
+            />
+          </div>
+        </div>
+
+        {/* Status strip */}
+        <div className="mt-10 rounded-2xl border-2 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x text-sm"
+          style={{ borderColor: "var(--gold)", background: "rgba(44,26,14,0.7)" }}>
+          <div className="p-4 text-center">
+            <div className="text-xs uppercase tracking-widest" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Restaurant</div>
+            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>10 AM – 9 PM · 815-825-3069</div>
+          </div>
+          <div className="p-4 text-center">
+            <div className="text-xs uppercase tracking-widest" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Food Truck</div>
+            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>📍 NIU Campus · 815-517-3718</div>
+          </div>
+          <div className="p-4 text-center">
+            <div className="text-xs uppercase tracking-widest" style={{ color: "var(--pink)", fontFamily: "var(--font-bang)" }}>Today</div>
+            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>🔥 Pastor Quesadilla $11.99</div>
           </div>
         </div>
       </div>
-      <AztecBar />
     </section>
   );
 }
 
-function Specials() {
-  const items = [
-    { name: "Quesabirrias", desc: "Birria + cheese, dipped in consomé", price: "$15", color: "var(--hot)", emoji: "🧀", anim: "bob" },
-    { name: "Birria Ramen", desc: "Two quesabirrias swimming in broth", price: "$15", color: "var(--chili)", emoji: "🍜", anim: "wiggle" },
-    { name: "Tamales", desc: "Red or green. Dozen for $30", price: "$3.50", color: "var(--lime)", emoji: "🌽", anim: "bob" },
-    { name: "Al Pastor de Trompo", desc: "Cut fresh off the spit", price: "$3.99", color: "var(--gold)", emoji: "🔥", anim: "flicker" },
-    { name: "Empanadas", desc: "Potato or chicken, golden fried", price: "$3.99", color: "var(--pink)", emoji: "🥟", anim: "wiggle" },
-    { name: "Green Leaf Tamales", desc: "Pork, wrapped in banana leaf", price: "ask!", color: "var(--teal)", emoji: "🌿", anim: "bob" },
-  ];
-
+function LocationCard({ img, tilt, emoji, title, addr, hours, phone, accent, live }: {
+  img: string; tilt: string; emoji: string; title: string; addr: string; hours: string; phone: string; accent: string; live?: boolean;
+}) {
   return (
-    <section id="menu" className="relative py-24 px-6 overflow-hidden">
-      {/* floating deco */}
-      <Sunflower size={90} className="absolute top-10 left-6 spin-slow opacity-50" />
-      <Sunflower size={70} className="absolute bottom-16 right-8 wiggle opacity-60" />
-      <Pepper className="absolute top-32 right-16 w-12 wiggle" />
-      <Pepper className="absolute bottom-32 left-16 w-10 wiggle" />
-
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="font-[family-name:var(--font-script)] text-[var(--chili)] text-3xl mb-2">~ Lo que cocinamos hoy ~</p>
-          <h2 className="font-[family-name:var(--font-display)] text-6xl md:text-8xl text-[var(--brown)] leading-none">
-            TODAY'S
-            <span className="inline-block mx-3 text-[var(--hot)] drop-shadow-[4px_4px_0_var(--gold)] wiggle">SPECIALS</span>
-          </h2>
-          <div className="flex justify-center gap-2 mt-4">
-            <span className="text-[var(--gold)] text-2xl star-pulse">✺</span>
-            <span className="text-[var(--chili)] text-2xl star-pulse" style={{ animationDelay: "0.5s" }}>✺</span>
-            <span className="text-[var(--lime)] text-2xl star-pulse" style={{ animationDelay: "1s" }}>✺</span>
+    <div className={`relative ${tilt} lift`}>
+      <div className="rounded-2xl overflow-hidden border-4 shadow-pop-lg" style={{ borderColor: "var(--gold)", background: "var(--brown)" }}>
+        <div className="papel-row" style={{ height: 28 }}>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div key={i} className="papel-flag" style={{ height: 28, color: PAPEL[i % PAPEL.length], backgroundColor: PAPEL[i % PAPEL.length] }} />
+          ))}
+        </div>
+        <div className="relative">
+          <img src={img} alt={title} className="w-full h-72 object-cover" loading="lazy" width={1024} height={576} />
+          <Sunflower size={48} className="absolute -top-3 -left-3 spin-slow" />
+          <Sunflower size={40} className="absolute bottom-2 right-2 wiggle" />
+          {live && (
+            <span className="absolute top-3 right-3 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold"
+              style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>
+              <span className="w-2 h-2 rounded-full bg-white pulse-hot" /> LIVE PIN
+            </span>
+          )}
+        </div>
+        <div className="p-5">
+          <div className="flex items-center gap-2 text-2xl" style={{ fontFamily: "var(--font-marker)", color: accent }}>
+            <span className="text-3xl">{emoji}</span> {title}
+          </div>
+          <div className="mt-1 text-sm" style={{ fontFamily: "var(--font-item)", color: "var(--cream)" }}>{addr}</div>
+          <div className="mt-3 flex items-center justify-between text-sm">
+            <span className="inline-flex items-center gap-2" style={{ fontFamily: "var(--font-bang)", color: "var(--lime)" }}>
+              <span className="w-2 h-2 rounded-full bg-[#6BBF59] pulse-dot" /> OPEN NOW · {hours}
+            </span>
+            <a href={`tel:${phone}`} className="underline decoration-dotted" style={{ color: "var(--gold)" }}>{phone}</a>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        {/* Hanging chalkboard */}
-        <div className="relative pt-16">
-          <div className="chalk-nail" style={{ left: "12%" }} />
-          <div className="chalk-nail" style={{ right: "12%" }} />
+/* ============== Ordering ============== */
+const CATEGORIES = [
+  { name: "Tacos", emoji: "🌮", count: 8 },
+  { name: "Burritos", emoji: "🌯", count: 6 },
+  { name: "Quesabirria", emoji: "🧀", count: 4 },
+  { name: "Tamales", emoji: "🫔", count: 5 },
+  { name: "Ramen", emoji: "🍜", count: 2 },
+  { name: "Desserts", emoji: "🍰", count: 3 },
+];
 
-          <div className="chalk-hanger chalkboard chalk-dust relative p-8 md:p-14">
-            {/* corner sunflowers */}
-            <Sunflower size={50} className="absolute -top-3 -left-3 spin-slow opacity-90" />
-            <Sunflower size={50} className="absolute -bottom-3 -right-3 spin-slow opacity-90" />
+const ITEMS = [
+  { name: "Street Taco", price: "3.89", desc: "Asada, pastor, chicken, or chorizo · cilantro · onion", emoji: "🌮", tag: "Classic" },
+  { name: "Burrito Grande", price: "10.99", desc: "Flour tortilla · beans · rice · meat · pico · crema", emoji: "🌯", tag: "Favorite" },
+  { name: "Birria Ramen", price: "15.00", desc: "Slow-braised beef · ramen noodles · consomé dip", emoji: "🍜", tag: "🔥 Hot" },
+  { name: "Quesabirria Tacos", price: "4.89", desc: "Crispy cheese tortilla · birria · onion · cilantro · dip", emoji: "🧀", tag: "Trending" },
+  { name: "Dozen Tamales", price: "30.00", desc: "Pork, chicken, or rajas con queso · masa from scratch", emoji: "🫔", tag: "Family" },
+  { name: "Huskie Special", price: "15.99", desc: "Two tacos · burrito · drink · NIU students only", emoji: "🐺", tag: "NIU" },
+  { name: "Churro Cheesecake", price: "6.50", desc: "Cinnamon sugar · cream cheese · caramel drizzle", emoji: "🍰", tag: "Sweet" },
+];
 
-            {/* Header */}
-            <div className="text-center mb-10 relative">
-              <div className="flex items-center justify-center gap-4">
-                <span className="text-[var(--gold)] text-4xl star-pulse">✺</span>
-                <h3 className="font-[family-name:var(--font-chalk)] font-bold text-5xl md:text-6xl text-white tracking-wide">
-                  La Pizarra
-                </h3>
-                <span className="text-[var(--gold)] text-4xl star-pulse" style={{ animationDelay: "0.7s" }}>✺</span>
-              </div>
-              {/* chalk underline that draws in */}
-              <svg viewBox="0 0 400 20" className="mx-auto mt-2 w-80 h-5" aria-hidden>
-                <path
-                  className="chalk-draw"
-                  d="M10 10 Q 100 2, 200 10 T 390 10"
-                  stroke="#FFD23F"
-                  strokeWidth="3"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-              <p className="font-[family-name:var(--font-chalk)] text-white/70 text-2xl mt-3">~ pinned to the sidewalk sign ~</p>
-            </div>
+function OnlineOrdering() {
+  const [active, setActive] = useState("Tacos");
+  return (
+    <section id="order" className="relative py-20 px-6" style={{ background: "linear-gradient(180deg, #2C1A0E 0%, #1A0E07 100%)" }}>
+      {/* Trompo pillar header */}
+      <div className="max-w-7xl mx-auto grid md:grid-cols-[280px_1fr] gap-10 items-center mb-12">
+        <div className="relative mx-auto">
+          <div className="absolute inset-0 -inset-x-4 rounded-[200px] glow-pulse" style={{ background: "radial-gradient(ellipse, rgba(255,107,26,0.5), transparent 70%)" }} />
+          <div className="relative rounded-[140px] overflow-hidden border-4" style={{ borderColor: "var(--gold)", height: 360, width: 220 }}>
+            <img src={trompo} alt="Al pastor trompo" className="w-full h-full object-cover" loading="lazy" width={704} height={1152} />
+          </div>
+          <Star className="absolute -top-3 -right-3 spin-slow" />
+          <Star className="absolute -bottom-3 -left-3 spin-slow" color="#FF4F8B" />
+        </div>
+        <div>
+          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Online Ordering</p>
+          <h2 className="text-5xl md:text-7xl mt-2" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+            ORDER<br/>
+            <span style={{ color: "var(--burnt)" }}>FRESH.</span> <span style={{ color: "var(--gold)" }}>FAST.</span>
+          </h2>
+          <p className="mt-4 text-lg max-w-xl" style={{ fontFamily: "var(--font-hand)", color: "var(--cream)", fontSize: "1.4rem" }}>
+            From the trompo to your table. Pickup, delivery, or eat in — all in one tap.
+          </p>
+        </div>
+      </div>
 
-            {/* Menu grid */}
-            <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 relative">
-              {items.map((it, i) => (
-                <div
-                  key={it.name}
-                  className="menu-row pop-in flex items-start gap-4 border-b border-dashed border-white/30 pb-4 px-2 py-2 rounded relative"
-                  style={{ animationDelay: `${i * 0.12}s` }}
+      <div className="max-w-7xl mx-auto grid md:grid-cols-[240px_1fr] gap-6">
+        {/* Sidebar */}
+        <aside className="rounded-2xl p-4 border-2 h-fit sticky top-6" style={{ background: "var(--brown)", borderColor: "var(--gold)" }}>
+          <div className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Categories</div>
+          <ul className="space-y-1">
+            {CATEGORIES.map((c) => (
+              <li key={c.name}>
+                <button
+                  onClick={() => setActive(c.name)}
+                  className={`w-full text-left flex items-center justify-between px-3 py-2 rounded-lg transition ${active === c.name ? "bg-[var(--hot)] text-white" : "hover:bg-[var(--muted)]"}`}
+                  style={{ fontFamily: "var(--font-item)", letterSpacing: "0.04em" }}
                 >
-                  <span className={`text-4xl ${it.anim} relative`}>
-                    {it.emoji}
-                    {it.emoji === "🍜" && (
-                      <>
-                        <span className="steam absolute -top-2 left-2" style={{ animationDelay: "0s" }} />
-                        <span className="steam absolute -top-2 left-5" style={{ animationDelay: "0.6s" }} />
-                        <span className="steam absolute -top-2 left-8" style={{ animationDelay: "1.2s" }} />
-                      </>
-                    )}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex items-baseline justify-between gap-2">
-                      <h4
-                        className="font-[family-name:var(--font-chalk)] font-bold text-3xl md:text-4xl tracking-wide"
-                        style={{ color: it.color, textShadow: "0 0 1px rgba(255,255,255,0.4)" }}
-                      >
-                        {it.name}
-                      </h4>
-                      <span className="font-[family-name:var(--font-chalk)] font-bold text-[var(--gold)] text-2xl md:text-3xl bob">
-                        {it.price}
-                      </span>
-                    </div>
-                    <p className="font-[family-name:var(--font-chalk)] text-xl md:text-2xl text-white/85 mt-1">
-                      {it.desc}
-                    </p>
+                  <span className="flex items-center gap-2"><span className="text-xl">{c.emoji}</span> {c.name}</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: active === c.name ? "rgba(255,255,255,0.25)" : "var(--brown-deep)" }}>{c.count}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4 p-3 rounded-lg text-center" style={{ background: "var(--gold)", color: "var(--brown)" }}>
+            <div style={{ fontFamily: "var(--font-bang)" }}>🎁 First order</div>
+            <div className="text-2xl" style={{ fontFamily: "var(--font-display)" }}>10% OFF</div>
+          </div>
+        </aside>
+
+        {/* Items grid */}
+        <div className="relative">
+          {/* Sunflower badge floating special */}
+          <div className="absolute -top-12 right-2 z-20 hidden md:block">
+            <div className="relative w-44 h-44 bob">
+              <div className="absolute inset-0 starburst" style={{ background: "var(--gradient-fiesta)" }} />
+              <div className="absolute inset-3 rounded-full overflow-hidden border-4" style={{ borderColor: "var(--gold)" }}>
+                <img src={pastorQues} alt="Pastor quesadilla" className="w-full h-full object-cover" loading="lazy" width={400} height={400} />
+              </div>
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs whitespace-nowrap text-white"
+                style={{ background: "var(--chili)", fontFamily: "var(--font-bang)" }}>
+                TODAY'S SPECIAL · $11.99
+              </div>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-5">
+            {ITEMS.map((it, i) => (
+              <ItemCard key={it.name} item={it} delay={i * 0.08} oversized={it.name === "Birria Ramen"} />
+            ))}
+
+            {/* Oversized torn-paper camarones card spanning 2 cols */}
+            <div className="sm:col-span-2 relative rounded-2xl overflow-hidden border-4 lift" style={{ borderColor: "var(--gold)" }}>
+              <div className="grid sm:grid-cols-[1fr_1.2fr]">
+                <div className="relative">
+                  <img src={shrimpPlate} alt="Camarones combo" className="w-full h-64 object-cover" loading="lazy" width={896} height={896} />
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs text-white" style={{ background: "var(--chili)", fontFamily: "var(--font-bang)" }}>🔥 SIGNATURE</div>
+                </div>
+                <div className="p-5 relative" style={{ background: "var(--brown)" }}>
+                  <Pepper className="absolute -top-3 right-3 wiggle" />
+                  <div className="text-xs tracking-widest uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Camarones Combo</div>
+                  <h3 className="text-3xl mt-1" style={{ fontFamily: "var(--font-item)", color: "var(--cream)" }}>Camarones a la Diabla</h3>
+                  <p className="mt-2 text-sm" style={{ color: "var(--muted-foreground)" }}>
+                    Plump gulf shrimp tossed in Efraen's red chile sauce. Served with rice, beans, and warm tortillas.
+                  </p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="text-3xl" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>$16.50</div>
+                    <button className="px-5 py-2 rounded-full gradient-fiesta gradient-shift text-white text-lg" style={{ fontFamily: "var(--font-action)" }}>ADD +</button>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Footer chalk note */}
-            <div className="mt-10 text-center border-t-2 border-dashed border-white/30 pt-6">
-              <p className="font-[family-name:var(--font-chalk)] text-[var(--gold)] text-2xl md:text-3xl">
-                <span className="star-pulse inline-block mr-2">★</span>
-                Meats: Steak · Chicken · Al Pastor · Ground Beef · Barbacoa · Cabeza · Chicharrones
-                <span className="star-pulse inline-block ml-2">★</span>
-              </p>
-              <p className="font-[family-name:var(--font-script)] text-white/70 text-xl mt-3">
-                ¡Pregunta por las salsas de la casa!
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -246,66 +337,48 @@ function Specials() {
   );
 }
 
-function Favorites() {
-  const cards = [
-    { tag: "FAVORITE", name: "Birria Pizza", price: "$15.99", desc: "Two large tortillas with birria + cheese. Onion, cilantro, consomé on the side.", bg: "var(--hot)" },
-    { tag: "STUDENT", name: "Huskie Special", price: "$15.99", desc: "Any 3 of: taco, burrito, enchilada, empanada, tamale. Rice & beans included.", bg: "var(--gold)" },
-    { tag: "FAMILY", name: "Dozen Tamales", price: "$30", desc: "Red or green. The whole table eats happy.", bg: "var(--lime)" },
-    { tag: "FUN", name: "Walking Taco", price: "$5.49", desc: "A bag of Doritos, your meat, lettuce, tomato, cheese, sour cream.", bg: "var(--pink)" },
-  ];
-
+function ItemCard({ item, delay, oversized }: { item: typeof ITEMS[number]; delay: number; oversized?: boolean }) {
   return (
-    <section className="relative py-20 px-6 bg-[var(--gold)]/40">
-      <AztecBar />
-      <div className="max-w-6xl mx-auto pt-12">
-        <div className="text-center mb-12">
-          <p className="font-[family-name:var(--font-marker)] text-[var(--chili)] text-xl tracking-widest">★ CROWD FAVORITES ★</p>
-          <h2 className="font-[family-name:var(--font-display)] text-5xl md:text-6xl text-[var(--brown)] mt-2">
-            EAT THE HITS
-          </h2>
+    <div className={`pop-in rounded-2xl border-2 overflow-hidden lift ${oversized ? "sm:col-span-2" : ""}`}
+      style={{ background: "var(--card)", borderColor: "var(--gold)", animationDelay: `${delay}s` }}>
+      <div className="p-4 flex items-start gap-4">
+        <div className="w-14 h-14 rounded-full flex items-center justify-center text-3xl border-2"
+          style={{ background: "var(--gradient-fiesta)", borderColor: "var(--gold)" }}>
+          {item.emoji}
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cards.map((c, i) => (
-            <div
-              key={c.name}
-              className="bg-white border-4 border-[var(--brown)] rounded-2xl p-6 shadow-pop relative hover:rotate-1 transition-transform"
-              style={{ transform: `rotate(${i % 2 === 0 ? -1 : 1}deg)` }}
-            >
-              <span
-                className="absolute -top-4 -left-4 font-[family-name:var(--font-bang)] text-white text-sm px-3 py-1 rounded-full border-2 border-[var(--brown)]"
-                style={{ background: c.bg }}
-              >
-                {c.tag}
-              </span>
-              <h3 className="font-[family-name:var(--font-item)] text-2xl text-[var(--brown)]">{c.name}</h3>
-              <p className="font-[family-name:var(--font-action)] text-3xl text-[var(--hot)] mt-1">{c.price}</p>
-              <p className="font-[family-name:var(--font-hand)] text-xl text-[var(--brown)]/80 mt-3">{c.desc}</p>
-            </div>
-          ))}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <h3 className="text-2xl truncate" style={{ fontFamily: "var(--font-item)", color: "var(--cream)" }}>{item.name}</h3>
+            <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>{item.tag}</span>
+          </div>
+          <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>{item.desc}</p>
+          <div className="mt-3 flex items-center justify-between">
+            <div className="text-2xl" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>${item.price}</div>
+            <button className="text-sm px-4 py-1.5 rounded-full border-2 hover:bg-[var(--hot)] hover:text-white transition"
+              style={{ borderColor: "var(--burnt)", color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>
+              ADD +
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        <div className="mt-16 grid md:grid-cols-2 gap-8 items-center">
-          <img
-            src={birria}
-            alt="Quesabirria being dipped in red consomé"
-            width={1024}
-            height={1024}
-            loading="lazy"
-            className="rounded-2xl border-8 border-[var(--brown)] shadow-pop-lg rotate-[-2deg]"
-          />
+/* ============== Diagonal Banner ============== */
+function DiagonalBanner() {
+  return (
+    <section className="relative my-0 overflow-hidden" style={{ background: "var(--brown-deep)" }}>
+      <div className="skew-band relative" style={{ height: 280, background: "var(--gradient-fiesta)" }}>
+        <img src={shrimpRice} alt="Camarones a la diabla" className="absolute inset-0 w-full h-full object-cover opacity-60" loading="lazy" width={1280} height={720} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(26,14,7,0.7), transparent 60%, rgba(214,40,40,0.6))" }} />
+        <div className="relative max-w-7xl mx-auto h-full flex items-center px-6">
           <div>
-            <p className="font-[family-name:var(--font-script)] text-[var(--chili)] text-3xl">El famoso…</p>
-            <h3 className="font-[family-name:var(--font-display)] text-5xl md:text-6xl text-[var(--brown)] leading-none">DIP. BITE. REPEAT.</h3>
-            <p className="font-[family-name:var(--font-hand)] text-2xl text-[var(--brown)]/80 mt-4">
-              Our birria is slow-stewed every morning, the consomé built layer by layer. You'll be back. Everyone is.
-            </p>
-            <div className="mt-6 flex gap-3 flex-wrap">
-              {["#Birria", "#Quesabirrias", "#Tamales", "#AlPastor", "#DeKalb"].map((t) => (
-                <span key={t} className="font-[family-name:var(--font-bang)] bg-[var(--brown)] text-[var(--gold)] px-4 py-2 rounded-full text-lg tracking-wider">
-                  {t}
-                </span>
-              ))}
-            </div>
+            <p className="text-xs tracking-[0.4em] uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Signature Dish</p>
+            <h3 className="text-5xl md:text-7xl text-white drop-shadow-lg" style={{ fontFamily: "var(--font-display)" }}>
+              CAMARONES <span style={{ color: "var(--gold)" }}>A LA DIABLA</span>
+            </h3>
+            <p className="mt-2 text-xl text-white" style={{ fontFamily: "var(--font-hand)" }}>Spicy. Smoky. Straight from Efraen's kitchen.</p>
           </div>
         </div>
       </div>
@@ -313,176 +386,142 @@ function Favorites() {
   );
 }
 
-function Locations() {
-  const spots = [
-    { name: "RT-38 Brick & Mortar #1", line1: "Main Kitchen · DeKalb, IL", hours: "Tue–Sun · 11a–9p", color: "var(--hot)", icon: "🏪" },
-    { name: "RT-38 Brick & Mortar #2", line1: "Sycamore Side · DeKalb County", hours: "Wed–Sun · 11a–9p", color: "var(--chili)", icon: "🏠" },
-    { name: "The Food Truck", line1: "Wherever the people are", hours: "Catch us on Facebook!", color: "var(--gold)", icon: "🚚" },
-  ];
-
+/* ============== Locations expanded + Food Truck Tracker ============== */
+function LocationsSection() {
   return (
-    <section id="locations" className="relative py-20 px-6 bg-[var(--brown)] text-[var(--cream)]">
-      <Sunflower size={120} className="absolute top-10 right-10 spin-slow opacity-30" />
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="font-[family-name:var(--font-script)] text-[var(--gold)] text-2xl">Three ways to find us</p>
-          <h2 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl text-[var(--gold)]">
-            COME SAY HOLA
+    <section className="py-20 px-6" style={{ background: "var(--brown-deep)" }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Find Us</p>
+          <h2 className="text-5xl md:text-6xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+            LOCATIONS & <span style={{ color: "var(--gold)" }}>TRUCK TRACKER</span>
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {spots.map((s) => (
-            <div key={s.name} className="bg-[var(--cream)] text-[var(--brown)] rounded-2xl p-6 border-4 border-[var(--gold)] shadow-pop-lg relative">
-              <div className="text-5xl mb-3">{s.icon}</div>
-              <h3 className="font-[family-name:var(--font-item)] text-2xl" style={{ color: s.color }}>{s.name}</h3>
-              <p className="font-[family-name:var(--font-hand)] text-2xl mt-2">{s.line1}</p>
-              <p className="font-[family-name:var(--font-marker)] text-lg mt-3 text-[var(--brown)]/70">{s.hours}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 relative rounded-3xl overflow-hidden border-8 border-[var(--gold)] shadow-pop-lg">
-          <img src={foodTruck} alt="The RT-38 food truck" width={1280} height={896} loading="lazy" className="w-full h-[420px] object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--brown)]/90 via-[var(--brown)]/40 to-transparent flex items-end p-8">
-            <div>
-              <p className="font-[family-name:var(--font-script)] text-[var(--gold)] text-2xl">¡Now serving!</p>
-              <h3 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl text-[var(--cream)]">THE TRUCK IS ROLLING</h3>
-              <p className="font-[family-name:var(--font-hand)] text-2xl text-[var(--cream)]/90 mt-2 max-w-xl">
-                Festivals, NIU campus drops, private parties — we bring the trompo to you.
-              </p>
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Map illustration */}
+          <div className="relative rounded-2xl overflow-hidden border-4 p-6" style={{ borderColor: "var(--gold)", background: "linear-gradient(135deg, #1a3c2a, #0d2410)" }}>
+            <div className="absolute inset-0 opacity-30" style={{
+              backgroundImage: "linear-gradient(rgba(255,210,63,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,210,63,0.1) 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+            }} />
+            <div className="relative h-80 flex items-center justify-center">
+              {/* Pins */}
+              <div className="absolute" style={{ top: "30%", left: "25%" }}>
+                <div className="w-6 h-6 rounded-full pulse-hot" style={{ background: "var(--burnt)" }} />
+                <div className="text-xs mt-1" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>Restaurant</div>
+              </div>
+              <div className="absolute" style={{ top: "55%", right: "20%" }}>
+                <div className="w-6 h-6 rounded-full pulse-dot" style={{ background: "var(--lime)" }} />
+                <div className="text-xs mt-1" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>🚚 Truck · NIU</div>
+              </div>
+              <svg viewBox="0 0 400 300" className="w-full h-full opacity-40">
+                <path d="M0,200 Q150,150 200,180 T400,160" stroke="#FFD23F" strokeWidth="3" fill="none" strokeDasharray="6 6" />
+                <path d="M100,0 L100,300" stroke="#F47B3E" strokeWidth="2" opacity="0.4" />
+                <path d="M300,0 L300,300" stroke="#F47B3E" strokeWidth="2" opacity="0.4" />
+              </svg>
+              <div className="absolute bottom-2 right-2 text-xs px-2 py-1 rounded" style={{ background: "var(--brown)", color: "var(--gold)", fontFamily: "var(--font-bang)" }}>
+                DeKalb County, IL
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
-function MybPitch() {
-  const features = [
-    { title: "One Menu, Three Locations", desc: "Edit the birria price once. Updates the website, the truck's menu board, and online ordering in seconds.", icon: "📋", color: "var(--hot)" },
-    { title: "Online Ordering + Pickup", desc: "Huskies place orders from their phone. You get a ticket. They skip the line. Everybody wins.", icon: "📱", color: "var(--gold)" },
-    { title: "Loyalty in Spanish & English", desc: "Stamp cards reborn. Every 10th taco free, tracked automatically. Built for la familia.", icon: "❤️", color: "var(--pink)" },
-    { title: "Food Truck GPS", desc: "Live map shows wherever the truck is parked today. Customers find you. You don't lift a finger.", icon: "📍", color: "var(--lime)" },
-    { title: "Catering Inquiries", desc: "One form. One inbox. Dozens of tamales sold before the dough is even mixed.", icon: "🎉", color: "var(--chili)" },
-    { title: "Reviews on Autopilot", desc: "After every order, customers get a friendly nudge to leave a review. Your star rating climbs.", icon: "⭐", color: "var(--teal)" },
-  ];
-
-  return (
-    <section className="relative py-20 px-6 bg-[var(--cream)]">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <span className="font-[family-name:var(--font-marker)] bg-[var(--brown)] text-[var(--gold)] px-4 py-2 rounded-full text-lg tracking-widest">
-            PRESENTED BY MIND YA BIZ
-          </span>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl md:text-6xl text-[var(--brown)] mt-6 leading-tight">
-            ONE PLATFORM,
-            <br />
-            <span className="text-[var(--hot)] drop-shadow-[3px_3px_0_var(--gold)]">ALL YOUR HUSTLE.</span>
-          </h2>
-          <p className="font-[family-name:var(--font-hand)] text-2xl md:text-3xl text-[var(--brown)]/80 mt-4 max-w-3xl mx-auto">
-            Teresa & Efraen run two restaurants and a food truck. MYB makes that feel like running <em>one</em>.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f, i) => (
-            <div
-              key={f.title}
-              className="bg-white border-4 border-[var(--brown)] rounded-2xl p-6 shadow-pop hover:-translate-y-1 transition-transform"
-              style={{ transform: `rotate(${(i % 3 - 1) * 0.6}deg)` }}
-            >
-              <div
-                className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl border-2 border-[var(--brown)] mb-4"
-                style={{ background: f.color }}
-              >
-                {f.icon}
-              </div>
-              <h3 className="font-[family-name:var(--font-item)] text-2xl text-[var(--brown)]">{f.title}</h3>
-              <p className="font-[family-name:var(--font-hand)] text-xl text-[var(--brown)]/80 mt-2">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Dashboard mockup */}
-        <div className="mt-16 bg-[var(--brown)] rounded-3xl p-4 md:p-6 border-4 border-[var(--brown)] shadow-pop-lg">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-3 h-3 rounded-full bg-[var(--chili)]" />
-            <span className="w-3 h-3 rounded-full bg-[var(--gold)]" />
-            <span className="w-3 h-3 rounded-full bg-[var(--lime)]" />
-            <span className="ml-3 font-[family-name:var(--font-marker)] text-[var(--cream)]/70 text-sm">myb.app / rt-38-taco-alley / dashboard</span>
-          </div>
-          <div className="bg-[var(--cream)] rounded-2xl p-6 md:p-8">
-            <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
-              <div>
-                <p className="font-[family-name:var(--font-hand)] text-2xl text-[var(--brown)]/60">Today, Tuesday</p>
-                <h3 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl text-[var(--brown)]">Buenos días, Teresa 🌻</h3>
-              </div>
-              <div className="flex gap-2 flex-wrap">
-                <span className="font-[family-name:var(--font-bang)] bg-[var(--lime)] text-[var(--brown)] px-3 py-1 rounded-full border-2 border-[var(--brown)]">Truck: Live</span>
-                <span className="font-[family-name:var(--font-bang)] bg-[var(--gold)] text-[var(--brown)] px-3 py-1 rounded-full border-2 border-[var(--brown)]">Store #1: Open</span>
-                <span className="font-[family-name:var(--font-bang)] bg-[var(--hot)] text-white px-3 py-1 rounded-full border-2 border-[var(--brown)]">Store #2: Open</span>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-4 gap-4 mb-6">
-              {[
-                { label: "Orders today", val: "147", c: "var(--hot)" },
-                { label: "Revenue", val: "$2,318", c: "var(--lime)" },
-                { label: "Tamales sold", val: "94", c: "var(--gold)" },
-                { label: "New reviews", val: "★ 12", c: "var(--pink)" },
-              ].map((k) => (
-                <div key={k.label} className="rounded-xl p-4 border-2 border-[var(--brown)]" style={{ background: k.c }}>
-                  <p className="font-[family-name:var(--font-marker)] text-[var(--brown)] text-sm uppercase tracking-wider">{k.label}</p>
-                  <p className="font-[family-name:var(--font-display)] text-3xl text-[var(--brown)] mt-1">{k.val}</p>
+          {/* Schedule */}
+          <div className="rounded-2xl border-4 p-6 space-y-4" style={{ borderColor: "var(--gold)", background: "var(--brown)" }}>
+            <h3 className="text-3xl flex items-center gap-2" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
+              🚚 Food Truck This Week
+            </h3>
+            {[
+              ["MON", "NIU Campus · MLK Commons", "11a–8p", true],
+              ["TUE", "Hopkins Park · DeKalb", "11a–7p"],
+              ["WED", "Sycamore Farmers Market", "3p–8p"],
+              ["THU", "NIU Campus · Engineering", "11a–8p"],
+              ["FRI", "Downtown DeKalb · Lincoln Hwy", "5p–10p"],
+              ["SAT", "Private Booking 🎉", "—"],
+            ].map(([d, loc, time, today]: any) => (
+              <div key={d as string} className={`flex items-center justify-between p-3 rounded-lg ${today ? "border-2" : ""}`}
+                style={{ background: today ? "var(--brown-deep)" : "transparent", borderColor: today ? "var(--burnt)" : undefined }}>
+                <div className="flex items-center gap-3">
+                  <span className="w-10 text-center" style={{ fontFamily: "var(--font-bang)", color: "var(--burnt)" }}>{d}</span>
+                  <span style={{ fontFamily: "var(--font-item)" }}>{loc}</span>
+                  {today && <span className="px-2 py-0.5 rounded-full text-[10px]" style={{ background: "var(--lime)", color: "#0d2410", fontFamily: "var(--font-bang)" }}>TODAY</span>}
                 </div>
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="rounded-xl border-2 border-[var(--brown)] p-4 bg-white">
-                <h4 className="font-[family-name:var(--font-item)] text-xl text-[var(--brown)] mb-3">🔥 Top sellers this week</h4>
-                <ul className="space-y-2 font-[family-name:var(--font-hand)] text-xl text-[var(--brown)]">
-                  {[
-                    ["Quesabirrias Tacos", 86],
-                    ["Birria Ramen", 71],
-                    ["Huskie Special", 58],
-                    ["Tamales (red)", 44],
-                  ].map(([n, c]) => (
-                    <li key={n as string} className="flex justify-between border-b border-dashed border-[var(--brown)]/30 pb-1">
-                      <span>{n}</span>
-                      <span className="text-[var(--hot)] font-bold">{c}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-sm" style={{ color: "var(--muted-foreground)" }}>{time}</span>
               </div>
-              <div className="rounded-xl border-2 border-[var(--brown)] p-4 bg-white">
-                <h4 className="font-[family-name:var(--font-item)] text-xl text-[var(--brown)] mb-3">🚚 Truck schedule</h4>
-                <ul className="space-y-2 font-[family-name:var(--font-hand)] text-xl text-[var(--brown)]">
-                  {[
-                    ["Tue", "NIU Campus · 11a–2p"],
-                    ["Wed", "Sycamore Farmer's Market · 4p–8p"],
-                    ["Fri", "Egyptian Theatre Event · 5p–10p"],
-                    ["Sat", "Private catering · booked"],
-                  ].map(([d, w]) => (
-                    <li key={d as string} className="flex gap-3">
-                      <span className="font-[family-name:var(--font-marker)] text-[var(--chili)] w-12">{d}</span>
-                      <span>{w}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            ))}
+            <div className="pt-3 mt-3 border-t flex items-center justify-between" style={{ borderColor: "var(--muted)" }}>
+              <div className="text-sm" style={{ color: "var(--muted-foreground)" }}>Book the truck for private events</div>
+              <a href="tel:815-517-3718" className="px-4 py-2 rounded-full gradient-fiesta text-white text-sm" style={{ fontFamily: "var(--font-action)" }}>
+                CALL 815-517-3718
+              </a>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="text-center mt-14">
-          <a href="#" className="inline-block bg-[var(--chili)] text-white font-[family-name:var(--font-bang)] tracking-wider text-3xl px-10 py-5 rounded-2xl shadow-pop-lg border-4 border-[var(--brown)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-            🌶️  BOOK THE MYB DEMO
-          </a>
-          <p className="font-[family-name:var(--font-hand)] text-2xl text-[var(--brown)]/70 mt-4">
-            30 minutes. We'll wire it up for RT-38 live.
+/* ============== Menu board (chalkboard) ============== */
+function MenuBoard() {
+  const cats = [
+    { name: "Appetizers", items: [["Chips & Queso", "5.99"], ["Guac & Chips", "7.50"], ["Elote en Vaso", "5.00"]] },
+    { name: "Dinners", items: [["Carne Asada Plate", "16.99"], ["Camarones a la Diabla", "16.50"], ["Pollo Asado", "14.99"]] },
+    { name: "Favorites", items: [["Quesabirria (3)", "14.67"], ["Birria Ramen", "15.00"], ["Pastor Quesadilla", "11.99"]] },
+    { name: "NIU Specials", items: [["Huskie Special", "15.99"], ["Late Night Burrito", "9.99"], ["Student Combo", "10.50"]] },
+    { name: "Tamales Los Girasoles", items: [["Dozen Pork", "30.00"], ["Dozen Chicken", "30.00"], ["Rajas con Queso", "30.00"]] },
+    { name: "Sides & Bebidas", items: [["Rice & Beans", "3.50"], ["Horchata", "3.99"], ["Jarritos", "2.99"]] },
+  ];
+  return (
+    <section id="menu" className="py-20 px-6" style={{ background: "var(--brown)" }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-[260px_1fr] gap-8 items-center mb-10">
+          {/* Shield with sope photo */}
+          <div className="relative mx-auto">
+            <div className="absolute inset-0 spin-slow">
+              <Sunflower size={260} />
+            </div>
+            <div className="relative shield w-52 h-60 mx-auto overflow-hidden border-4" style={{ borderColor: "var(--gold)" }}>
+              <img src={sope} alt="Sope" className="w-full h-full object-cover" loading="lazy" width={896} height={896} />
+            </div>
+          </div>
+          <div>
+            <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>La Carta</p>
+            <h2 className="text-6xl md:text-7xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+              THE FULL <span style={{ color: "var(--gold)" }}>MENU</span>
+            </h2>
+            <p className="mt-2 text-xl" style={{ fontFamily: "var(--font-hand)", color: "var(--cream)" }}>
+              Hand-pressed masa · slow-braised meats · salsas made fresh every morning.
+            </p>
+          </div>
+        </div>
+
+        <div className="chalkboard p-6 md:p-10 relative">
+          <Sunflower className="absolute -top-6 -left-6 spin-slow" size={70} />
+          <Sunflower className="absolute -top-6 -right-6 spin-slow" size={70} />
+          <h3 className="text-center text-5xl md:text-6xl mb-8" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
+            ~ La Pizarra ~
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cats.map((cat) => (
+              <div key={cat.name}>
+                <h4 className="text-2xl mb-3 pb-1 border-b-2 border-dashed" style={{ fontFamily: "var(--font-marker)", color: "#FFD23F", borderColor: "rgba(255,210,63,0.4)" }}>
+                  {cat.name}
+                </h4>
+                <ul className="space-y-2">
+                  {cat.items.map(([n, p]) => (
+                    <li key={n} className="flex justify-between items-baseline">
+                      <span style={{ fontFamily: "var(--font-chalk)", fontSize: "1.2rem" }}>{n}</span>
+                      <span className="flex-1 mx-2 border-b border-dotted opacity-40" />
+                      <span style={{ fontFamily: "var(--font-bang)", color: "#FF6B1A" }}>${p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="mt-10 text-center" style={{ fontFamily: "var(--font-hand)", fontSize: "1.4rem", color: "rgba(255,255,255,0.7)" }}>
+            ~ ask about today's especial ~
           </p>
         </div>
       </div>
@@ -490,162 +529,101 @@ function MybPitch() {
   );
 }
 
+/* ============== Family story over pozole banner ============== */
 function FamilyStory() {
   return (
-    <section className="relative py-20 px-6 bg-[var(--hot)] text-[var(--brown)] overflow-hidden">
-      <Pepper className="absolute -left-4 top-10 w-24 wiggle" />
-      <Pepper className="absolute right-10 bottom-10 w-20 wiggle" />
-      <div className="max-w-4xl mx-auto text-center relative">
-        <p className="font-[family-name:var(--font-script)] text-[var(--brown)] text-3xl">La Familia García</p>
-        <h2 className="font-[family-name:var(--font-display)] text-5xl md:text-6xl text-[var(--cream)] mt-2 drop-shadow-[3px_3px_0_var(--brown)]">
-          BUILT BY HAND. SHARED WITH HEART.
+    <section className="relative py-24 px-6 overflow-hidden">
+      <img src={pozole} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={1280} height={720} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(26,14,7,0.92), rgba(44,26,14,0.88))" }} />
+      <div className="relative max-w-3xl mx-auto text-center">
+        <Sunflower size={80} className="mx-auto spin-slow" />
+        <p className="text-sm tracking-[0.4em] uppercase mt-4" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Nuestra Familia</p>
+        <h2 className="text-5xl md:text-6xl mt-2" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+          TERESA & <span style={{ color: "var(--burnt)" }}>EFRAEN</span>
         </h2>
-        <p className="font-[family-name:var(--font-hand)] text-2xl md:text-3xl text-[var(--brown)] mt-6 leading-relaxed">
-          Teresa and Efraen opened RT-38 Taco Alley in 2023. The tamales came from Teresa's grandmother's recipe.
-          The al pastor trompo came from Efraen stubbornly refusing to do it any other way. The food truck came because
-          DeKalb County kept asking. <span className="font-[family-name:var(--font-marker)] text-[var(--chili)]">¡Gracias por la confianza!</span>
+        <p className="mt-6 text-xl leading-relaxed" style={{ fontFamily: "var(--font-hand)", color: "var(--cream)", fontSize: "1.6rem" }}>
+          "We started Los Girasoles with one tamale recipe from my abuela in Michoacán. Today we feed DeKalb out of two kitchens and one trusty red trailer — and every plate still passes through our hands."
+        </p>
+        <p className="mt-4" style={{ fontFamily: "var(--font-script)", color: "var(--gold)", fontSize: "1.4rem" }}>
+          — The Garcia Family
         </p>
       </div>
     </section>
   );
 }
 
-function Footer() {
+/* ============== Loyalty + Reviews ============== */
+function LoyaltyReviews() {
   return (
-    <footer className="bg-[var(--brown)] text-[var(--cream)] pt-2">
-      <Papel />
-      <div className="px-6 py-12 max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-        <div>
-          <img src={logo} alt="RT-38 Taco Alley logo" className="w-32 h-32 bg-white rounded-2xl p-2 border-4 border-[var(--gold)]" />
-          <p className="font-[family-name:var(--font-script)] text-[var(--gold)] text-2xl mt-4">¡Gracias!</p>
-        </div>
-        <div>
-          <h4 className="font-[family-name:var(--font-action)] text-2xl text-[var(--gold)]">VISIT</h4>
-          <p className="font-[family-name:var(--font-hand)] text-xl mt-2">DeKalb County, Illinois</p>
-          <p className="font-[family-name:var(--font-hand)] text-xl">Two storefronts + one food truck</p>
-          <a href="https://www.facebook.com/share/1C5dSoBNAT/?mibextid=wwXIfr" className="font-[family-name:var(--font-marker)] text-[var(--hot)] text-xl mt-3 inline-block">→ Facebook</a>
-        </div>
-        <div>
-          <h4 className="font-[family-name:var(--font-action)] text-2xl text-[var(--gold)]">EAT</h4>
-          <ul className="font-[family-name:var(--font-hand)] text-xl mt-2 space-y-1">
-            <li>🌮 Quesabirrias</li>
-            <li>🌽 Tamales (dozen $30)</li>
-            <li>🔥 Al Pastor de Trompo</li>
-            <li>🥟 Empanadas</li>
-          </ul>
-        </div>
-      </div>
-      <div className="text-center pb-6 font-[family-name:var(--font-marker)] text-[var(--cream)]/60 text-sm">
-        © {new Date().getFullYear()} RT-38 Taco Alley & Tamales Los Girasoles · Mockup by Mind Ya Biz
-      </div>
-    </footer>
-  );
-}
+    <section className="py-20 px-6" style={{ background: "var(--brown-deep)" }}>
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
+        {/* Punch card */}
+        <div className="rounded-2xl border-4 p-6" style={{ borderColor: "var(--gold)", background: "var(--brown)" }}>
+          <p className="text-xs tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Loyalty</p>
+          <h3 className="text-4xl mt-1" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>TACO PUNCH CARD</h3>
+          <p className="text-sm mt-1" style={{ color: "var(--muted-foreground)" }}>9 tacos = 1 free · stamped automatically with every order.</p>
 
-function HireTruck() {
-  const perfectFor = ["Private parties", "Corporate events", "Birthdays & quinceañeras", "Weddings & graduations"];
-  const whatYouGet = ["Fresh, flavorful tacos", "Fast & friendly service", "Crowd-pleasing menu", "Stress-free catering"];
-
-  return (
-    <section id="hire" className="relative py-20 px-6 bg-[var(--cream)] overflow-hidden">
-      <Pepper className="absolute left-6 top-16 w-20 wiggle hidden md:block" />
-      <Pepper className="absolute right-6 bottom-16 w-20 wiggle hidden md:block" />
-      <Sunflower size={120} className="absolute -top-6 right-1/3 spin-slow opacity-40 hidden md:block" />
-
-      <div className="max-w-6xl mx-auto relative">
-        <div className="text-center mb-12">
-          <p className="font-[family-name:var(--font-script)] text-[var(--chili)] text-3xl">¡Bring the flavor to your next event!</p>
-          <h2 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl text-[var(--brown)] mt-2 leading-[0.95]">
-            HIRE OUR
-            <br />
-            <span className="text-[var(--hot)] drop-shadow-[4px_4px_0_var(--gold)]">TACO TRUCK</span>
-          </h2>
-        </div>
-
-        <div className="relative bg-[var(--brown)] rounded-3xl border-8 border-[var(--gold)] shadow-pop-lg overflow-hidden">
-          <div className="bg-[var(--chili)] text-center py-4 border-b-4 border-[var(--gold)] relative">
-            <Star className="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10" />
-            <Star className="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10" />
-            <p className="font-[family-name:var(--font-bang)] text-2xl md:text-3xl text-white tracking-widest">
-              ★ GOT AN EVENT COMING UP? ★
-            </p>
+          <div className="mt-5 grid grid-cols-5 gap-3">
+            {Array.from({ length: 10 }).map((_, i) => {
+              const stamped = i < 6;
+              const free = i === 9;
+              return (
+                <div key={i} className="aspect-square rounded-full flex items-center justify-center border-2"
+                  style={{ borderColor: free ? "var(--chili)" : "var(--gold)", background: stamped ? "rgba(244,123,62,0.15)" : "transparent" }}>
+                  {stamped ? <Sunflower size={36} /> : free ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)" }}>FREE</span> : <span style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-bang)" }}>{i + 1}</span>}
+                </div>
+              );
+            })}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
-            <div className="relative">
-              <div className="absolute -inset-3 bg-[var(--hot)] rounded-2xl rotate-2" />
-              <img
-                src={foodTruck}
-                alt="The Tamales Los Girasoles food truck on location"
-                width={1280}
-                height={896}
-                loading="lazy"
-                className="relative w-full h-64 md:h-full object-cover rounded-2xl border-4 border-[var(--gold)]"
-              />
-              <div className="absolute -bottom-5 -right-5 bg-[var(--gold)] text-[var(--brown)] font-[family-name:var(--font-bang)] text-xl px-4 py-2 rounded-full border-4 border-[var(--brown)] -rotate-6 shadow-pop">
-                ¡VAMOS!
+          <div className="mt-6 grid grid-cols-3 gap-2 text-center text-xs">
+            {[["🥉 Amigo", "0+"], ["🥈 Familia", "10+"], ["🥇 Patrón", "25+"]].map(([t, c]) => (
+              <div key={t} className="p-2 rounded-lg border" style={{ borderColor: "var(--gold)" }}>
+                <div style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>{t}</div>
+                <div style={{ color: "var(--muted-foreground)" }}>{c} orders</div>
               </div>
+            ))}
+          </div>
+
+          <div className="mt-5 coupon-edge p-4 rounded-lg flex items-center justify-between" style={{ background: "var(--brown-deep)" }}>
+            <div>
+              <div style={{ fontFamily: "var(--font-marker)", color: "var(--pink)" }}>🎂 Birthday gift</div>
+              <div className="text-sm" style={{ color: "var(--muted-foreground)" }}>Free churro cheesecake on your day</div>
             </div>
+            <div className="w-16 h-16 rounded grid place-items-center text-[10px]" style={{ background: "white", color: "black", fontFamily: "var(--font-bang)" }}>
+              [ QR ]
+            </div>
+          </div>
+        </div>
 
-            <div className="text-[var(--cream)]">
-              <p className="font-[family-name:var(--font-hand)] text-2xl text-[var(--cream)]/90">
-                Let us handle the food while you enjoy the party.
-              </p>
-
-              <div className="mt-6">
-                <h3 className="font-[family-name:var(--font-marker)] text-xl text-[var(--gold)] tracking-widest mb-3">★ PERFECT FOR</h3>
-                <ul className="space-y-2">
-                  {perfectFor.map((p) => (
-                    <li key={p} className="flex items-center gap-3 font-[family-name:var(--font-hand)] text-xl">
-                      <span className="text-[var(--lime)] font-[family-name:var(--font-bang)] text-2xl">✓</span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
+        {/* Reviews chalkboard with sopes polaroid */}
+        <div className="relative">
+          <div className="chalkboard p-6 md:p-8">
+            <h3 className="text-4xl text-center mb-6" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
+              ★ Lo Que Dicen ★
+            </h3>
+            {[
+              ["Maria S.", "Best birria in DeKalb. No contest. 🔥"],
+              ["Jake T. (NIU)", "Huskie Special saved my finals week."],
+              ["Sandra R.", "Teresa's tamales taste like my grandma's kitchen."],
+            ].map(([who, q]) => (
+              <div key={who as string} className="mb-5">
+                <p style={{ fontFamily: "var(--font-hand)", fontSize: "1.5rem", color: "#fffbe6" }}>"{q}"</p>
+                <p className="text-sm mt-1" style={{ fontFamily: "var(--font-marker)", color: "#FF6B1A" }}>— {who}</p>
               </div>
-
-              <div className="mt-6">
-                <h3 className="font-[family-name:var(--font-marker)] text-xl text-[var(--gold)] tracking-widest mb-3">★ WHAT YOU GET</h3>
-                <ul className="space-y-2">
-                  {whatYouGet.map((p) => (
-                    <li key={p} className="flex items-center gap-3 font-[family-name:var(--font-hand)] text-xl">
-                      <span className="text-[var(--hot)] font-[family-name:var(--font-bang)] text-2xl">✓</span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            ))}
+            <div className="flex items-center gap-2 justify-center mt-4">
+              {[1,2,3,4,5].map((i) => <Star key={i} />)}
+              <span className="ml-2" style={{ fontFamily: "var(--font-bang)", color: "var(--gold)" }}>4.9 / 5 · 312 reviews</span>
             </div>
           </div>
 
-          <div className="border-t-4 border-dashed border-[var(--gold)] bg-[var(--brown)] p-6 md:p-8">
-            <div className="text-center mb-4">
-              <span className="font-[family-name:var(--font-bang)] bg-[var(--gold)] text-[var(--brown)] px-4 py-2 rounded-full border-4 border-[var(--cream)] text-xl tracking-wider">
-                NOW BOOKING IN ADVANCE
-              </span>
-              <p className="font-[family-name:var(--font-script)] text-[var(--cream)]/80 text-2xl mt-2">
-                Spots fill up fast — reserve your date early.
-              </p>
+          {/* Polaroid */}
+          <div className="absolute -bottom-8 -right-6 w-56 polaroid tilt-r hidden md:block">
+            <img src={sopesTrio} alt="Teresa's sopes" className="w-full h-40 object-cover" loading="lazy" width={1152} height={896} />
+            <div className="absolute bottom-2 left-0 right-0 text-center" style={{ fontFamily: "var(--font-hand)", color: "#2C1A0E", fontSize: "1.3rem" }}>
+              Teresa's famous sopes 🌻
             </div>
-
-            <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
-              <a
-                href="tel:8158253069"
-                className="flex items-center justify-center gap-3 bg-[var(--hot)] text-white font-[family-name:var(--font-bang)] text-2xl px-6 py-4 rounded-xl border-4 border-[var(--gold)] shadow-pop hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
-              >
-                📞 (815) 825-3069
-              </a>
-              <a
-                href="mailto:tamaleslosgirasoles@gmail.com"
-                className="flex items-center justify-center gap-3 bg-[var(--gold)] text-[var(--brown)] font-[family-name:var(--font-bang)] text-xl px-6 py-4 rounded-xl border-4 border-[var(--hot)] shadow-pop hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
-              >
-                ✉ EMAIL US
-              </a>
-            </div>
-
-            <p className="text-center font-[family-name:var(--font-display)] text-[var(--gold)] text-2xl md:text-3xl mt-6 drop-shadow-[2px_2px_0_var(--chili)]">
-              GREAT FOOD · GOOD VIBES · UNFORGETTABLE EVENTS
-            </p>
           </div>
         </div>
       </div>
@@ -653,17 +631,183 @@ function HireTruck() {
   );
 }
 
+/* ============== Admin (MYB pitch) ============== */
+function AdminDashboard() {
+  return (
+    <section className="py-20 px-6" style={{ background: "linear-gradient(180deg, var(--brown-deep), #0d0805)" }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Mind Ya Biz · Back of House</p>
+          <h2 className="text-5xl md:text-6xl mt-1" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+            ONE DASHBOARD. <span style={{ color: "var(--burnt)" }}>EVERYTHING.</span>
+          </h2>
+          <p className="mt-3 max-w-2xl mx-auto" style={{ color: "var(--muted-foreground)" }}>
+            Orders, revenue, food truck location, marketing — Teresa runs both spots from her phone.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border-2 overflow-hidden shadow-pop-lg" style={{ borderColor: "var(--gold)", background: "#0f0a06" }}>
+          {/* Top bar */}
+          <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "var(--muted)", background: "#1a110a" }}>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-md grid place-items-center text-xs" style={{ background: "var(--gradient-fiesta)", fontFamily: "var(--font-bang)", color: "white" }}>MYB</div>
+              <span style={{ fontFamily: "var(--font-item)", color: "var(--cream)" }}>RT-38 Taco Alley · Dashboard</span>
+            </div>
+            <div className="flex items-center gap-3 text-xs">
+              <ToggleRow label="🏠 Restaurant" on />
+              <ToggleRow label="🚚 Truck @ NIU" on />
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-0 divide-x" style={{ borderColor: "var(--muted)" }}>
+            {/* Live orders */}
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-3">
+                <h4 style={{ fontFamily: "var(--font-marker)", color: "var(--gold)", fontSize: "1.4rem" }}>🔔 Live Orders</h4>
+                <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--lime)", color: "#0d2410", fontFamily: "var(--font-bang)" }}>7 ACTIVE</span>
+              </div>
+              <div className="space-y-2">
+                {[
+                  ["#1284", "3× Quesabirria · 1× Horchata", "$18.66", "Pickup · 4 min", "var(--burnt)"],
+                  ["#1285", "Huskie Special × 2", "$31.98", "NIU Truck · ready", "var(--lime)"],
+                  ["#1286", "Dozen Pork Tamales", "$30.00", "Pickup · 12 min", "var(--gold)"],
+                  ["#1287", "Birria Ramen · Churro Cheesecake", "$21.50", "Delivery · driver assigned", "var(--pink)"],
+                ].map(([id, items, total, status, c]) => (
+                  <div key={id as string} className="p-3 rounded-lg border flex items-center justify-between" style={{ borderColor: "var(--muted)", background: "#160e08" }}>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span style={{ fontFamily: "var(--font-bang)", color: c as string }}>{id}</span>
+                        <span className="text-sm" style={{ color: "var(--cream)" }}>{items}</span>
+                      </div>
+                      <div className="text-xs mt-0.5" style={{ color: "var(--muted-foreground)" }}>{status}</div>
+                    </div>
+                    <div style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>{total}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right column */}
+            <div className="p-5 space-y-5">
+              <div className="grid grid-cols-2 gap-3">
+                <Stat label="Today" value="$2,847" sub="+18% vs yest" color="var(--burnt)" />
+                <Stat label="Orders" value="142" sub="71 restaurant · 71 truck" color="var(--gold)" />
+                <Stat label="Avg ticket" value="$20.05" sub="+$1.20" color="var(--lime)" />
+                <Stat label="Loyalty" value="892" sub="active members" color="var(--pink)" />
+              </div>
+
+              <div className="p-4 rounded-lg border" style={{ borderColor: "var(--muted)", background: "#160e08" }}>
+                <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Top items today</div>
+                {[["🌮 Street Taco", 84], ["🧀 Quesabirria", 52], ["🍜 Birria Ramen", 38], ["🫔 Tamales (dozen)", 12]].map(([n, v]) => (
+                  <div key={n as string} className="flex items-center gap-3 mb-2 text-sm">
+                    <span className="w-40" style={{ color: "var(--cream)", fontFamily: "var(--font-item)" }}>{n}</span>
+                    <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "var(--muted)" }}>
+                      <div className="h-full gradient-fiesta" style={{ width: `${(v as number) / 84 * 100}%` }} />
+                    </div>
+                    <span className="w-8 text-right" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-4 rounded-lg border" style={{ borderColor: "var(--muted)", background: "#160e08" }}>
+                <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--pink)", fontFamily: "var(--font-bang)" }}>📣 Marketing blast</div>
+                <textarea
+                  readOnly
+                  className="w-full p-2 rounded text-sm resize-none"
+                  rows={2}
+                  style={{ background: "#0a0604", color: "var(--cream)", border: "1px solid var(--muted)", fontFamily: "var(--font-hand)", fontSize: "1.1rem" }}
+                  defaultValue="🌮 Truck at NIU 'til 8pm! Show this text for free chips & queso."
+                />
+                <div className="flex items-center justify-between mt-2">
+                  <span className="text-xs" style={{ color: "var(--muted-foreground)" }}>SMS · 892 members · Loyalty list</span>
+                  <button className="px-3 py-1 rounded-full text-xs gradient-fiesta text-white" style={{ fontFamily: "var(--font-action)" }}>SEND →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ToggleRow({ label, on }: { label: string; on?: boolean }) {
+  return (
+    <span className="inline-flex items-center gap-2 px-2 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.06)", color: "var(--cream)" }}>
+      {label}
+      <span className={`w-8 h-4 rounded-full relative ${on ? "bg-[var(--lime)]" : "bg-gray-500"}`}>
+        <span className={`absolute top-0.5 ${on ? "right-0.5" : "left-0.5"} w-3 h-3 bg-white rounded-full`} />
+      </span>
+    </span>
+  );
+}
+
+function Stat({ label, value, sub, color }: { label: string; value: string; sub: string; color: string }) {
+  return (
+    <div className="p-4 rounded-lg border" style={{ borderColor: "var(--muted)", background: "#160e08" }}>
+      <div className="text-[10px] uppercase tracking-widest" style={{ color, fontFamily: "var(--font-bang)" }}>{label}</div>
+      <div className="text-3xl mt-1" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>{value}</div>
+      <div className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>{sub}</div>
+    </div>
+  );
+}
+
+/* ============== Footer + badge ============== */
+function Footer() {
+  return (
+    <footer className="relative">
+      <Aztec />
+      <div className="px-6 py-12" style={{ background: "var(--brown-deep)" }}>
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 items-start">
+          <div>
+            <img src={logo} alt="RT-38" className="w-32" width={128} height={128} />
+            <p className="mt-3 text-sm" style={{ color: "var(--muted-foreground)" }}>
+              Family-owned · DeKalb County, IL · Powered by Mind Ya Biz.
+            </p>
+          </div>
+          <div>
+            <h5 style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>Visit</h5>
+            <p className="text-sm mt-2">817 W Lincoln Hwy<br/>DeKalb, IL 60115</p>
+            <p className="text-sm mt-2">🏠 815-825-3069 · 🚚 815-517-3718</p>
+          </div>
+          <div>
+            <h5 style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>Hours</h5>
+            <p className="text-sm mt-2">Mon–Sun · 10am – 9pm<br/>Truck: see schedule</p>
+          </div>
+        </div>
+        <p className="text-center text-xs mt-10" style={{ color: "var(--muted-foreground)" }}>
+          © {new Date().getFullYear()} RT-38 Taco Alley / Tamales Los Girasoles · MYB Pitch Mockup
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+function MybBadge() {
+  return (
+    <div className="fixed bottom-4 right-4 z-50 px-4 py-2 rounded-lg border-2 shadow-glow"
+      style={{ background: "var(--brown)", borderColor: "var(--gold)", fontFamily: "var(--font-display)", color: "var(--gold)", letterSpacing: "0.08em" }}>
+      MIND YA BIZ × MOCKUP
+    </div>
+  );
+}
+
+/* ============== Page ============== */
 function Index() {
   return (
-    <main>
+    <main className="min-h-screen" style={{ background: "var(--brown-deep)", color: "var(--cream)" }}>
       <Hero />
-      <Specials />
-      <Favorites />
-      <Locations />
-      <HireTruck />
-      <MybPitch />
+      <Aztec />
+      <OnlineOrdering />
+      <DiagonalBanner />
+      <LocationsSection />
+      <Aztec />
+      <MenuBoard />
       <FamilyStory />
+      <LoyaltyReviews />
+      <AdminDashboard />
       <Footer />
+      <MybBadge />
     </main>
   );
 }
