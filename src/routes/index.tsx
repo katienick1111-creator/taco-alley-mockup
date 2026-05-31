@@ -105,6 +105,15 @@ function Hero() {
         style={{ filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.7)) drop-shadow(0 0 60px rgba(255,107,26,0.35))", transform: "rotate(-6deg)", zIndex: 1 }}
       />
 
+      {/* Horchata glass — floating left of brand */}
+      <img
+        src={horchata}
+        alt="Glass of creamy horchata with cinnamon stick"
+        width={512}
+        height={512}
+        className="absolute -left-8 top-[280px] w-[200px] lg:w-[280px] pointer-events-none hidden lg:block bob"
+        style={{ filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.6)) drop-shadow(0 0 40px rgba(245,222,179,0.25))", transform: "rotate(6deg)", zIndex: 1 }}
+      />
 
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative z-10">
         {/* Top row: brand */}
