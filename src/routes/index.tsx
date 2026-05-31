@@ -105,9 +105,10 @@ function Hero() {
       />
 
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative">
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative z-10">
         {/* Top row: brand */}
-        <div className="text-center">
+        <div className="text-center relative z-10">
+
           <div className="inline-block relative">
             <div className="absolute inset-0 rounded-full glow-pulse" style={{ background: "radial-gradient(circle, rgba(255,107,26,0.4), transparent 70%)" }} />
             <img
