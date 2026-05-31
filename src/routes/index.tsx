@@ -471,6 +471,117 @@ function Footer() {
   );
 }
 
+function HireTruck() {
+  const perfectFor = ["Private parties", "Corporate events", "Birthdays & quinceañeras", "Weddings & graduations"];
+  const whatYouGet = ["Fresh, flavorful tacos", "Fast & friendly service", "Crowd-pleasing menu", "Stress-free catering"];
+
+  return (
+    <section id="hire" className="relative py-20 px-6 bg-[var(--cream)] overflow-hidden">
+      <Pepper className="absolute left-6 top-16 w-20 wiggle hidden md:block" />
+      <Pepper className="absolute right-6 bottom-16 w-20 wiggle hidden md:block" />
+      <Sunflower size={120} className="absolute -top-6 right-1/3 spin-slow opacity-40 hidden md:block" />
+
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-12">
+          <p className="font-[family-name:var(--font-script)] text-[var(--chili)] text-3xl">¡Bring the flavor to your next event!</p>
+          <h2 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl text-[var(--brown)] mt-2 leading-[0.95]">
+            HIRE OUR
+            <br />
+            <span className="text-[var(--hot)] drop-shadow-[4px_4px_0_var(--gold)]">TACO TRUCK</span>
+          </h2>
+        </div>
+
+        <div className="relative bg-[var(--brown)] rounded-3xl border-8 border-[var(--gold)] shadow-pop-lg overflow-hidden">
+          <div className="bg-[var(--chili)] text-center py-4 border-b-4 border-[var(--gold)] relative">
+            <Star className="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10" />
+            <Star className="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10" />
+            <p className="font-[family-name:var(--font-bang)] text-2xl md:text-3xl text-white tracking-widest">
+              ★ GOT AN EVENT COMING UP? ★
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
+            <div className="relative">
+              <div className="absolute -inset-3 bg-[var(--hot)] rounded-2xl rotate-2" />
+              <img
+                src={foodTruck}
+                alt="The Tamales Los Girasoles food truck on location"
+                width={1280}
+                height={896}
+                loading="lazy"
+                className="relative w-full h-64 md:h-full object-cover rounded-2xl border-4 border-[var(--gold)]"
+              />
+              <div className="absolute -bottom-5 -right-5 bg-[var(--gold)] text-[var(--brown)] font-[family-name:var(--font-bang)] text-xl px-4 py-2 rounded-full border-4 border-[var(--brown)] -rotate-6 shadow-pop">
+                ¡VAMOS!
+              </div>
+            </div>
+
+            <div className="text-[var(--cream)]">
+              <p className="font-[family-name:var(--font-hand)] text-2xl text-[var(--cream)]/90">
+                Let us handle the food while you enjoy the party.
+              </p>
+
+              <div className="mt-6">
+                <h3 className="font-[family-name:var(--font-marker)] text-xl text-[var(--gold)] tracking-widest mb-3">★ PERFECT FOR</h3>
+                <ul className="space-y-2">
+                  {perfectFor.map((p) => (
+                    <li key={p} className="flex items-center gap-3 font-[family-name:var(--font-hand)] text-xl">
+                      <span className="text-[var(--lime)] font-[family-name:var(--font-bang)] text-2xl">✓</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-6">
+                <h3 className="font-[family-name:var(--font-marker)] text-xl text-[var(--gold)] tracking-widest mb-3">★ WHAT YOU GET</h3>
+                <ul className="space-y-2">
+                  {whatYouGet.map((p) => (
+                    <li key={p} className="flex items-center gap-3 font-[family-name:var(--font-hand)] text-xl">
+                      <span className="text-[var(--hot)] font-[family-name:var(--font-bang)] text-2xl">✓</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t-4 border-dashed border-[var(--gold)] bg-[var(--brown)] p-6 md:p-8">
+            <div className="text-center mb-4">
+              <span className="font-[family-name:var(--font-bang)] bg-[var(--gold)] text-[var(--brown)] px-4 py-2 rounded-full border-4 border-[var(--cream)] text-xl tracking-wider">
+                NOW BOOKING IN ADVANCE
+              </span>
+              <p className="font-[family-name:var(--font-script)] text-[var(--cream)]/80 text-2xl mt-2">
+                Spots fill up fast — reserve your date early.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+              <a
+                href="tel:8158253069"
+                className="flex items-center justify-center gap-3 bg-[var(--hot)] text-white font-[family-name:var(--font-bang)] text-2xl px-6 py-4 rounded-xl border-4 border-[var(--gold)] shadow-pop hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+              >
+                📞 (815) 825-3069
+              </a>
+              <a
+                href="mailto:tamaleslosgirasoles@gmail.com"
+                className="flex items-center justify-center gap-3 bg-[var(--gold)] text-[var(--brown)] font-[family-name:var(--font-bang)] text-xl px-6 py-4 rounded-xl border-4 border-[var(--hot)] shadow-pop hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+              >
+                ✉ EMAIL US
+              </a>
+            </div>
+
+            <p className="text-center font-[family-name:var(--font-display)] text-[var(--gold)] text-2xl md:text-3xl mt-6 drop-shadow-[2px_2px_0_var(--chili)]">
+              GREAT FOOD · GOOD VIBES · UNFORGETTABLE EVENTS
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main>
@@ -478,6 +589,7 @@ function Index() {
       <Specials />
       <Favorites />
       <Locations />
+      <HireTruck />
       <MybPitch />
       <FamilyStory />
       <Footer />
