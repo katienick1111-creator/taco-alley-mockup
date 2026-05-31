@@ -138,7 +138,7 @@ function Hero() {
             <img
               src={logo}
               alt="RT-38 Taco Alley / Tamales Los Girasoles"
-              className="relative w-48 md:w-64 rounded-full"
+              className="relative w-44 md:w-56"
               width={288}
               height={288}
               style={{ filter: "drop-shadow(0 6px 10px rgba(0,0,0,0.35))" }}
