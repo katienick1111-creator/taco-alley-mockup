@@ -889,15 +889,12 @@ function MybBadge() {
 
 /* ============== Find Us — Taco Trail Map ============== */
 function FindUsMap() {
-  // Path matches the offset-path in styles.css (viewBox 1000x600)
-  // Trail stays on the road/parking-lot path (the yellow route): straight down, then right across the lot to Taco Alley.
+  // Tacos sit only on the painted yellow route into the Taco Alley badge.
   const trail = [
-    { left: "32%", top: "16%" },
-    { left: "32%", top: "36%" },
-    { left: "33%", top: "56%" },
-    { left: "42%", top: "70%" },
-    { left: "58%", top: "70%" },
-    { left: "72%", top: "60%" },
+    { left: "39%", top: "36%", rotate: "-16deg" },
+    { left: "51%", top: "30%", rotate: "-10deg" },
+    { left: "63%", top: "27%", rotate: "4deg" },
+    { left: "72%", top: "25%", rotate: "12deg" },
   ];
   return (
     <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, var(--brown-deep) 0%, #1a0e07 100%)" }}>
@@ -930,14 +927,27 @@ function FindUsMap() {
           />
 
           {/* Trail of small tacos */}
+          <svg className="absolute inset-0 pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden>
+            <path
+              d="M 345 225 C 430 195, 505 178, 590 170 C 675 162, 735 158, 785 142"
+              fill="none"
+              stroke="rgba(255, 213, 54, 0.95)"
+              strokeWidth="18"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="34 22"
+              style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.55))" }}
+            />
+          </svg>
           {trail.map((t, i) => (
             <span
               key={i}
               aria-hidden
-              className="absolute text-2xl md:text-3xl select-none"
+              className="absolute text-xl md:text-2xl select-none"
               style={{
                 left: t.left,
                 top: t.top,
+                transform: `translate(-50%, -50%) rotate(${t.rotate})`,
                 animation: `trail-pop 9s linear ${(i + 1) * 0.9}s infinite`,
                 filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.5))",
               }}
@@ -964,29 +974,37 @@ function FindUsMap() {
           ))}
 
           {/* RT-38 badge logo as the pin over Taco Alley */}
-          <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: "80%", top: "42%" }}>
+          <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: "80%", top: "24%" }}>
             {/* Pulse rings */}
             <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
-              width: 80, height: 80,
+              width: 56, height: 56,
               background: "rgba(255,140,40,0.45)",
               animation: "pin-pulse-ring 1.8s ease-out infinite",
             }} />
             <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
-              width: 80, height: 80,
+              width: 56, height: 56,
               background: "rgba(255,200,80,0.35)",
               animation: "pin-pulse-ring 1.8s ease-out 0.9s infinite",
             }} />
             {/* Logo badge */}
-            <img
-              src={logo}
-              alt="RT-38 Taco Alley"
-              className="relative w-20 md:w-24"
+            <div
+              className="relative grid place-items-center rounded-full overflow-hidden"
               style={{
-                transformOrigin: "50% 100%",
+                width: 54,
+                height: 54,
+                border: "3px solid var(--gold)",
+                background: "var(--cream)",
                 animation: "pin-bob 1.6s ease-in-out infinite",
-                filter: "drop-shadow(0 6px 10px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(255,140,40,0.7))",
+                boxShadow: "0 6px 14px rgba(0,0,0,0.55), 0 0 0 3px rgba(255, 105, 32, 0.55), 0 0 18px rgba(255,140,40,0.7)",
               }}
-            />
+            >
+              <img
+                src={logo}
+                alt="RT-38 Taco Alley"
+                className="h-full w-full"
+                style={{ objectFit: "cover", transform: "scale(1.9)" }}
+              />
+            </div>
           </div>
 
         </div>
