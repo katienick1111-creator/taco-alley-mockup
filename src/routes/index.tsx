@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import logo from "@/assets/rt38-logo.png";
 // no storefront photo available — use pozole shot (shows real restaurant interior) for the dine-in card
 import foodTruck from "@/assets/food-truck.jpg";
@@ -10,6 +10,8 @@ import shrimpRice from "@/assets/food/shrimp-rice.jpg";
 import trompo from "@/assets/food/al-pastor-trompo.png";
 import sopesTrio from "@/assets/food/sopes-trio.jpg";
 import pastorQues from "@/assets/food/pastor-quesadilla.jpg";
+import chili from "@/assets/chili.png";
+import birriaDip from "@/assets/birria-dip.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,13 +53,18 @@ function Sunflower({ size = 36, className = "" }: { size?: number; className?: s
   );
 }
 
-function Pepper({ className = "" }: { className?: string }) {
+function Pepper({ className = "", size = 60, style }: { className?: string; size?: number; style?: CSSProperties }) {
   return (
-    <svg width="40" height="60" viewBox="0 0 40 60" className={className} aria-hidden>
-      <path d="M20 8 Q14 6 14 2 L22 2 Q22 6 20 8" fill="#6BBF59" />
-      <path d="M20 8 C8 12, 4 30, 12 50 C18 60, 28 58, 32 46 C36 30, 30 14, 20 8 Z" fill="#D62828" stroke="#7a1414" strokeWidth="1" />
-      <path d="M18 14 C14 22, 14 36, 18 48" stroke="#ff6b6b" strokeWidth="2" fill="none" opacity="0.7" />
-    </svg>
+    <img
+      src={chili}
+      alt=""
+      aria-hidden
+      width={size}
+      height={size * 1.5}
+      style={{ width: size, height: "auto", filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.55))", ...style }}
+      className={className}
+      loading="lazy"
+    />
   );
 }
 
@@ -80,12 +87,24 @@ function Hero() {
       <PapelPicado />
 
       {/* Floating decor */}
-      <Pepper className="absolute top-24 left-6 wiggle hidden md:block" />
+      <Pepper size={70} className="absolute top-24 left-6 wiggle hidden md:block" />
+      <Pepper size={50} className="absolute top-[420px] left-[4%] bob hidden lg:block" />
+      <Pepper size={44} className="absolute top-[180px] right-[6%] wiggle hidden md:block" style={{ transform: "rotate(25deg)" }} />
       <Sunflower size={60} className="absolute top-32 right-10 spin-slow hidden md:block" />
       <Star className="absolute top-44 left-1/3 bob" />
       <Star className="absolute top-60 right-1/4 bob" color="#FF6B1A" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12">
+      {/* Hero birria-dipping tacos — floating right of brand */}
+      <img
+        src={birriaDip}
+        alt="Quesabirria tacos dipping in consomé"
+        width={520}
+        height={520}
+        className="absolute right-0 top-10 w-[280px] md:w-[420px] lg:w-[520px] pointer-events-none hidden md:block bob"
+        style={{ filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.7)) drop-shadow(0 0 60px rgba(255,107,26,0.35))", transform: "rotate(-6deg)" }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative">
         {/* Top row: brand */}
         <div className="text-center">
           <div className="inline-block relative">
