@@ -53,7 +53,7 @@ function Sunflower({ size = 36, className = "" }: { size?: number; className?: s
   );
 }
 
-function Pepper({ className = "", size = 60 }: { className?: string; size?: number }) {
+function Pepper({ className = "", size = 60, style }: { className?: string; size?: number; style?: React.CSSProperties }) {
   return (
     <img
       src={chili}
@@ -61,7 +61,7 @@ function Pepper({ className = "", size = 60 }: { className?: string; size?: numb
       aria-hidden
       width={size}
       height={size * 1.5}
-      style={{ width: size, height: "auto", filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.55))" }}
+      style={{ width: size, height: "auto", filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.55))", ...style }}
       className={className}
       loading="lazy"
     />
