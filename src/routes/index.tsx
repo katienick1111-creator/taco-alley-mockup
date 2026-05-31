@@ -946,11 +946,6 @@ function FindUsMap() {
             </span>
           ))}
 
-          {/* Moving taco mascot */}
-          <div className="taco-runner" aria-hidden>
-            <span>🌮</span>
-          </div>
-
           {/* Steam wisps near Taco Alley */}
           {[0, 0.6, 1.2].map((delay, i) => (
             <span
@@ -968,47 +963,32 @@ function FindUsMap() {
             />
           ))}
 
-          {/* Red pin over Taco Alley (upper-right) */}
-          <div className="absolute" style={{ left: "80%", top: "42%" }}>
+          {/* RT-38 badge logo as the pin over Taco Alley */}
+          <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: "80%", top: "42%" }}>
             {/* Pulse rings */}
-            <span aria-hidden className="absolute rounded-full" style={{
-              left: 0, top: 0, width: 36, height: 36,
-              background: "rgba(214,40,40,0.5)",
+            <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
+              width: 80, height: 80,
+              background: "rgba(255,140,40,0.45)",
               animation: "pin-pulse-ring 1.8s ease-out infinite",
             }} />
-            <span aria-hidden className="absolute rounded-full" style={{
-              left: 0, top: 0, width: 36, height: 36,
-              background: "rgba(214,40,40,0.4)",
+            <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
+              width: 80, height: 80,
+              background: "rgba(255,200,80,0.35)",
               animation: "pin-pulse-ring 1.8s ease-out 0.9s infinite",
             }} />
-            {/* Pin */}
-            <svg
-              width="44" height="56" viewBox="0 0 44 56"
+            {/* Logo badge */}
+            <img
+              src={logo}
+              alt="RT-38 Taco Alley"
+              className="relative w-20 md:w-24"
               style={{
-                position: "absolute", left: 0, top: 0,
                 transformOrigin: "50% 100%",
                 animation: "pin-bob 1.6s ease-in-out infinite",
-                filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(255,60,40,0.7))",
+                filter: "drop-shadow(0 6px 10px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(255,140,40,0.7))",
               }}
-              aria-hidden
-            >
-              <path d="M22 0 C9.85 0 0 9.85 0 22 c0 16 22 34 22 34 s22-18 22-34 C44 9.85 34.15 0 22 0 z"
-                fill="#D62828" stroke="#fff8e7" strokeWidth="2.5" />
-              <circle cx="22" cy="21" r="7" fill="#fff8e7" />
-            </svg>
-            {/* Label */}
-            <span
-              className="absolute whitespace-nowrap px-2 py-1 rounded-md text-xs font-bold"
-              style={{
-                right: 50, top: 8,
-                background: "var(--cream)", color: "var(--chili)",
-                fontFamily: "var(--font-bang)", letterSpacing: "0.06em",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
-              }}
-            >
-              RT-38 TACO ALLEY
-            </span>
+            />
           </div>
+
         </div>
 
         {/* CTA + footer note */}
