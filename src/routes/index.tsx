@@ -890,13 +890,13 @@ function MybBadge() {
 /* ============== Find Us — Taco Trail Map ============== */
 function FindUsMap() {
   // Path matches the offset-path in styles.css (viewBox 1000x600)
-  // Coordinates chosen to start top-right (entering plaza) and arrive at Taco Alley lower-left.
+  // Trail follows the road down (left), turns right into the parking lot, and arrives at Taco Alley (right building).
   const trail = [
-    { d: "12%", left: "82%", top: "18%" },
-    { d: "26%", left: "68%", top: "32%" },
-    { d: "44%", left: "52%", top: "48%" },
-    { d: "62%", left: "36%", top: "62%" },
-    { d: "78%", left: "22%", top: "74%" },
+    { d: "12%", left: "32%", top: "12%" },
+    { d: "28%", left: "33%", top: "38%" },
+    { d: "46%", left: "36%", top: "66%" },
+    { d: "64%", left: "55%", top: "72%" },
+    { d: "80%", left: "72%", top: "56%" },
   ];
   return (
     <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, var(--brown-deep) 0%, #1a0e07 100%)" }}>
@@ -925,7 +925,7 @@ function FindUsMap() {
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 18% 78%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
+            style={{ background: "radial-gradient(ellipse at 82% 45%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
           />
 
           {/* Trail of small tacos */}
@@ -957,8 +957,8 @@ function FindUsMap() {
               aria-hidden
               className="absolute rounded-full"
               style={{
-                left: `${14 + i * 3}%`,
-                top: "70%",
+                left: `${78 + i * 3}%`,
+                top: "42%",
                 width: 18,
                 height: 18,
                 background: "radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 70%)",
@@ -968,7 +968,7 @@ function FindUsMap() {
           ))}
 
           {/* Red pin over Taco Alley (upper-right) */}
-          <div className="absolute" style={{ left: "18%", top: "72%" }}>
+          <div className="absolute" style={{ left: "80%", top: "42%" }}>
             {/* Pulse rings */}
             <span aria-hidden className="absolute rounded-full" style={{
               left: 0, top: 0, width: 36, height: 36,
@@ -999,7 +999,7 @@ function FindUsMap() {
             <span
               className="absolute whitespace-nowrap px-2 py-1 rounded-md text-xs font-bold"
               style={{
-                left: 50, top: -8,
+                right: 50, top: 8,
                 background: "var(--cream)", color: "var(--chili)",
                 fontFamily: "var(--font-bang)", letterSpacing: "0.06em",
                 boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
