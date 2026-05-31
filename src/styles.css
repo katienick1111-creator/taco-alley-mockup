@@ -305,3 +305,47 @@
   background-size: 16px 100%;
   background-repeat: repeat-x;
 }
+
+/* ===== Find Us / Taco Trail map ===== */
+@keyframes taco-bounce {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-8px) rotate(6deg); }
+}
+@keyframes taco-march {
+  0%   { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}
+@keyframes trail-pop {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+}
+@keyframes pin-pulse-ring {
+  0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+@keyframes pin-bob {
+  0%, 100% { transform: translate(-50%, -100%) translateY(0); }
+  50%      { transform: translate(-50%, -100%) translateY(-6px); }
+}
+@keyframes steam-rise {
+  0%   { transform: translate(-50%, 0) scale(0.8); opacity: 0; }
+  20%  { opacity: 0.7; }
+  100% { transform: translate(-50%, -60px) scale(1.6); opacity: 0; }
+}
+
+.taco-runner {
+  position: absolute;
+  top: 0; left: 0;
+  offset-path: path("M 60 540 C 240 480, 360 420, 520 360 S 820 220, 960 140");
+  offset-rotate: 0deg;
+  animation: taco-march 9s linear infinite;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+.taco-runner > span {
+  display: inline-block;
+  font-size: 44px;
+  line-height: 1;
+  animation: taco-bounce 0.7s ease-in-out infinite;
+}
