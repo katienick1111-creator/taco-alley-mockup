@@ -337,15 +337,16 @@
 .taco-runner {
   position: absolute;
   top: 0; left: 0;
-  offset-path: path("M 320 30 C 320 200, 320 380, 420 440 C 540 470, 680 440, 780 360");
+  /* Down the yellow road on the left, then right across the yellow parking row to the red pin */
+  offset-path: path("M 280 20 L 280 320 Q 285 360 330 372 L 780 336");
   offset-rotate: 0deg;
-  animation: taco-march 9s linear infinite;
-  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
+  animation: taco-march 8s linear infinite;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.55));
   pointer-events: none;
 }
 .taco-runner > span {
   display: inline-block;
-  font-size: 44px;
+  font-size: 22px;
   line-height: 1;
   animation: taco-bounce 0.7s ease-in-out infinite;
 }
