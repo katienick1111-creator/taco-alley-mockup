@@ -985,6 +985,41 @@ function FindUsMap() {
   );
 }
 
+/* ============== Real Signs Gallery ============== */
+function RealSigns() {
+  const signs = [
+    { src: signHorchata, alt: "Horchata Freshly Made hand-painted sign", caption: "Horchata · Freshly Made", tilt: "rotate(-2deg)" },
+    { src: signBirria, alt: "Birria Tacos menu poster", caption: "Birria Tacos · the real deal", tilt: "rotate(1.5deg)" },
+    { src: signPickup, alt: "Tamales Los Girasoles pick-up counter sign", caption: "Pick Up Here · 815-517-3718", tilt: "rotate(-1deg)" },
+  ];
+  return (
+    <section className="py-16 px-6" style={{ background: "var(--brown-deep)" }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>From the shop</p>
+          <h2 className="text-4xl md:text-5xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+            REAL <span style={{ color: "var(--gold)" }}>SIGNS</span>, REAL <span style={{ color: "var(--burnt)" }}>FAMILIA</span>
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {signs.map((s) => (
+            <figure key={s.caption} className="lift" style={{ transform: s.tilt }}>
+              <div className="rounded-2xl overflow-hidden border-4" style={{ borderColor: "var(--gold)", boxShadow: "0 18px 40px rgba(0,0,0,0.55)" }}>
+                <img src={s.src} alt={s.alt} className="block w-full h-56 md:h-64 object-cover" loading="lazy" />
+              </div>
+              <figcaption className="text-center mt-3 text-lg" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
+                {s.caption}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
 /* ============== Page ============== */
 function Index() {
   return (
