@@ -53,13 +53,18 @@ function Sunflower({ size = 36, className = "" }: { size?: number; className?: s
   );
 }
 
-function Pepper({ className = "" }: { className?: string }) {
+function Pepper({ className = "", size = 60 }: { className?: string; size?: number }) {
   return (
-    <svg width="40" height="60" viewBox="0 0 40 60" className={className} aria-hidden>
-      <path d="M20 8 Q14 6 14 2 L22 2 Q22 6 20 8" fill="#6BBF59" />
-      <path d="M20 8 C8 12, 4 30, 12 50 C18 60, 28 58, 32 46 C36 30, 30 14, 20 8 Z" fill="#D62828" stroke="#7a1414" strokeWidth="1" />
-      <path d="M18 14 C14 22, 14 36, 18 48" stroke="#ff6b6b" strokeWidth="2" fill="none" opacity="0.7" />
-    </svg>
+    <img
+      src={chili}
+      alt=""
+      aria-hidden
+      width={size}
+      height={size * 1.5}
+      style={{ width: size, height: "auto", filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.55))" }}
+      className={className}
+      loading="lazy"
+    />
   );
 }
 
