@@ -561,13 +561,11 @@ function MenuBoard() {
         <div className="grid md:grid-cols-[260px_1fr] gap-8 items-center mb-10">
           {/* Shield with sope photo */}
           <div className="relative mx-auto">
-            <div className="absolute inset-0 spin-slow">
-              <Sunflower size={260} />
-            </div>
             <div className="relative shield w-52 h-60 mx-auto overflow-hidden border-4" style={{ borderColor: "var(--gold)" }}>
               <img src={sope} alt="Sope" className="w-full h-full object-cover" loading="lazy" width={896} height={896} />
             </div>
           </div>
+
           <div>
             <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>La Carta</p>
             <h2 className="text-6xl md:text-7xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
