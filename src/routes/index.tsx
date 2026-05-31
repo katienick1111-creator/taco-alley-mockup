@@ -7,7 +7,7 @@ import sope from "@/assets/food/sope.jpg";
 import shrimpPlate from "@/assets/food/shrimp-plate.jpg";
 import pozole from "@/assets/food/pozole.jpg";
 import shrimpRice from "@/assets/food/shrimp-rice.jpg";
-import trompo from "@/assets/food/al-pastor-trompo.jpg";
+import trompo from "@/assets/food/al-pastor-trompo.png";
 import sopesTrio from "@/assets/food/sopes-trio.jpg";
 import pastorQues from "@/assets/food/pastor-quesadilla.jpg";
 
