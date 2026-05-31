@@ -889,13 +889,8 @@ function MybBadge() {
 
 /* ============== Find Us — Taco Trail Map ============== */
 function FindUsMap() {
-  // Tacos sit only on the painted yellow route into the Taco Alley badge.
-  const trail = [
-    { left: "39%", top: "36%", rotate: "-16deg" },
-    { left: "51%", top: "30%", rotate: "-10deg" },
-    { left: "63%", top: "27%", rotate: "4deg" },
-    { left: "72%", top: "25%", rotate: "12deg" },
-  ];
+  // Small tacos crawl down the yellow road then right across the yellow parking row to the red pin.
+  const runners = [0, 1.6, 3.2, 4.8, 6.4];
   return (
     <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, var(--brown-deep) 0%, #1a0e07 100%)" }}>
       <div className="max-w-6xl mx-auto">
@@ -923,79 +918,37 @@ function FindUsMap() {
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 82% 45%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
+            style={{ background: "radial-gradient(ellipse at 78% 56%, rgba(255,80,40,0.35), transparent 40%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
           />
 
-          {/* Trail of small tacos */}
-          <svg className="absolute inset-0 pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden>
-            <path
-              d="M 345 225 C 430 195, 505 178, 590 170 C 675 162, 735 158, 785 142"
-              fill="none"
-              stroke="rgba(255, 213, 54, 0.95)"
-              strokeWidth="18"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeDasharray="34 22"
-              style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.55))" }}
-            />
-          </svg>
-          {trail.map((t, i) => (
-            <span
-              key={i}
-              aria-hidden
-              className="absolute text-xl md:text-2xl select-none"
-              style={{
-                left: t.left,
-                top: t.top,
-                transform: `translate(-50%, -50%) rotate(${t.rotate})`,
-                animation: `trail-pop 9s linear ${(i + 1) * 0.9}s infinite`,
-                filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.5))",
-              }}
-            >
-              🌮
-            </span>
+          {/* Tacos move along this path */}
+          {runners.map((delay, i) => (
+            <div key={i} className="taco-runner" style={{ animationDelay: `${delay}s` }}>
+              <span style={{ fontSize: 22 }}>🌮</span>
+            </div>
           ))}
 
-          {/* Steam wisps near Taco Alley */}
-          {[0, 0.6, 1.2].map((delay, i) => (
-            <span
-              key={i}
-              aria-hidden
-              className="absolute rounded-full"
-              style={{
-                left: `${78 + i * 3}%`,
-                top: "42%",
-                width: 18,
-                height: 18,
-                background: "radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 70%)",
-                animation: `steam-rise 2.4s ease-out ${delay}s infinite`,
-              }}
-            />
-          ))}
-
-          {/* RT-38 badge logo as the pin over Taco Alley */}
-          <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: "80%", top: "24%" }}>
-            {/* Pulse rings */}
+          {/* RT-38 badge pin placed on the red dot */}
+          <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: "78%", top: "56%" }}>
             <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
-              width: 56, height: 56,
-              background: "rgba(255,140,40,0.45)",
+              width: 52, height: 52,
+              background: "rgba(255,80,40,0.55)",
               animation: "pin-pulse-ring 1.8s ease-out infinite",
             }} />
             <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
-              width: 56, height: 56,
-              background: "rgba(255,200,80,0.35)",
+              width: 52, height: 52,
+              background: "rgba(255,200,80,0.4)",
               animation: "pin-pulse-ring 1.8s ease-out 0.9s infinite",
             }} />
-            {/* Logo badge */}
             <div
               className="relative grid place-items-center rounded-full overflow-hidden"
               style={{
-                width: 54,
-                height: 54,
+                width: 48,
+                height: 48,
                 border: "3px solid var(--gold)",
                 background: "var(--cream)",
                 animation: "pin-bob 1.6s ease-in-out infinite",
-                boxShadow: "0 6px 14px rgba(0,0,0,0.55), 0 0 0 3px rgba(255, 105, 32, 0.55), 0 0 18px rgba(255,140,40,0.7)",
+                boxShadow: "0 6px 14px rgba(0,0,0,0.55), 0 0 0 3px rgba(255, 60, 32, 0.65), 0 0 18px rgba(255,80,40,0.8)",
               }}
             >
               <img
@@ -1008,6 +961,7 @@ function FindUsMap() {
           </div>
 
         </div>
+
 
         {/* CTA + footer note */}
         <div className="mt-8 flex flex-col items-center gap-4">
