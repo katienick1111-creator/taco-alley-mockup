@@ -14,6 +14,10 @@ import chili from "@/assets/chili.png";
 import birriaDip from "@/assets/birria-dip.png";
 import horchata from "@/assets/horchata.png";
 import plazaAerial from "@/assets/plaza-aerial.jpg";
+import signStorefront from "@/assets/sign-storefront.jpeg";
+import signHorchata from "@/assets/sign-horchata.jpeg";
+import signBirria from "@/assets/sign-birria.jpeg";
+import signPickup from "@/assets/sign-pickup.jpeg";
 
 
 export const Route = createFileRoute("/")({
@@ -121,29 +125,32 @@ function Hero() {
         {/* Top row: brand */}
         <div className="text-center relative z-10">
 
+          {/* Real storefront sign — the actual Tamales Los Girasoles sign on the building */}
           <div
-            className="inline-flex items-center justify-center relative rounded-full p-3 md:p-4"
+            className="relative inline-block rounded-2xl overflow-hidden mx-auto"
             style={{
-              background: "radial-gradient(circle at 30% 25%, #FBEFD4 0%, #F5E6C8 55%, #E9D29A 100%)",
-              border: "6px solid var(--burnt)",
+              border: "6px solid var(--gold)",
               boxShadow:
-                "0 0 0 3px var(--gold), 0 0 0 9px rgba(0,0,0,0.35), 0 18px 40px rgba(0,0,0,0.55), 0 0 60px rgba(255,107,26,0.45)",
+                "0 0 0 3px var(--burnt), 0 0 0 9px rgba(0,0,0,0.45), 0 24px 50px rgba(0,0,0,0.6), 0 0 70px rgba(255,107,26,0.45)",
+              transform: "rotate(-1.2deg)",
             }}
           >
+            <img
+              src={signStorefront}
+              alt="Tamales Los Girasoles storefront sign — Tacos, Burritos, Tortas, Quesadillas, Elotes, Nachos"
+              className="block w-[88vw] max-w-[760px] h-auto"
+              width={1500}
+              height={620}
+            />
             <span
               aria-hidden
-              className="absolute inset-2 rounded-full pointer-events-none"
-              style={{ border: "2px dashed rgba(193,69,33,0.45)" }}
-            />
-            <img
-              src={logo}
-              alt="RT-38 Taco Alley / Tamales Los Girasoles"
-              className="relative w-44 md:w-56"
-              width={288}
-              height={288}
-              style={{ filter: "drop-shadow(0 6px 10px rgba(0,0,0,0.35))" }}
+              className="absolute inset-2 rounded-xl pointer-events-none"
+              style={{ border: "2px dashed rgba(255,210,63,0.55)" }}
             />
           </div>
+          <p className="sr-only">
+            <img src={logo} alt="RT-38 Taco Alley logo" width={1} height={1} />
+          </p>
 
 
 
