@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type CSSProperties } from "react";
-import logo from "@/assets/rt38-logo.png";
+import logo from "@/assets/rt38-logo-clean.png";
 // no storefront photo available — use pozole shot (shows real restaurant interior) for the dine-in card
 import foodTruck from "@/assets/food-truck.jpg";
 import sope from "@/assets/food/sope.jpg";
