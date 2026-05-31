@@ -652,7 +652,7 @@ function LoyaltyReviews() {
               return (
                 <div key={i} className="aspect-square rounded-full flex items-center justify-center border-2"
                   style={{ borderColor: free ? "var(--chili)" : "var(--gold)", background: stamped ? "rgba(244,123,62,0.15)" : "transparent" }}>
-                  {stamped ? <Sunflower size={36} /> : free ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)" }}>FREE</span> : <span style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-bang)" }}>{i + 1}</span>}
+                  {stamped ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)", fontSize: "1.5rem" }}>✓</span> : free ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)" }}>FREE</span> : <span style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-bang)" }}>{i + 1}</span>}
                 </div>
               );
             })}
