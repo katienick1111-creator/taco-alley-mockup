@@ -91,9 +91,9 @@ function Hero() {
       <Pepper size={70} className="absolute top-24 left-6 wiggle hidden md:block" />
       <Pepper size={50} className="absolute top-[420px] left-[4%] bob hidden lg:block" />
       <Pepper size={44} className="absolute top-[180px] right-[6%] wiggle hidden md:block" style={{ transform: "rotate(25deg)" }} />
-      <Sunflower size={60} className="absolute top-32 right-10 spin-slow hidden md:block" />
       <Star className="absolute top-44 left-1/3 bob" />
       <Star className="absolute top-60 right-1/4 bob" color="#FF6B1A" />
+
 
       {/* Hero birria-dipping tacos — floating right of brand */}
       <img
@@ -233,8 +233,6 @@ function LocationCard({ img, tilt, emoji, title, addr, hours, phone, accent, liv
         </div>
         <div className="relative">
           <img src={img} alt={title} className="w-full h-72 object-cover" loading="lazy" width={1024} height={576} />
-          <Sunflower size={48} className="absolute -top-3 -left-3 spin-slow" />
-          <Sunflower size={40} className="absolute bottom-2 right-2 wiggle" />
           {live && (
             <span className="absolute top-3 right-3 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold"
               style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>
@@ -563,13 +561,11 @@ function MenuBoard() {
         <div className="grid md:grid-cols-[260px_1fr] gap-8 items-center mb-10">
           {/* Shield with sope photo */}
           <div className="relative mx-auto">
-            <div className="absolute inset-0 spin-slow">
-              <Sunflower size={260} />
-            </div>
             <div className="relative shield w-52 h-60 mx-auto overflow-hidden border-4" style={{ borderColor: "var(--gold)" }}>
               <img src={sope} alt="Sope" className="w-full h-full object-cover" loading="lazy" width={896} height={896} />
             </div>
           </div>
+
           <div>
             <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>La Carta</p>
             <h2 className="text-6xl md:text-7xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
@@ -582,8 +578,9 @@ function MenuBoard() {
         </div>
 
         <div className="chalkboard p-6 md:p-10 relative">
-          <Sunflower className="absolute -top-6 -left-6 spin-slow" size={70} />
-          <Sunflower className="absolute -top-6 -right-6 spin-slow" size={70} />
+          <Star className="absolute -top-4 -left-4" color="#FFD23F" />
+          <Star className="absolute -top-4 -right-4" color="#FFD23F" />
+
           <h3 className="text-center text-5xl md:text-6xl mb-8" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
             ~ La Pizarra ~
           </h3>
@@ -621,7 +618,7 @@ function FamilyStory() {
       <img src={pozole} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={1280} height={720} />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(26,14,7,0.92), rgba(44,26,14,0.88))" }} />
       <div className="relative max-w-3xl mx-auto text-center">
-        <Sunflower size={80} className="mx-auto spin-slow" />
+        <div className="mx-auto inline-block text-5xl" aria-hidden>✦</div>
         <p className="text-sm tracking-[0.4em] uppercase mt-4" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Nuestra Familia</p>
         <h2 className="text-5xl md:text-6xl mt-2" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
           TERESA & <span style={{ color: "var(--burnt)" }}>EFRAEN</span>
@@ -655,7 +652,7 @@ function LoyaltyReviews() {
               return (
                 <div key={i} className="aspect-square rounded-full flex items-center justify-center border-2"
                   style={{ borderColor: free ? "var(--chili)" : "var(--gold)", background: stamped ? "rgba(244,123,62,0.15)" : "transparent" }}>
-                  {stamped ? <Sunflower size={36} /> : free ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)" }}>FREE</span> : <span style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-bang)" }}>{i + 1}</span>}
+                  {stamped ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)", fontSize: "1.5rem" }}>✓</span> : free ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)" }}>FREE</span> : <span style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-bang)" }}>{i + 1}</span>}
                 </div>
               );
             })}
@@ -707,7 +704,7 @@ function LoyaltyReviews() {
           <div className="absolute -bottom-8 -right-6 w-56 polaroid tilt-r hidden md:block">
             <img src={sopesTrio} alt="Teresa's sopes" className="w-full h-40 object-cover" loading="lazy" width={1152} height={896} />
             <div className="absolute bottom-2 left-0 right-0 text-center" style={{ fontFamily: "var(--font-hand)", color: "#2C1A0E", fontSize: "1.3rem" }}>
-              Teresa's famous sopes 🌻
+              Teresa's famous sopes
             </div>
           </div>
         </div>
