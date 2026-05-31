@@ -13,6 +13,8 @@ import pastorQues from "@/assets/food/pastor-quesadilla.jpg";
 import chili from "@/assets/chili.png";
 import birriaDip from "@/assets/birria-dip.png";
 import horchata from "@/assets/horchata.png";
+import plazaAerial from "@/assets/plaza-aerial.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -885,6 +887,148 @@ function MybBadge() {
   );
 }
 
+/* ============== Find Us — Taco Trail Map ============== */
+function FindUsMap() {
+  // Path matches the offset-path in styles.css (viewBox 1000x600)
+  // Coordinates chosen to start bottom-left (entering plaza) and arrive at Taco Alley upper-right.
+  const trail = [
+    { d: "12%", left: "18%", top: "78%" },
+    { d: "26%", left: "32%", top: "68%" },
+    { d: "44%", left: "48%", top: "55%" },
+    { d: "62%", left: "64%", top: "42%" },
+    { d: "78%", left: "78%", top: "32%" },
+  ];
+  return (
+    <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, var(--brown-deep) 0%, #1a0e07 100%)" }}>
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Finding Us</p>
+          <h2 className="mt-2 text-5xl md:text-6xl leading-none" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
+            🌮 TACO ALLEY <span style={{ color: "var(--burnt)" }}>AHEAD</span>
+          </h2>
+          <p className="mt-3 max-w-xl mx-auto text-base md:text-lg" style={{ color: "var(--cream)", fontFamily: "var(--font-item)" }}>
+            Just follow the moving taco and the red pin. You're almost there.
+          </p>
+        </div>
+
+        <div
+          className="relative mx-auto rounded-3xl overflow-hidden border-4 shadow-pop-lg"
+          style={{
+            borderColor: "var(--gold)",
+            aspectRatio: "1000 / 600",
+            backgroundImage: `url(${plazaAerial})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Warm glow vignette */}
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "radial-gradient(ellipse at 78% 28%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
+          />
+
+          {/* Trail of small tacos */}
+          {trail.map((t, i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="absolute text-2xl md:text-3xl select-none"
+              style={{
+                left: t.left,
+                top: t.top,
+                animation: `trail-pop 9s linear ${(i + 1) * 0.9}s infinite`,
+                filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.5))",
+              }}
+            >
+              🌮
+            </span>
+          ))}
+
+          {/* Moving taco mascot */}
+          <div className="taco-runner" aria-hidden>
+            <span>🌮</span>
+          </div>
+
+          {/* Steam wisps near Taco Alley */}
+          {[0, 0.6, 1.2].map((delay, i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="absolute rounded-full"
+              style={{
+                left: `${74 + i * 3}%`,
+                top: "30%",
+                width: 18,
+                height: 18,
+                background: "radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 70%)",
+                animation: `steam-rise 2.4s ease-out ${delay}s infinite`,
+              }}
+            />
+          ))}
+
+          {/* Red pin over Taco Alley (upper-right) */}
+          <div className="absolute" style={{ left: "78%", top: "28%" }}>
+            {/* Pulse rings */}
+            <span aria-hidden className="absolute rounded-full" style={{
+              left: 0, top: 0, width: 36, height: 36,
+              background: "rgba(214,40,40,0.5)",
+              animation: "pin-pulse-ring 1.8s ease-out infinite",
+            }} />
+            <span aria-hidden className="absolute rounded-full" style={{
+              left: 0, top: 0, width: 36, height: 36,
+              background: "rgba(214,40,40,0.4)",
+              animation: "pin-pulse-ring 1.8s ease-out 0.9s infinite",
+            }} />
+            {/* Pin */}
+            <svg
+              width="44" height="56" viewBox="0 0 44 56"
+              style={{
+                position: "absolute", left: 0, top: 0,
+                transformOrigin: "50% 100%",
+                animation: "pin-bob 1.6s ease-in-out infinite",
+                filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.55)) drop-shadow(0 0 14px rgba(255,60,40,0.7))",
+              }}
+              aria-hidden
+            >
+              <path d="M22 0 C9.85 0 0 9.85 0 22 c0 16 22 34 22 34 s22-18 22-34 C44 9.85 34.15 0 22 0 z"
+                fill="#D62828" stroke="#fff8e7" strokeWidth="2.5" />
+              <circle cx="22" cy="21" r="7" fill="#fff8e7" />
+            </svg>
+            {/* Label */}
+            <span
+              className="absolute whitespace-nowrap px-2 py-1 rounded-md text-xs font-bold"
+              style={{
+                left: 50, top: -8,
+                background: "var(--cream)", color: "var(--chili)",
+                fontFamily: "var(--font-bang)", letterSpacing: "0.06em",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
+              }}
+            >
+              RT-38 TACO ALLEY
+            </span>
+          </div>
+        </div>
+
+        {/* CTA + footer note */}
+        <div className="mt-8 flex flex-col items-center gap-4">
+          <a
+            href="https://maps.google.com/?q=RT-38+Taco+Alley+DeKalb+IL"
+            target="_blank" rel="noreferrer"
+            className="px-8 py-4 rounded-full text-xl gradient-fiesta gradient-shift text-white border-4 border-gold lift shadow-glow"
+            style={{ fontFamily: "var(--font-action)", letterSpacing: "0.08em" }}
+          >
+            GET DIRECTIONS →
+          </a>
+          <p className="text-center text-sm md:text-base max-w-xl" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
+            The chains are easy to find. The best tacos are worth a few extra steps.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ============== Page ============== */
 function Index() {
   return (
@@ -894,6 +1038,7 @@ function Index() {
       <OnlineOrdering />
       <DiagonalBanner />
       <LocationsSection />
+      <FindUsMap />
       <Aztec />
       <MenuBoard />
       <FamilyStory />
@@ -904,3 +1049,4 @@ function Index() {
     </main>
   );
 }
+
