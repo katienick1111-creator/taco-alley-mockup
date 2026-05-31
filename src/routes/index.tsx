@@ -578,8 +578,9 @@ function MenuBoard() {
         </div>
 
         <div className="chalkboard p-6 md:p-10 relative">
-          <Sunflower className="absolute -top-6 -left-6 spin-slow" size={70} />
-          <Sunflower className="absolute -top-6 -right-6 spin-slow" size={70} />
+          <Star className="absolute -top-4 -left-4" color="#FFD23F" />
+          <Star className="absolute -top-4 -right-4" color="#FFD23F" />
+
           <h3 className="text-center text-5xl md:text-6xl mb-8" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
             ~ La Pizarra ~
           </h3>
