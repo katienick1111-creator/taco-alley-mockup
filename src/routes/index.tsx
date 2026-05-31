@@ -890,13 +890,13 @@ function MybBadge() {
 /* ============== Find Us — Taco Trail Map ============== */
 function FindUsMap() {
   // Path matches the offset-path in styles.css (viewBox 1000x600)
-  // Coordinates chosen to start bottom-left (entering plaza) and arrive at Taco Alley upper-right.
+  // Coordinates chosen to start top-right (entering plaza) and arrive at Taco Alley lower-left.
   const trail = [
-    { d: "12%", left: "18%", top: "78%" },
-    { d: "26%", left: "32%", top: "68%" },
-    { d: "44%", left: "48%", top: "55%" },
-    { d: "62%", left: "64%", top: "42%" },
-    { d: "78%", left: "78%", top: "32%" },
+    { d: "12%", left: "82%", top: "18%" },
+    { d: "26%", left: "68%", top: "32%" },
+    { d: "44%", left: "52%", top: "48%" },
+    { d: "62%", left: "36%", top: "62%" },
+    { d: "78%", left: "22%", top: "74%" },
   ];
   return (
     <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, var(--brown-deep) 0%, #1a0e07 100%)" }}>
@@ -925,7 +925,7 @@ function FindUsMap() {
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 78% 28%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
+            style={{ background: "radial-gradient(ellipse at 18% 78%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
           />
 
           {/* Trail of small tacos */}
@@ -957,8 +957,8 @@ function FindUsMap() {
               aria-hidden
               className="absolute rounded-full"
               style={{
-                left: `${74 + i * 3}%`,
-                top: "30%",
+                left: `${14 + i * 3}%`,
+                top: "70%",
                 width: 18,
                 height: 18,
                 background: "radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 70%)",
@@ -968,7 +968,7 @@ function FindUsMap() {
           ))}
 
           {/* Red pin over Taco Alley (upper-right) */}
-          <div className="absolute" style={{ left: "78%", top: "28%" }}>
+          <div className="absolute" style={{ left: "18%", top: "72%" }}>
             {/* Pulse rings */}
             <span aria-hidden className="absolute rounded-full" style={{
               left: 0, top: 0, width: 36, height: 36,
