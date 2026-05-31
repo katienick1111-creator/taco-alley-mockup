@@ -335,7 +335,7 @@ function OnlineOrdering() {
 
           <div className="grid sm:grid-cols-2 gap-5">
             {ITEMS.map((it, i) => (
-              <ItemCard key={it.name} item={it} delay={i * 0.08} oversized={it.name === "Birria Ramen"} />
+              <ItemCard key={it.name} item={it} delay={i * 0.08} oversized={it.name === "Birria Ramen"} niu={it.name === "Huskie Special"} />
             ))}
 
             {/* Oversized torn-paper camarones card spanning 2 cols */}
