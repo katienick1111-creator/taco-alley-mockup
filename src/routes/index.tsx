@@ -889,8 +889,9 @@ function MybBadge() {
 
 /* ============== Find Us — Taco Trail Map ============== */
 function FindUsMap() {
-  // Small tacos crawl down the yellow road then right across the yellow parking row to the red pin.
-  const runners = [0, 1.6, 3.2, 4.8, 6.4];
+  // SVG coordinates scale with the map, keeping the tacos locked to the yellow route on mobile and desktop.
+  const runners = [0, -1.4, -2.8, -4.2, -5.6];
+  const tacoTrailPath = "M 280 20 L 280 320 Q 285 360 330 372 L 780 336";
   return (
     <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, var(--brown-deep) 0%, #1a0e07 100%)" }}>
       <div className="max-w-6xl mx-auto">
@@ -921,44 +922,39 @@ function FindUsMap() {
             style={{ background: "radial-gradient(ellipse at 78% 56%, rgba(255,80,40,0.35), transparent 40%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
           />
 
-          {/* Tacos move along this path */}
-          {runners.map((delay, i) => (
-            <div key={i} className="taco-runner" style={{ animationDelay: `${delay}s` }}>
-              <span style={{ fontSize: 22 }}>🌮</span>
-            </div>
-          ))}
-
-          {/* RT-38 badge pin placed on the red dot */}
-          <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: "78%", top: "56%" }}>
-            <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
-              width: 52, height: 52,
-              background: "rgba(255,80,40,0.55)",
-              animation: "pin-pulse-ring 1.8s ease-out infinite",
-            }} />
-            <span aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{
-              width: 52, height: 52,
-              background: "rgba(255,200,80,0.4)",
-              animation: "pin-pulse-ring 1.8s ease-out 0.9s infinite",
-            }} />
-            <div
-              className="relative grid place-items-center rounded-full overflow-hidden"
-              style={{
-                width: 48,
-                height: 48,
-                border: "3px solid var(--gold)",
-                background: "var(--cream)",
-                animation: "pin-bob 1.6s ease-in-out infinite",
-                boxShadow: "0 6px 14px rgba(0,0,0,0.55), 0 0 0 3px rgba(255, 60, 32, 0.65), 0 0 18px rgba(255,80,40,0.8)",
-              }}
-            >
-              <img
-                src={logo}
-                alt="RT-38 Taco Alley"
-                className="h-full w-full"
-                style={{ objectFit: "cover", transform: "scale(1.9)" }}
-              />
-            </div>
-          </div>
+          {/* Scaled route, moving tacos, and red-dot pin */}
+          <svg aria-hidden className="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none">
+            <path
+              id="tacoTrailPath"
+              d={tacoTrailPath}
+              fill="none"
+              stroke="var(--gold)"
+              strokeWidth="12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="26 20"
+              opacity="0.95"
+            />
+            <path
+              d={tacoTrailPath}
+              fill="none"
+              stroke="rgba(255, 105, 32, 0.65)"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {runners.map((delay, i) => (
+              <text key={i} className="taco-runner-svg" x="0" y="0">
+                🌮
+                <animateMotion dur="7s" begin={`${delay}s`} repeatCount="indefinite" rotate="0">
+                  <mpath href="#tacoTrailPath" />
+                </animateMotion>
+              </text>
+            ))}
+            <circle cx="780" cy="336" r="18" fill="rgba(0,0,0,0.45)" />
+            <circle cx="780" cy="336" r="13" fill="var(--burnt)" stroke="var(--cream)" strokeWidth="4" />
+            <circle cx="780" cy="336" r="5" fill="var(--cream)" opacity="0.9" />
+          </svg>
 
         </div>
 
