@@ -53,7 +53,7 @@ function Sunflower({ size = 36, className = "" }: { size?: number; className?: s
   );
 }
 
-function Pepper({ className = "", size = 60, style }: { className?: string; size?: number; style?: React.CSSProperties }) {
+function Pepper({ className = "", size = 60, style }: { className?: string; size?: number; style?: CSSProperties }) {
   return (
     <img
       src={chili}
