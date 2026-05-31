@@ -999,7 +999,7 @@ function FindUsMap() {
             <span
               className="absolute whitespace-nowrap px-2 py-1 rounded-md text-xs font-bold"
               style={{
-                left: 50, top: -8,
+                right: 50, top: 8,
                 background: "var(--cream)", color: "var(--chili)",
                 fontFamily: "var(--font-bang)", letterSpacing: "0.06em",
                 boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
