@@ -925,7 +925,7 @@ function FindUsMap() {
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 78% 28%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
+            style={{ background: "radial-gradient(ellipse at 18% 78%, rgba(255,120,40,0.35), transparent 45%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
           />
 
           {/* Trail of small tacos */}
