@@ -968,7 +968,7 @@ function FindUsMap() {
           ))}
 
           {/* Red pin over Taco Alley (upper-right) */}
-          <div className="absolute" style={{ left: "78%", top: "28%" }}>
+          <div className="absolute" style={{ left: "18%", top: "72%" }}>
             {/* Pulse rings */}
             <span aria-hidden className="absolute rounded-full" style={{
               left: 0, top: 0, width: 36, height: 36,
