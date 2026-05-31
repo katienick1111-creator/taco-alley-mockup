@@ -337,7 +337,7 @@
 .taco-runner {
   position: absolute;
   top: 0; left: 0;
-  offset-path: path("M 360 30 C 360 200, 350 380, 480 430 S 780 380, 870 270");
+  offset-path: path("M 320 30 C 320 200, 320 380, 420 440 C 540 470, 680 440, 780 360");
   offset-rotate: 0deg;
   animation: taco-march 9s linear infinite;
   filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
