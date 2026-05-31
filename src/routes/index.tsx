@@ -704,7 +704,7 @@ function LoyaltyReviews() {
           <div className="absolute -bottom-8 -right-6 w-56 polaroid tilt-r hidden md:block">
             <img src={sopesTrio} alt="Teresa's sopes" className="w-full h-40 object-cover" loading="lazy" width={1152} height={896} />
             <div className="absolute bottom-2 left-0 right-0 text-center" style={{ fontFamily: "var(--font-hand)", color: "#2C1A0E", fontSize: "1.3rem" }}>
-              Teresa's famous sopes 🌻
+              Teresa's famous sopes
             </div>
           </div>
         </div>
