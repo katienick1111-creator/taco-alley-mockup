@@ -986,8 +986,8 @@ function Index() {
       <Aztec />
       <OnlineOrdering />
       <DiagonalBanner />
-      <LocationsSection />
       <FindUsMap />
+      <LocationsSection />
       <Aztec />
       <MenuBoard />
       <FamilyStory />
