@@ -1,7 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Bungee&family=Luckiest+Guy&family=Bangers&family=Permanent+Marker&family=Fredericka+the+Great&family=Pacifico&family=Caveat:wght@400;700&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chango&family=Alfa+Slab+One&family=Lilita+One&family=Bowlby+One+SC&family=Caveat+Brush&family=Rye&family=Yellowtail&family=Patrick+Hand&family=Fraunces:ital,wght@0,600;1,600&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -28,14 +28,14 @@
   --color-lime: var(--lime);
   --color-pink: var(--pink);
   --color-teal: var(--teal);
-  --font-display: "Bungee Shade", cursive;
-  --font-action: "Luckiest Guy", cursive;
-  --font-bang: "Bangers", cursive;
-  --font-marker: "Permanent Marker", cursive;
-  --font-chalk: "Fredericka the Great", serif;
-  --font-script: "Pacifico", cursive;
-  --font-hand: "Caveat", cursive;
-  --font-item: "Righteous", sans-serif;
+  --font-display: "Chango", cursive;
+  --font-action: "Alfa Slab One", serif;
+  --font-bang: "Lilita One", cursive;
+  --font-marker: "Caveat Brush", cursive;
+  --font-chalk: "Rye", serif;
+  --font-script: "Yellowtail", cursive;
+  --font-hand: "Patrick Hand", cursive;
+  --font-item: "Bowlby One SC", sans-serif;
 }
 
 :root {
@@ -69,7 +69,7 @@
   body {
     background-color: var(--cream);
     color: var(--brown);
-    font-family: "Caveat", cursive;
+    font-family: "Patrick Hand", cursive;
     background-image:
       radial-gradient(circle at 10% 0%, rgba(255, 210, 63, 0.18), transparent 40%),
       radial-gradient(circle at 90% 30%, rgba(244, 123, 62, 0.18), transparent 40%),
