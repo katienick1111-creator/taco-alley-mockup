@@ -890,13 +890,13 @@ function MybBadge() {
 /* ============== Find Us — Taco Trail Map ============== */
 function FindUsMap() {
   // Path matches the offset-path in styles.css (viewBox 1000x600)
-  // Coordinates chosen to start top-right (entering plaza) and arrive at Taco Alley lower-left.
+  // Trail follows the road down (left), turns right into the parking lot, and arrives at Taco Alley (right building).
   const trail = [
-    { d: "12%", left: "82%", top: "18%" },
-    { d: "26%", left: "68%", top: "32%" },
-    { d: "44%", left: "52%", top: "48%" },
-    { d: "62%", left: "36%", top: "62%" },
-    { d: "78%", left: "22%", top: "74%" },
+    { d: "12%", left: "32%", top: "12%" },
+    { d: "28%", left: "33%", top: "38%" },
+    { d: "46%", left: "36%", top: "66%" },
+    { d: "64%", left: "55%", top: "72%" },
+    { d: "80%", left: "72%", top: "56%" },
   ];
   return (
     <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, var(--brown-deep) 0%, #1a0e07 100%)" }}>
