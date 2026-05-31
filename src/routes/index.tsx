@@ -127,48 +127,119 @@ function Hero() {
 
 function Specials() {
   const items = [
-    { name: "Quesabirrias", desc: "Birria + cheese, dipped in consomé", price: "$15", color: "var(--hot)", emoji: "🧀" },
-    { name: "Birria Ramen", desc: "Two quesabirrias swimming in broth", price: "$15", color: "var(--chili)", emoji: "🍜" },
-    { name: "Tamales", desc: "Red or green. Dozen for $30", price: "$3.50", color: "var(--lime)", emoji: "🌽" },
-    { name: "Al Pastor de Trompo", desc: "Cut fresh off the spit", price: "$3.99", color: "var(--gold)", emoji: "🔥" },
-    { name: "Empanadas", desc: "Potato or chicken, golden fried", price: "$3.99", color: "var(--pink)", emoji: "🥟" },
-    { name: "Green Leaf Tamales", desc: "Pork, wrapped in banana leaf", price: "ask!", color: "var(--teal)", emoji: "🌿" },
+    { name: "Quesabirrias", desc: "Birria + cheese, dipped in consomé", price: "$15", color: "var(--hot)", emoji: "🧀", anim: "bob" },
+    { name: "Birria Ramen", desc: "Two quesabirrias swimming in broth", price: "$15", color: "var(--chili)", emoji: "🍜", anim: "wiggle" },
+    { name: "Tamales", desc: "Red or green. Dozen for $30", price: "$3.50", color: "var(--lime)", emoji: "🌽", anim: "bob" },
+    { name: "Al Pastor de Trompo", desc: "Cut fresh off the spit", price: "$3.99", color: "var(--gold)", emoji: "🔥", anim: "flicker" },
+    { name: "Empanadas", desc: "Potato or chicken, golden fried", price: "$3.99", color: "var(--pink)", emoji: "🥟", anim: "wiggle" },
+    { name: "Green Leaf Tamales", desc: "Pork, wrapped in banana leaf", price: "ask!", color: "var(--teal)", emoji: "🌿", anim: "bob" },
   ];
+
   return (
-    <section id="menu" className="relative py-20 px-6">
+    <section id="menu" className="relative py-24 px-6 overflow-hidden">
+      {/* floating deco */}
+      <Sunflower size={90} className="absolute top-10 left-6 spin-slow opacity-50" />
+      <Sunflower size={70} className="absolute bottom-16 right-8 wiggle opacity-60" />
+      <Pepper className="absolute top-32 right-16 w-12 wiggle" />
+      <Pepper className="absolute bottom-32 left-16 w-10 wiggle" />
+
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="font-[family-name:var(--font-script)] text-[var(--chili)] text-2xl">Lo que cocinamos hoy</p>
-          <h2 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl text-[var(--brown)] scribble-underline inline-block">
-            OUR SPECIALS
+        <div className="text-center mb-16">
+          <p className="font-[family-name:var(--font-script)] text-[var(--chili)] text-3xl mb-2">~ Lo que cocinamos hoy ~</p>
+          <h2 className="font-[family-name:var(--font-display)] text-6xl md:text-8xl text-[var(--brown)] leading-none">
+            TODAY'S
+            <span className="inline-block mx-3 text-[var(--hot)] drop-shadow-[4px_4px_0_var(--gold)] wiggle">SPECIALS</span>
           </h2>
+          <div className="flex justify-center gap-2 mt-4">
+            <span className="text-[var(--gold)] text-2xl star-pulse">✺</span>
+            <span className="text-[var(--chili)] text-2xl star-pulse" style={{ animationDelay: "0.5s" }}>✺</span>
+            <span className="text-[var(--lime)] text-2xl star-pulse" style={{ animationDelay: "1s" }}>✺</span>
+          </div>
         </div>
 
-        <div className="chalkboard p-8 md:p-12 rotate-[-0.5deg]">
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="text-[var(--gold)] text-3xl">✺</span>
-            <h3 className="font-[family-name:var(--font-chalk)] text-4xl md:text-5xl text-white">Pinned to the Sidewalk Sign</h3>
-            <span className="text-[var(--gold)] text-3xl">✺</span>
-          </div>
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-            {items.map((it) => (
-              <div key={it.name} className="flex items-start gap-4 border-b border-dashed border-white/30 pb-4">
-                <span className="text-3xl">{it.emoji}</span>
-                <div className="flex-1">
-                  <div className="flex items-baseline justify-between gap-2">
-                    <h4 className="font-[family-name:var(--font-item)] text-2xl md:text-3xl" style={{ color: it.color }}>
-                      {it.name}
-                    </h4>
-                    <span className="font-[family-name:var(--font-marker)] text-[var(--gold)] text-xl">{it.price}</span>
-                  </div>
-                  <p className="font-[family-name:var(--font-hand)] text-xl text-white/80">{it.desc}</p>
-                </div>
+        {/* Hanging chalkboard */}
+        <div className="relative pt-16">
+          <div className="chalk-nail" style={{ left: "12%" }} />
+          <div className="chalk-nail" style={{ right: "12%" }} />
+
+          <div className="chalk-hanger chalkboard chalk-dust relative p-8 md:p-14">
+            {/* corner sunflowers */}
+            <Sunflower size={50} className="absolute -top-3 -left-3 spin-slow opacity-90" />
+            <Sunflower size={50} className="absolute -bottom-3 -right-3 spin-slow opacity-90" />
+
+            {/* Header */}
+            <div className="text-center mb-10 relative">
+              <div className="flex items-center justify-center gap-4">
+                <span className="text-[var(--gold)] text-4xl star-pulse">✺</span>
+                <h3 className="font-[family-name:var(--font-chalk)] font-bold text-5xl md:text-6xl text-white tracking-wide">
+                  La Pizarra
+                </h3>
+                <span className="text-[var(--gold)] text-4xl star-pulse" style={{ animationDelay: "0.7s" }}>✺</span>
               </div>
-            ))}
+              {/* chalk underline that draws in */}
+              <svg viewBox="0 0 400 20" className="mx-auto mt-2 w-80 h-5" aria-hidden>
+                <path
+                  className="chalk-draw"
+                  d="M10 10 Q 100 2, 200 10 T 390 10"
+                  stroke="#FFD23F"
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <p className="font-[family-name:var(--font-chalk)] text-white/70 text-2xl mt-3">~ pinned to the sidewalk sign ~</p>
+            </div>
+
+            {/* Menu grid */}
+            <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 relative">
+              {items.map((it, i) => (
+                <div
+                  key={it.name}
+                  className="menu-row pop-in flex items-start gap-4 border-b border-dashed border-white/30 pb-4 px-2 py-2 rounded relative"
+                  style={{ animationDelay: `${i * 0.12}s` }}
+                >
+                  <span className={`text-4xl ${it.anim} relative`}>
+                    {it.emoji}
+                    {it.emoji === "🍜" && (
+                      <>
+                        <span className="steam absolute -top-2 left-2" style={{ animationDelay: "0s" }} />
+                        <span className="steam absolute -top-2 left-5" style={{ animationDelay: "0.6s" }} />
+                        <span className="steam absolute -top-2 left-8" style={{ animationDelay: "1.2s" }} />
+                      </>
+                    )}
+                  </span>
+                  <div className="flex-1">
+                    <div className="flex items-baseline justify-between gap-2">
+                      <h4
+                        className="font-[family-name:var(--font-chalk)] font-bold text-3xl md:text-4xl tracking-wide"
+                        style={{ color: it.color, textShadow: "0 0 1px rgba(255,255,255,0.4)" }}
+                      >
+                        {it.name}
+                      </h4>
+                      <span className="font-[family-name:var(--font-chalk)] font-bold text-[var(--gold)] text-2xl md:text-3xl bob">
+                        {it.price}
+                      </span>
+                    </div>
+                    <p className="font-[family-name:var(--font-chalk)] text-xl md:text-2xl text-white/85 mt-1">
+                      {it.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Footer chalk note */}
+            <div className="mt-10 text-center border-t-2 border-dashed border-white/30 pt-6">
+              <p className="font-[family-name:var(--font-chalk)] text-[var(--gold)] text-2xl md:text-3xl">
+                <span className="star-pulse inline-block mr-2">★</span>
+                Meats: Steak · Chicken · Al Pastor · Ground Beef · Barbacoa · Cabeza · Chicharrones
+                <span className="star-pulse inline-block ml-2">★</span>
+              </p>
+              <p className="font-[family-name:var(--font-script)] text-white/70 text-xl mt-3">
+                ¡Pregunta por las salsas de la casa!
+              </p>
+            </div>
           </div>
-          <p className="text-center mt-8 font-[family-name:var(--font-marker)] text-[var(--gold)] text-xl">
-            ★ Meats: Steak · Chicken · Al Pastor · Ground Beef · Barbacoa · Cabeza · Chicharrones ★
-          </p>
         </div>
       </div>
     </section>
