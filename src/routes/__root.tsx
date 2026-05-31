@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Luckiest+Guy&family=Bangers&family=Permanent+Marker&family=Fredericka+the+Great&family=Pacifico&family=Caveat:wght@500;700&family=Righteous&family=Inter:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Anton&family=Luckiest+Guy&family=Bangers&family=Permanent+Marker&family=Fredericka+the+Great&family=Pacifico&family=Caveat:wght@500;700&family=Righteous&family=Inter:wght@400;500;600;700&display=swap",
       },
     ],
   }),
