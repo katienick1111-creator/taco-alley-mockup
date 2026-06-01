@@ -92,6 +92,8 @@ function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1A0E07 0%, #2C1A0E 100%)" }}>
       <PapelPicado />
+      <HandDrawnScatter count={18} opacity={0.13} seed={1} />
+
 
       {/* Floating decor */}
       <Pepper size={70} className="absolute top-24 left-6 wiggle hidden md:block" />
