@@ -123,11 +123,11 @@ function Hero() {
         {/* Top row: brand */}
         <div className="text-center relative z-10">
 
-          {/* Brand panel — orange storefront panel housing the real badge */}
+          {/* Brand panel — cream background so the badge's true colors (orange, brown, cream) read correctly */}
           <div
             className="relative mx-auto rounded-[28px] overflow-hidden"
             style={{
-              background: "linear-gradient(180deg, #E85D3A 0%, #C14521 100%)",
+              background: "radial-gradient(ellipse at center, #FFFBF0 0%, #FBEFD4 100%)",
               border: "5px solid #2C1A0E",
               boxShadow: "0 0 0 3px var(--gold), 0 24px 50px rgba(0,0,0,0.6), 0 0 70px rgba(255,107,26,0.45)",
               padding: "24px 28px",
@@ -136,12 +136,12 @@ function Hero() {
             }}
           >
             {/* Soft sunray streaks behind the badge */}
-            <svg aria-hidden viewBox="0 0 600 600" className="absolute inset-0 w-full h-full opacity-20 spin-slow pointer-events-none">
+            <svg aria-hidden viewBox="0 0 600 600" className="absolute inset-0 w-full h-full opacity-15 spin-slow pointer-events-none">
               {Array.from({ length: 18 }).map((_, i) => (
                 <line
                   key={i}
                   x1="300" y1="300" x2="300" y2="40"
-                  stroke="#FBEFD4" strokeWidth="2"
+                  stroke="#E85D3A" strokeWidth="2"
                   transform={`rotate(${i * 20} 300 300)`}
                 />
               ))}
@@ -154,10 +154,11 @@ function Hero() {
               height={1024}
               className="relative w-full h-auto select-none bob"
               style={{
-                filter: "drop-shadow(0 12px 22px rgba(0,0,0,0.5))",
+                filter: "drop-shadow(0 12px 22px rgba(0,0,0,0.35))",
               }}
             />
           </div>
+
 
 
 
