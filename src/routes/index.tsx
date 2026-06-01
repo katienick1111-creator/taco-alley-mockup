@@ -767,6 +767,7 @@ function FamilyStory() {
     <section className="relative py-24 px-6 overflow-hidden">
       <img src={pozole} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={1280} height={720} />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(26,14,7,0.92), rgba(44,26,14,0.88))" }} />
+      <HandDrawnScatter count={14} opacity={0.14} seed={7} />
       <div className="relative max-w-3xl mx-auto text-center">
         <div className="mx-auto inline-block text-5xl" aria-hidden>✦</div>
         <p className="text-sm tracking-[0.4em] uppercase mt-4" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Our Family</p>
