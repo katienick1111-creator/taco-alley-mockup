@@ -543,8 +543,10 @@ function DiagonalBanner() {
 /* ============== Locations expanded + Food Truck Tracker ============== */
 function LocationsSection() {
   return (
-    <section className="py-20 px-6" style={{ background: "var(--brown-deep)" }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="relative overflow-hidden py-20 px-6" style={{ background: "var(--brown-deep)" }}>
+      <HandDrawnScatter count={16} opacity={0.12} seed={5} />
+      <div className="max-w-7xl mx-auto relative">
+
         <div className="text-center mb-10">
           <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Find Us</p>
           <h2 className="text-5xl md:text-6xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
