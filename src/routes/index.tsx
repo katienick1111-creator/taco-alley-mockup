@@ -102,7 +102,7 @@ function Hero() {
       {/* Hero birria-dipping tacos — floating right of brand */}
       <img
         src={birriaDip}
-        alt="Quesabirria tacos dipping in consomé"
+        alt="Quesabirria tacos dipping in broth"
         width={520}
         height={520}
         className="absolute -right-16 top-[340px] w-[260px] lg:w-[360px] pointer-events-none hidden lg:block bob"
@@ -165,7 +165,7 @@ function Hero() {
 
 
           <p className="mt-4 text-2xl md:text-4xl text-gold" style={{ fontFamily: "var(--font-script)", color: "var(--gold)" }}>
-            El Sabor de la Tradición
+            The Taste of Tradition
           </p>
 
           <h1 className="mt-3 text-4xl md:text-6xl leading-none" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
@@ -200,7 +200,7 @@ function Hero() {
               ✦ Find us at both spots ✦
             </h2>
             <p className="text-sm uppercase tracking-[0.3em] mt-1" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>
-              Two homes · One familia
+              Two homes · One family
             </p>
           </div>
 
@@ -300,7 +300,7 @@ const CATEGORIES = [
 const ITEMS = [
   { name: "Street Taco", price: "3.89", desc: "Asada, pastor, chicken, or chorizo · cilantro · onion", emoji: "🌮", tag: "Classic" },
   { name: "Burrito Grande", price: "10.99", desc: "Flour tortilla · beans · rice · meat · pico · crema", emoji: "🌯", tag: "Favorite" },
-  { name: "Birria Ramen", price: "15.00", desc: "Slow-braised beef · ramen noodles · consomé dip", emoji: "🍜", tag: "🔥 Hot" },
+  { name: "Birria Ramen", price: "15.00", desc: "Slow-braised beef · ramen noodles · broth dip", emoji: "🍜", tag: "🔥 Hot" },
   { name: "Quesabirria Tacos", price: "4.89", desc: "Crispy cheese tortilla · birria · onion · cilantro · dip", emoji: "🧀", tag: "Trending" },
   { name: "Dozen Tamales", price: "30.00", desc: "Pork, chicken, or rajas con queso · masa from scratch", emoji: "🫔", tag: "Family" },
   { name: "Churro Cheesecake", price: "6.50", desc: "Cinnamon sugar · cream cheese · caramel drizzle", emoji: "🍰", tag: "Sweet" },
@@ -583,7 +583,7 @@ function MenuBoard() {
     { name: "Favorites", items: [["Quesabirria (3)", "14.67"], ["Birria Ramen", "15.00"], ["Pastor Quesadilla", "11.99"]] },
     { name: "NIU Specials", items: [["Huskie Special", "15.99"], ["Late Night Burrito", "9.99"], ["Student Combo", "10.50"]] },
     { name: "Tamales Los Girasoles", items: [["Dozen Pork", "30.00"], ["Dozen Chicken", "30.00"], ["Rajas con Queso", "30.00"]] },
-    { name: "Sides & Bebidas", items: [["Rice & Beans", "3.50"], ["Horchata", "3.99"], ["Jarritos", "2.99"]] },
+    { name: "Sides & Drinks", items: [["Rice & Beans", "3.50"], ["Horchata", "3.99"], ["Jarritos", "2.99"]] },
   ];
   return (
     <section id="menu" className="py-20 px-6" style={{ background: "var(--brown)" }}>
@@ -597,7 +597,7 @@ function MenuBoard() {
           </div>
 
           <div>
-            <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>La Carta</p>
+            <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>The Menu</p>
             <h2 className="text-6xl md:text-7xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
               THE FULL <span style={{ color: "var(--gold)" }}>MENU</span>
             </h2>
@@ -612,7 +612,7 @@ function MenuBoard() {
           <Star className="absolute -top-4 -right-4" color="#FFD23F" />
 
           <h3 className="text-center text-5xl md:text-6xl mb-8" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
-            ~ La Pizarra ~
+            ~ The Chalkboard ~
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cats.map((cat) => (
@@ -633,10 +633,62 @@ function MenuBoard() {
             ))}
           </div>
           <p className="mt-10 text-center" style={{ fontFamily: "var(--font-hand)", fontSize: "1.4rem", color: "rgba(255,255,255,0.7)" }}>
-            ~ ask about today's especial ~
+            ~ ask about today's special ~
+          </p>
+        </div>
+
+        {/* Today's Specials — polaroid photo gallery (replace src to add your specials) */}
+        <div className="mt-14">
+          <div className="text-center mb-8">
+            <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>
+              This Week
+            </p>
+            <h3 className="text-5xl md:text-6xl mt-1" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
+              Today's Specials
+            </h3>
+            <p className="mt-2 text-sm" style={{ color: "var(--cream)", opacity: 0.7 }}>
+              Snap a photo of the chalkboard special and drop it in — swap any image below.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { img: pastorQues, title: "Pastor Quesadilla", price: "$11.99", caption: "Crispy · cheesy · trompo-carved al pastor", tilt: "tilt-l" },
+              { img: birriaDip, title: "Quesabirria Trio", price: "$14.67", caption: "Slow-braised · dipped in rich broth", tilt: "tilt-r" },
+              { img: sopesTrio, title: "Sopes de la Casa", price: "$10.50", caption: "Hand-pressed masa · house salsa", tilt: "tilt-l" },
+            ].map((s) => (
+              <figure key={s.title} className={`relative ${s.tilt} lift bg-[#FBEFD4] p-3 pb-5 rounded-sm shadow-pop-lg`}>
+                <div className="relative overflow-hidden bg-[#2C1A0E]" style={{ aspectRatio: "1 / 1" }}>
+                  <img
+                    src={s.img}
+                    alt={s.title}
+                    loading="lazy"
+                    width={800}
+                    height={800}
+                    className="w-full h-full object-cover"
+                  />
+                  <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
+                    style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>
+                    Special
+                  </span>
+                </div>
+                <figcaption className="mt-3 text-center" style={{ color: "#2C1A0E" }}>
+                  <div className="flex items-baseline justify-center gap-3">
+                    <span className="text-2xl" style={{ fontFamily: "var(--font-marker)" }}>{s.title}</span>
+                    <span className="text-lg" style={{ fontFamily: "var(--font-bang)", color: "#C14521" }}>{s.price}</span>
+                  </div>
+                  <p className="text-sm mt-1" style={{ fontFamily: "var(--font-hand)" }}>{s.caption}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-xs uppercase tracking-[0.3em]" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>
+            ✦ Tap a photo to swap · upload your own special ✦
           </p>
         </div>
       </div>
+
     </section>
   );
 }
@@ -649,7 +701,7 @@ function FamilyStory() {
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(26,14,7,0.92), rgba(44,26,14,0.88))" }} />
       <div className="relative max-w-3xl mx-auto text-center">
         <div className="mx-auto inline-block text-5xl" aria-hidden>✦</div>
-        <p className="text-sm tracking-[0.4em] uppercase mt-4" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Nuestra Familia</p>
+        <p className="text-sm tracking-[0.4em] uppercase mt-4" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Our Family</p>
         <h2 className="text-5xl md:text-6xl mt-2" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
           TERESA & <span style={{ color: "var(--burnt)" }}>EFRAEN</span>
         </h2>
@@ -689,7 +741,7 @@ function LoyaltyReviews() {
           </div>
 
           <div className="mt-6 grid grid-cols-3 gap-2 text-center text-xs">
-            {[["🥉 Amigo", "0+"], ["🥈 Familia", "10+"], ["🥇 Patrón", "25+"]].map(([t, c]) => (
+            {[["🥉 Friend", "0+"], ["🥈 Family", "10+"], ["🥇 Regular", "25+"]].map(([t, c]) => (
               <div key={t} className="p-2 rounded-lg border" style={{ borderColor: "var(--gold)" }}>
                 <div style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>{t}</div>
                 <div style={{ color: "var(--muted-foreground)" }}>{c} orders</div>
