@@ -48,7 +48,7 @@
   --cream: #FFF6E5;
   --chili: #D62828;
   --lime: #6BBF59;
-  --pink: #FF4F8B;
+  --pink: #6B2D9C;
   --teal: #2EC4B6;
 
   --background: var(--brown-deep);
@@ -66,7 +66,7 @@
   --border: var(--gold);
   --radius: 0.75rem;
 
-  --gradient-fiesta: linear-gradient(135deg, #F47B3E 0%, #FF6B1A 40%, #D62828 80%, #FF4F8B 100%);
+  --gradient-fiesta: linear-gradient(135deg, #F47B3E 0%, #FF6B1A 40%, #D62828 80%, #6B2D9C 100%);
   --glow-orange: 0 0 40px rgba(244, 123, 62, 0.55), 0 0 80px rgba(255, 107, 26, 0.25);
   --glow-gold: 0 0 30px rgba(255, 210, 63, 0.6);
 }

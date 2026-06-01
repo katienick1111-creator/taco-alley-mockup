@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
 });
 
 /* ============== Decorative atoms ============== */
-const PAPEL = ["#F47B3E", "#FFD23F", "#D62828", "#FF4F8B", "#2EC4B6", "#6BBF59"];
+const PAPEL = ["#F47B3E", "#FFD23F", "#D62828", "#6B2D9C", "#2EC4B6", "#6BBF59"];
 
 function PapelPicado({ count = 14 }: { count?: number }) {
   return (
@@ -320,7 +320,7 @@ function OnlineOrdering() {
             <img src={trompo} alt="Al pastor trompo" className="w-full h-full object-cover" loading="lazy" width={704} height={1152} />
           </div>
           <Star className="absolute -top-3 -right-3 spin-slow" />
-          <Star className="absolute -bottom-3 -left-3 spin-slow" color="#FF4F8B" />
+          <Star className="absolute -bottom-3 -left-3 spin-slow" color="#6B2D9C" />
         </div>
         <div>
           <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Online Ordering</p>
@@ -610,18 +610,18 @@ function MenuBoard() {
 
         <div className="chalkboard p-6 md:p-10 relative">
           <Star className="absolute -top-4 -left-4" color="#FFD23F" />
-          <Star className="absolute -top-4 -right-4" color="#FF4F8B" />
+          <Star className="absolute -top-4 -right-4" color="#6B2D9C" />
           <Star className="absolute -bottom-4 -left-4" color="#6BBF59" />
           <Star className="absolute -bottom-4 -right-4" color="#2EC4B6" />
 
           {/* Colorful chalk doodles in the corners */}
-          <span aria-hidden className="absolute top-3 left-6 text-3xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#FF4F8B" }}>✦</span>
+          <span aria-hidden className="absolute top-3 left-6 text-3xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#6B2D9C" }}>✦</span>
           <span aria-hidden className="absolute top-4 right-8 text-2xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>★</span>
           <span aria-hidden className="absolute bottom-3 left-10 text-3xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#6BBF59" }}>♡</span>
 
           <div className="text-center mb-8 relative">
             <div className="inline-block px-6 pb-2 border-b-4 border-dotted" style={{ borderColor: "#FFD23F" }}>
-              <p className="text-xs tracking-[0.5em] uppercase" style={{ fontFamily: "var(--font-chalk)", color: "#FF4F8B" }}>
+              <p className="text-xs tracking-[0.5em] uppercase" style={{ fontFamily: "var(--font-chalk)", color: "#6B2D9C" }}>
                 ~ Hot off the comal ~
               </p>
               <h3 className="text-5xl md:text-7xl leading-none" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
@@ -633,7 +633,7 @@ function MenuBoard() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cats.map((cat, ci) => {
-              const palette = ["#FFD23F", "#FF4F8B", "#6BBF59", "#2EC4B6", "#F47B3E", "#FF6B1A"];
+              const palette = ["#FFD23F", "#6B2D9C", "#6BBF59", "#2EC4B6", "#F47B3E", "#FF6B1A"];
               const accent = palette[ci % palette.length];
               const priceAccent = palette[(ci + 2) % palette.length];
               return (
