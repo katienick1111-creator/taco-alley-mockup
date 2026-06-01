@@ -160,7 +160,7 @@ function Hero() {
             />
           </div>
 
-          </div>
+
 
 
 
