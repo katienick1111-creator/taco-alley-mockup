@@ -1069,21 +1069,28 @@ function FindUsMap() {
 function Index() {
   return (
     <main className="min-h-screen" style={{ background: "var(--brown-deep)", color: "var(--cream)" }}>
+      {/* 1. Hook */}
       <Hero />
       <Aztec />
+      {/* 2. Who we are */}
+      <FamilyStory />
+      {/* 3. What we serve */}
+      <MenuBoard />
+      {/* 4. Order it */}
       <OnlineOrdering />
       <DiagonalBanner />
-      <FindUsMap />
+      {/* 5. Where to find us */}
       <LocationsSection />
+      <FindUsMap />
       <Aztec />
-      
-      <MenuBoard />
-      <FamilyStory />
+      {/* 6. Social proof */}
       <LoyaltyReviews />
+      {/* 7. Pitch */}
       <AdminDashboard />
       <Footer />
       <MybBadge />
     </main>
   );
 }
+
 
