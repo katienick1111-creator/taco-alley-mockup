@@ -609,33 +609,55 @@ function MenuBoard() {
 
         <div className="chalkboard p-6 md:p-10 relative">
           <Star className="absolute -top-4 -left-4" color="#FFD23F" />
-          <Star className="absolute -top-4 -right-4" color="#FFD23F" />
+          <Star className="absolute -top-4 -right-4" color="#FF4F8B" />
+          <Star className="absolute -bottom-4 -left-4" color="#6BBF59" />
+          <Star className="absolute -bottom-4 -right-4" color="#2EC4B6" />
 
-          <h3 className="text-center text-5xl md:text-6xl mb-8" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
-            ~ The Chalkboard ~
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cats.map((cat) => (
-              <div key={cat.name}>
-                <h4 className="text-2xl mb-3 pb-1 border-b-2 border-dashed" style={{ fontFamily: "var(--font-marker)", color: "#FFD23F", borderColor: "rgba(255,210,63,0.4)" }}>
-                  {cat.name}
-                </h4>
-                <ul className="space-y-2">
-                  {cat.items.map(([n, p]) => (
-                    <li key={n} className="flex justify-between items-baseline">
-                      <span style={{ fontFamily: "var(--font-chalk)", fontSize: "1.2rem" }}>{n}</span>
-                      <span className="flex-1 mx-2 border-b border-dotted opacity-40" />
-                      <span style={{ fontFamily: "var(--font-bang)", color: "#FF6B1A" }}>${p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {/* Colorful chalk doodles in the corners */}
+          <span aria-hidden className="absolute top-3 left-6 text-3xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#FF4F8B" }}>✦</span>
+          <span aria-hidden className="absolute top-4 right-8 text-2xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>★</span>
+          <span aria-hidden className="absolute bottom-3 left-10 text-3xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#6BBF59" }}>♡</span>
+
+          <div className="text-center mb-8 relative">
+            <div className="inline-block px-6 pb-2 border-b-4 border-dotted" style={{ borderColor: "#FFD23F" }}>
+              <p className="text-xs tracking-[0.5em] uppercase" style={{ fontFamily: "var(--font-chalk)", color: "#FF4F8B" }}>
+                ~ Hot off the comal ~
+              </p>
+              <h3 className="text-5xl md:text-7xl leading-none" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>
+                <span style={{ color: "#FF6B1A" }}>Today's</span>{" "}
+                <span style={{ color: "#FFD23F" }}>Specials</span>
+              </h3>
+            </div>
           </div>
-          <p className="mt-10 text-center" style={{ fontFamily: "var(--font-hand)", fontSize: "1.4rem", color: "rgba(255,255,255,0.7)" }}>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cats.map((cat, ci) => {
+              const palette = ["#FFD23F", "#FF4F8B", "#6BBF59", "#2EC4B6", "#F47B3E", "#FF6B1A"];
+              const accent = palette[ci % palette.length];
+              const priceAccent = palette[(ci + 2) % palette.length];
+              return (
+                <div key={cat.name}>
+                  <h4 className="text-3xl mb-3 pb-1 border-b-2 border-dashed" style={{ fontFamily: "var(--font-marker)", color: accent, borderColor: `${accent}66` }}>
+                    {cat.name}
+                  </h4>
+                  <ul className="space-y-2">
+                    {cat.items.map(([n, p]) => (
+                      <li key={n} className="flex justify-between items-baseline">
+                        <span style={{ fontFamily: "var(--font-chalk)", fontSize: "1.35rem", color: "#FFF6E5" }}>{n}</span>
+                        <span className="flex-1 mx-2 border-b border-dotted opacity-30" />
+                        <span style={{ fontFamily: "var(--font-bang)", color: priceAccent, fontSize: "1.1rem" }}>${p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+          <p className="mt-10 text-center" style={{ fontFamily: "var(--font-hand)", fontSize: "1.6rem", color: "#6BBF59" }}>
             ~ ask about today's special ~
           </p>
         </div>
+
 
         {/* Today's Specials — polaroid photo gallery (replace src to add your specials) */}
         <div className="mt-14">
