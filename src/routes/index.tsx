@@ -352,10 +352,6 @@ function OnlineOrdering() {
               </li>
             ))}
           </ul>
-          <div className="mt-4 p-3 rounded-lg text-center" style={{ background: "var(--gold)", color: "var(--brown)" }}>
-            <div style={{ fontFamily: "var(--font-bang)" }}>🎁 First order</div>
-            <div className="text-2xl" style={{ fontFamily: "var(--font-display)" }}>10% OFF</div>
-          </div>
         </aside>
 
         {/* Items grid */}
