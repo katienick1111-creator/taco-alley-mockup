@@ -354,7 +354,8 @@ const ITEMS = [
 function OnlineOrdering() {
   const [active, setActive] = useState("Tacos");
   return (
-    <section id="order" className="relative py-20 px-6" style={{ background: "linear-gradient(180deg, #2C1A0E 0%, #1A0E07 100%)" }}>
+    <section id="order" className="relative overflow-hidden py-20 px-6" style={{ background: "linear-gradient(180deg, #2C1A0E 0%, #1A0E07 100%)" }}>
+      <HandDrawnScatter count={14} opacity={0.1} seed={3} />
       {/* Trompo pillar header */}
       <div className="max-w-7xl mx-auto grid md:grid-cols-[280px_1fr] gap-10 items-center mb-12">
         <div className="relative mx-auto">
