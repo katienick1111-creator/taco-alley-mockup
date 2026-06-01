@@ -1121,8 +1121,6 @@ function Index() {
       <Aztec />
       {/* 1. Where to find the truck */}
       <LocationsSection />
-      {/* 2. Today's specials + full menu */}
-      <MenuBoard />
       {/* 3. Order it */}
       <OnlineOrdering />
       <DiagonalBanner />
