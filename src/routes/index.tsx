@@ -572,56 +572,42 @@ function LocationsSection() {
   );
 }
 
-/* ============== Menu board — RT-38 TV panels ============== */
-function MenuPanel({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="relative rounded-[14px] overflow-hidden"
-      style={{
-        background: "#0B0B0B",
-        border: "8px solid #0a0a0a",
-        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.7), inset 0 0 0 2px #1a1a1a",
-      }}
-    >
-      <div className="relative h-28 md:h-36">
-        <svg viewBox="0 0 400 140" preserveAspectRatio="none" className="absolute inset-0 w-full h-full">
-          <path d="M0,0 L400,0 L400,95 Q200,150 0,95 Z" fill="#F47B3E" />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <img
-            src={tacoAlleyBadge}
-            alt="RT-38 Taco Alley"
-            className="h-24 md:h-32 w-auto drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)]"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <div className="px-5 md:px-8 pb-6 pt-4 text-[#FFF6E5]">{children}</div>
-    </div>
-  );
-}
-
+/* ============== Menu board — matches losgirasoles.com aesthetic ============== */
 function MenuItem({ name, desc, price }: { name: string; desc?: string; price?: string }) {
   return (
-    <div className="mb-3">
+    <div className="mb-4">
       <div className="flex items-baseline justify-between gap-3">
-        <h5 className="uppercase tracking-wide font-extrabold text-[#F47B3E] text-base md:text-lg leading-tight">
+        <h5
+          className="uppercase font-black italic text-[#F47B3E] text-xl md:text-2xl leading-tight tracking-tight"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
           {name}
         </h5>
         {price && (
-          <span className="text-[#FFF6E5] font-bold text-sm md:text-base whitespace-nowrap">${price}</span>
+          <span className="text-[#FFF6E5] font-bold text-base md:text-lg whitespace-nowrap tabular-nums">
+            ${price}
+          </span>
         )}
       </div>
-      {desc && <p className="text-[#D8D2C7] text-xs md:text-sm leading-snug mt-0.5">{desc}</p>}
+      {desc && (
+        <p className="text-[#FFF6E5] text-xs md:text-sm leading-snug mt-1 uppercase font-semibold italic tracking-wide opacity-90">
+          {desc}
+        </p>
+      )}
     </div>
   );
 }
 
-function SideLabel({ text }: { text: string }) {
+function SideLabel({ text, side = "left" }: { text: string; side?: "left" | "right" }) {
   return (
     <div
-      className="flex items-center justify-center font-black text-[#F47B3E] uppercase italic tracking-widest text-xl md:text-2xl"
-      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+      className="font-black italic uppercase text-[#FFF6E5] text-4xl md:text-6xl select-none whitespace-nowrap"
+      style={{
+        fontFamily: "var(--font-display)",
+        writingMode: "vertical-rl",
+        transform: side === "left" ? "rotate(180deg)" : "none",
+        letterSpacing: "0.15em",
+      }}
     >
       {text}
     </div>
@@ -630,97 +616,73 @@ function SideLabel({ text }: { text: string }) {
 
 function MenuBoard() {
   return (
-    <section id="menu" className="py-20 px-4 md:px-6" style={{ background: "var(--brown)" }}>
+    <section id="menu" className="py-20 px-4 md:px-8" style={{ background: "#000" }}>
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
-          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>The Menu</p>
-          <h2 className="text-5xl md:text-7xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
-            THE FULL <span style={{ color: "var(--gold)" }}>MENU</span>
+        {/* Big MENU title */}
+        <div className="mb-12">
+          <h2
+            className="text-7xl md:text-[10rem] font-black italic text-[#FFF6E5] leading-none tracking-tight"
+            style={{ fontFamily: "var(--font-display)", transform: "skew(-6deg)" }}
+          >
+            MENU
           </h2>
-          <p className="mt-2 text-lg md:text-xl" style={{ fontFamily: "var(--font-hand)", color: "var(--cream)" }}>
-            Hand-pressed masa · slow-braised meats · salsas made fresh every morning.
+          <div className="h-1 w-32 mt-2" style={{ background: "#F47B3E" }} />
+        </div>
+
+        {/* Two-column layout with vertical labels flanking */}
+        <div className="grid grid-cols-[auto_1fr_1fr_auto] gap-4 md:gap-8">
+          <div className="flex flex-col justify-between py-4 gap-8">
+            <SideLabel text="APPS" side="left" />
+            <SideLabel text="SPECIALS" side="left" />
+          </div>
+
+          <div>
+            <MenuItem name="Lazy Salsa and Chips" desc="Our version of pico de gallo." price="6.00" />
+            <MenuItem name="Guacamole and Chips" price="8.00" />
+            <MenuItem name="3 Tacos" desc="Your choice of meat and toppings. Comes with rice, beans, and 16oz drink." price="14.99" />
+            <MenuItem name="3 Enchiladas" desc="3 fried tortillas topped with a red sauce, lettuce, tomato, cotija cheese, and sour cream and filled with your choice of meat. Comes with rice, beans, and 16oz drink." price="15.99" />
+            <MenuItem name="Burrito" desc="Your choice of meat. Comes with rice, beans, and 16oz drink." price="14.99" />
+            <MenuItem name="Tostada" desc="Your choice of meat. Comes with rice, beans, and 16oz drink." price="14.99" />
+            <MenuItem name="Quesadilla" desc="Quesadilla with choice of meat. Comes with a side of lazy salsa, guacamole, sour cream, and 16oz drink." price="14.99" />
+            <h4 className="uppercase font-black italic text-[#F47B3E] text-2xl md:text-3xl mt-6 mb-3" style={{ fontFamily: "var(--font-display)" }}>Sides</h4>
+            <MenuItem name="Rice" price="3.00" />
+            <MenuItem name="Beans" price="3.00" />
+          </div>
+
+          <div>
+            <MenuItem name="Taco" desc="Mexican: Onion, cilantro, lime. American: Lettuce, tomato, cheese." price="3.89" />
+            <MenuItem name="Tostada" desc="Flat shell topped with beans, choice of meat, lettuce, tomato, cheese, and sour cream." price="4.50" />
+            <MenuItem name="Burrito" desc="Large flour tortilla filled with beans, choice of meat, lettuce, tomato, and cheese. Add sour cream for $.50" price="9.99" />
+            <MenuItem name="Torta" desc="Large telera bun filled with beans, choice of meat, cheese, lettuce, tomato, and sour cream." price="10.99" />
+            <MenuItem name="Cheese Quesadilla" desc="Quesadilla with cheese." price="6.99" />
+            <MenuItem name="Quesadilla With Meat" desc="Large flour tortilla filled your choice of meat and cheese." price="9.99" />
+            <MenuItem name="Loaded Nachos" desc="Tortilla chips topped with nacho cheese, choice of meat, lettuce, tomato, onion, cilantro, and sour cream." price="11.99" />
+            <MenuItem name="Walking Taco" desc="Bag of Doritos, choice of meat, lettuce, tomato, cheese, and sour cream." price="9.99" />
+            <MenuItem name="Corn in a Cup" desc="12oz cup of corn topped with mayo, cotija cheese, and chili powder." price="4.99" />
+            <MenuItem name="Birria Ramen" desc="Comes with 2 quesabirrias tacos." price="15.00" />
+            <MenuItem name="Quesabirrias Tacos" desc="Taco with birria and cheese, topped with onion, cilantro, and cheese." price="4.89" />
+          </div>
+
+          <div className="flex items-center py-4">
+            <SideLabel text="FAVORITES" side="right" />
+          </div>
+        </div>
+
+        {/* Meats strip */}
+        <div className="mt-12 py-4 px-6" style={{ background: "#F47B3E" }}>
+          <p className="text-black font-black uppercase italic tracking-wide text-sm md:text-base" style={{ fontFamily: "var(--font-display)" }}>
+            <span className="mr-3">Meats:</span>
+            Steak · Chicken · Al Pastor · Ground Beef · Barbacoa · Cabeza · Chicharrones (green)
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
-          {/* LEFT PANEL */}
-          <MenuPanel>
-            <div className="grid grid-cols-[28px_1fr] gap-3">
-              <SideLabel text="Desserts" />
-              <div className="grid sm:grid-cols-2 gap-x-6">
-                <div>
-                  <MenuItem name="Sopes" price="4.50" />
-                  <MenuItem name="Empanadas" desc="Potato, Chicken" price="3.99" />
-                  <MenuItem name="Tacos al Pastor de Trompo" price="3.99" />
-                  <div className="border-t border-[#F47B3E]/40 my-4" />
-                  <MenuItem name="Flan" price="5.00" />
-                  <MenuItem name="Choco Flan" price="5.00" />
-                  <MenuItem name="Churro Cheesecake" price="6.50" />
-                  <MenuItem name="Flatonos Fritos" price="5.00" />
-                </div>
-                <div>
-                  <h4 className="text-center font-black uppercase text-[#FFF6E5] text-xl md:text-2xl mb-3 tracking-wide">NIU Specials</h4>
-                  <MenuItem name="Huskie Special" desc="Choose any 3: Taco, Burrito, Enchilada, Empanada and Tamale. Comes with rice and beans." price="15.99" />
-                  <h4 className="text-center font-black uppercase text-[#FFF6E5] text-xl md:text-2xl mt-5 mb-3 tracking-wide">Kids Menu</h4>
-                  <MenuItem name="Small Quesadilla" desc="With Rice and Beans" price="5.99" />
-                  <MenuItem name="One Taco" desc="With Rice and Beans" price="5.99" />
-                  <h4 className="text-center font-black uppercase text-[#FFF6E5] text-xl md:text-2xl mt-5 mb-3 tracking-wide">Students Only</h4>
-                  <MenuItem name="2 Tacos" desc="With Rice and Beans and a can of soda" price="9.99" />
-                </div>
-              </div>
-            </div>
-          </MenuPanel>
-
-          {/* RIGHT PANEL */}
-          <MenuPanel>
-            <div className="grid grid-cols-[28px_1fr] gap-3">
-              <div className="flex flex-col justify-around gap-6">
-                <SideLabel text="Apps" />
-                <SideLabel text="Dinners" />
-              </div>
-              <div>
-                <h4 className="text-right font-black uppercase text-[#FFF6E5] text-xl md:text-2xl mb-3 tracking-wide">Favorites</h4>
-                <div className="grid sm:grid-cols-2 gap-x-6">
-                  <div>
-                    <MenuItem name="Lazy Salsa and Chips" desc="Our version of Pico de Gallo." price="6.00" />
-                    <MenuItem name="Guacamole and Chips" price="8.00" />
-                    <MenuItem name="3 Tacos" desc="Your choice of meat and toppings. Comes with rice & beans." price="14.99" />
-                    <MenuItem name="3 Enchiladas" desc="3 fried tortillas topped with red/green sauce, lettuce, tomato, Cotija cheese, and sour cream. Filled with your choice of meat. Comes with rice & beans." price="15.99" />
-                    <MenuItem name="Burrito" desc="Your choice of meat. Comes with rice & beans." price="14.99" />
-                    <MenuItem name="2 Tostadas" desc="Your choice of meat. Comes with rice & beans." price="14.99" />
-                    <MenuItem name="Quesadilla" desc="Your choice of meat. Comes with rice & beans." price="14.99" />
-                  </div>
-                  <div>
-                    <MenuItem name="Corn in a Cup" desc="12oz cup of corn topped with mayo, Cotija cheese, and chili powder." price="4.99" />
-                    <MenuItem name="Birria Ramen" desc="Comes with 2 Quesabirrias." price="15.00" />
-                    <MenuItem name="Quesabirrias Tacos" desc="Taco with birria and cheese. Topped with onion, cilantro, and cheese." price="4.89" />
-                    <MenuItem name="Birria Pizza" desc="Two large tortillas with birria and cheese. Topped with onion and cilantro. Side of consommé." price="15.99" />
-                    <MenuItem name="Tamal" desc="Red or green." price="3.50" />
-                    <MenuItem name="Dozen Tamales" desc="Red or green." price="30.00" />
-                    <MenuItem name="Birria Nachos" desc="Tortilla chips topped with birria, onion, cilantro, and cheese." price="14.99" />
-                    <MenuItem name="Taco" desc="Mexican: Onion, Cilantro, Lime. American: Lettuce, Tomato, Cheese." price="3.89" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="-mx-5 md:-mx-8 mt-5 px-5 md:px-8 py-3" style={{ background: "#F47B3E" }}>
-              <p className="text-[#0B0B0B] font-black uppercase tracking-wide text-xs md:text-sm">
-                <span className="italic mr-2">Meats:</span>
-                Steak, Chicken, Al Pastor, Ground Beef, Barbacoa, Cabeza, Chicharrones (green)
-              </p>
-            </div>
-          </MenuPanel>
-        </div>
-
         {/* Today's Specials — polaroid photo gallery */}
-        <div className="mt-14">
-          <div className="text-center mb-8">
-            <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>
-              This Week
-            </p>
-            <h3 className="text-5xl md:text-6xl mt-1" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
-              Today's Specials
+        <div className="mt-16">
+          <div className="mb-8">
+            <h3 className="text-5xl md:text-7xl font-black italic text-[#FFF6E5]" style={{ fontFamily: "var(--font-display)", transform: "skew(-6deg)" }}>
+              TODAY'S <span style={{ color: "#F47B3E" }}>SPECIALS</span>
             </h3>
+            <div className="h-1 w-32 mt-2" style={{ background: "#F47B3E" }} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
