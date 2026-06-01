@@ -609,15 +609,7 @@ function MenuBoard() {
         </div>
 
         <div className="chalkboard p-6 md:p-10 relative">
-          <Star className="absolute -top-4 -left-4" color="#FFD23F" />
-          <Star className="absolute -top-4 -right-4" color="#6B2D9C" />
-          <Star className="absolute -bottom-4 -left-4" color="#6BBF59" />
-          <Star className="absolute -bottom-4 -right-4" color="#2EC4B6" />
 
-          {/* Colorful chalk doodles in the corners */}
-          <span aria-hidden className="absolute top-3 left-6 text-3xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#6B2D9C" }}>✦</span>
-          <span aria-hidden className="absolute top-4 right-8 text-2xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#FFD23F" }}>★</span>
-          <span aria-hidden className="absolute bottom-3 left-10 text-3xl wiggle" style={{ fontFamily: "var(--font-chalk)", color: "#6BBF59" }}>♡</span>
 
           <div className="text-center mb-8 relative">
             <div className="inline-block px-6 pb-2 border-b-4 border-dotted" style={{ borderColor: "#FFD23F" }}>
