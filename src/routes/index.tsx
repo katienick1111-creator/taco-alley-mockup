@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type CSSProperties } from "react";
 import logo from "@/assets/rt38-logo-clean.png";
 import tacoAlleyBadge from "@/assets/taco-alley-badge.png";
+import tacoAlleyBadgeBrand from "@/assets/taco-alley-badge-brand.png";
 // no storefront photo available — use pozole shot (shows real restaurant interior) for the dine-in card
 import foodTruck from "@/assets/food-truck.jpg";
 import sope from "@/assets/food/sope.jpg";
@@ -148,7 +149,7 @@ function Hero() {
             </svg>
 
             <img
-              src={tacoAlleyBadge}
+              src={tacoAlleyBadgeBrand}
               alt="Tamales Los Girasoles · RT-38 Taco Alley badge"
               width={1024}
               height={1024}
