@@ -1125,13 +1125,13 @@ function Index() {
       {/* 3. Order it */}
       <OnlineOrdering />
       <DiagonalBanner />
-      {/* 4. Who we are */}
-      <FamilyStory />
       <Aztec />
-      {/* 5. Social proof */}
+      {/* 4. Social proof */}
       <LoyaltyReviews />
-      {/* 6. Pitch */}
+      {/* 5. Pitch */}
       <AdminDashboard />
+      {/* 6. Who we are */}
+      <FamilyStory />
       <Footer />
       <MybBadge />
     </main>
