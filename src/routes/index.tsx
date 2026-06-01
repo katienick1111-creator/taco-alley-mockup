@@ -16,6 +16,7 @@ import chili from "@/assets/chili.png";
 import birriaDip from "@/assets/birria-dip.png";
 import horchata from "@/assets/horchata.png";
 import plazaAerial from "@/assets/plaza-aerial.jpg";
+import { HandDrawnScatter } from "@/components/HandDrawnIcons";
 // Storefront signage is referenced as inspiration (recreated in CSS/SVG), not embedded as photos.
 
 
