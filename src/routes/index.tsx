@@ -16,6 +16,7 @@ import chili from "@/assets/chili.png";
 import birriaDip from "@/assets/birria-dip.png";
 import horchata from "@/assets/horchata.png";
 import plazaAerial from "@/assets/plaza-aerial.jpg";
+import { HandDrawnScatter } from "@/components/HandDrawnIcons";
 // Storefront signage is referenced as inspiration (recreated in CSS/SVG), not embedded as photos.
 
 
@@ -91,6 +92,8 @@ function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1A0E07 0%, #2C1A0E 100%)" }}>
       <PapelPicado />
+      <HandDrawnScatter count={18} opacity={0.13} seed={1} />
+
 
       {/* Floating decor */}
       <Pepper size={70} className="absolute top-24 left-6 wiggle hidden md:block" />
@@ -351,7 +354,8 @@ const ITEMS = [
 function OnlineOrdering() {
   const [active, setActive] = useState("Tacos");
   return (
-    <section id="order" className="relative py-20 px-6" style={{ background: "linear-gradient(180deg, #2C1A0E 0%, #1A0E07 100%)" }}>
+    <section id="order" className="relative overflow-hidden py-20 px-6" style={{ background: "linear-gradient(180deg, #2C1A0E 0%, #1A0E07 100%)" }}>
+      <HandDrawnScatter count={14} opacity={0.1} seed={3} />
       {/* Trompo pillar header */}
       <div className="max-w-7xl mx-auto grid md:grid-cols-[280px_1fr] gap-10 items-center mb-12">
         <div className="relative mx-auto">
@@ -539,8 +543,10 @@ function DiagonalBanner() {
 /* ============== Locations expanded + Food Truck Tracker ============== */
 function LocationsSection() {
   return (
-    <section className="py-20 px-6" style={{ background: "var(--brown-deep)" }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="relative overflow-hidden py-20 px-6" style={{ background: "var(--brown-deep)" }}>
+      <HandDrawnScatter count={16} opacity={0.12} seed={5} />
+      <div className="max-w-7xl mx-auto relative">
+
         <div className="text-center mb-10">
           <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Find Us</p>
           <h2 className="text-5xl md:text-6xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
@@ -761,6 +767,7 @@ function FamilyStory() {
     <section className="relative py-24 px-6 overflow-hidden">
       <img src={pozole} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={1280} height={720} />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(26,14,7,0.92), rgba(44,26,14,0.88))" }} />
+      <HandDrawnScatter count={14} opacity={0.14} seed={7} />
       <div className="relative max-w-3xl mx-auto text-center">
         <div className="mx-auto inline-block text-5xl" aria-hidden>✦</div>
         <p className="text-sm tracking-[0.4em] uppercase mt-4" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Our Family</p>
