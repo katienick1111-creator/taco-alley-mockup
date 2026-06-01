@@ -123,24 +123,25 @@ function Hero() {
         {/* Top row: brand */}
         <div className="text-center relative z-10">
 
-          {/* Brand badge — real TAMALES · TACO ALLEY · LOS GIRASOLES shield, blended into the hero */}
-          <div className="relative mx-auto" style={{ maxWidth: "640px", width: "92%" }}>
-            {/* Warm sunburst glow behind the badge */}
-            <div
-              aria-hidden
-              className="absolute inset-0 -z-10 blur-3xl opacity-80"
-              style={{
-                background:
-                  "radial-gradient(60% 55% at 50% 50%, rgba(255,140,60,0.55) 0%, rgba(255,107,26,0.35) 40%, rgba(0,0,0,0) 75%)",
-              }}
-            />
-            {/* Soft sunray streaks */}
-            <svg aria-hidden viewBox="0 0 600 600" className="absolute inset-0 w-full h-full -z-10 opacity-25 spin-slow">
+          {/* Brand panel — orange storefront panel housing the real badge */}
+          <div
+            className="relative mx-auto rounded-[28px] overflow-hidden"
+            style={{
+              background: "linear-gradient(180deg, #E85D3A 0%, #C14521 100%)",
+              border: "5px solid #2C1A0E",
+              boxShadow: "0 0 0 3px var(--gold), 0 24px 50px rgba(0,0,0,0.6), 0 0 70px rgba(255,107,26,0.45)",
+              padding: "24px 28px",
+              maxWidth: "640px",
+              width: "92%",
+            }}
+          >
+            {/* Soft sunray streaks behind the badge */}
+            <svg aria-hidden viewBox="0 0 600 600" className="absolute inset-0 w-full h-full opacity-20 spin-slow pointer-events-none">
               {Array.from({ length: 18 }).map((_, i) => (
                 <line
                   key={i}
                   x1="300" y1="300" x2="300" y2="40"
-                  stroke="#F5DEB3" strokeWidth="2"
+                  stroke="#FBEFD4" strokeWidth="2"
                   transform={`rotate(${i * 20} 300 300)`}
                 />
               ))}
@@ -153,12 +154,11 @@ function Hero() {
               height={1024}
               className="relative w-full h-auto select-none bob"
               style={{
-                mixBlendMode: "multiply",
-                filter:
-                  "drop-shadow(0 18px 30px rgba(0,0,0,0.55)) drop-shadow(0 0 60px rgba(255,140,60,0.45))",
+                filter: "drop-shadow(0 12px 22px rgba(0,0,0,0.5))",
               }}
             />
           </div>
+
 
 
 
