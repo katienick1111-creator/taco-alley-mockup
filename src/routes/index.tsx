@@ -1117,20 +1117,20 @@ function Index() {
       {/* 1. Hook */}
       <Hero />
       <Aztec />
-      {/* 2. Who we are */}
-      <FamilyStory />
-      {/* 3. What we serve */}
-      <MenuBoard />
-      {/* 4. Order it */}
-      <OnlineOrdering />
-      <DiagonalBanner />
-      {/* 5. Where to find us */}
+      {/* 1. Where to find the truck */}
       <LocationsSection />
       <FindUsMap />
+      {/* 2. Today's specials + full menu */}
+      <MenuBoard />
+      {/* 3. Order it */}
+      <OnlineOrdering />
+      <DiagonalBanner />
+      {/* 4. Who we are */}
+      <FamilyStory />
       <Aztec />
-      {/* 6. Social proof */}
+      {/* 5. Social proof */}
       <LoyaltyReviews />
-      {/* 7. Pitch */}
+      {/* 6. Pitch */}
       <AdminDashboard />
       <Footer />
       <MybBadge />
