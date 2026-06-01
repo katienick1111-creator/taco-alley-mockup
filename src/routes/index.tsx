@@ -216,6 +216,7 @@ function Hero() {
               hours="Mon–Sun · 10am – 9pm"
               phone="815-825-3069"
               accent="var(--burnt)"
+              showMap
             />
             <LocationCard
               img={foodTruck}
