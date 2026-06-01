@@ -636,7 +636,59 @@ function MenuBoard() {
             ~ ask about today's special ~
           </p>
         </div>
+
+        {/* Today's Specials — polaroid photo gallery (replace src to add your specials) */}
+        <div className="mt-14">
+          <div className="text-center mb-8">
+            <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>
+              This Week
+            </p>
+            <h3 className="text-5xl md:text-6xl mt-1" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
+              Today's Specials
+            </h3>
+            <p className="mt-2 text-sm" style={{ color: "var(--cream)", opacity: 0.7 }}>
+              Snap a photo of the chalkboard special and drop it in — swap any image below.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { img: pastorQues, title: "Pastor Quesadilla", price: "$11.99", caption: "Crispy · cheesy · trompo-carved al pastor", tilt: "tilt-l" },
+              { img: birriaDip, title: "Quesabirria Trio", price: "$14.67", caption: "Slow-braised · dipped in rich broth", tilt: "tilt-r" },
+              { img: sopesTrio, title: "Sopes de la Casa", price: "$10.50", caption: "Hand-pressed masa · house salsa", tilt: "tilt-l" },
+            ].map((s) => (
+              <figure key={s.title} className={`relative ${s.tilt} lift bg-[#FBEFD4] p-3 pb-5 rounded-sm shadow-pop-lg`}>
+                <div className="relative overflow-hidden bg-[#2C1A0E]" style={{ aspectRatio: "1 / 1" }}>
+                  <img
+                    src={s.img}
+                    alt={s.title}
+                    loading="lazy"
+                    width={800}
+                    height={800}
+                    className="w-full h-full object-cover"
+                  />
+                  <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
+                    style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>
+                    Special
+                  </span>
+                </div>
+                <figcaption className="mt-3 text-center" style={{ color: "#2C1A0E" }}>
+                  <div className="flex items-baseline justify-center gap-3">
+                    <span className="text-2xl" style={{ fontFamily: "var(--font-marker)" }}>{s.title}</span>
+                    <span className="text-lg" style={{ fontFamily: "var(--font-bang)", color: "#C14521" }}>{s.price}</span>
+                  </div>
+                  <p className="text-sm mt-1" style={{ fontFamily: "var(--font-hand)" }}>{s.caption}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-xs uppercase tracking-[0.3em]" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>
+            ✦ Tap a photo to swap · upload your own special ✦
+          </p>
+        </div>
       </div>
+
     </section>
   );
 }
