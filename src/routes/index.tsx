@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type CSSProperties } from "react";
 import logo from "@/assets/rt38-logo-clean.png";
+import tacoAlleyBadge from "@/assets/taco-alley-badge.png";
 // no storefront photo available — use pozole shot (shows real restaurant interior) for the dine-in card
 import foodTruck from "@/assets/food-truck.jpg";
 import sope from "@/assets/food/sope.jpg";
@@ -122,70 +123,44 @@ function Hero() {
         {/* Top row: brand */}
         <div className="text-center relative z-10">
 
-          {/* Brand panel — inspired by the real storefront sign (orange panel, sunflower, line-art icons) */}
-          <div
-            className="relative mx-auto inline-block rounded-[28px] overflow-hidden"
-            style={{
-              background: "linear-gradient(180deg, #E85D3A 0%, #C14521 100%)",
-              border: "5px solid #2C1A0E",
-              boxShadow: "0 0 0 3px var(--gold), 0 24px 50px rgba(0,0,0,0.6), 0 0 70px rgba(255,107,26,0.45)",
-              padding: "28px 36px",
-              maxWidth: "760px",
-              width: "92%",
-            }}
-          >
-            {/* Faint wavy line decor — left + right, like the real sign */}
-            <svg aria-hidden viewBox="0 0 120 120" className="absolute left-3 top-3 w-20 opacity-50">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <path key={i} d={`M0 ${20 + i * 12} Q 30 ${10 + i * 12}, 60 ${20 + i * 12} T 120 ${20 + i * 12}`} stroke="#FBEFD4" strokeWidth="1.2" fill="none" opacity="0.7" />
+          {/* Brand badge — real TAMALES · TACO ALLEY · LOS GIRASOLES shield, blended into the hero */}
+          <div className="relative mx-auto" style={{ maxWidth: "640px", width: "92%" }}>
+            {/* Warm sunburst glow behind the badge */}
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 blur-3xl opacity-80"
+              style={{
+                background:
+                  "radial-gradient(60% 55% at 50% 50%, rgba(255,140,60,0.55) 0%, rgba(255,107,26,0.35) 40%, rgba(0,0,0,0) 75%)",
+              }}
+            />
+            {/* Soft sunray streaks */}
+            <svg aria-hidden viewBox="0 0 600 600" className="absolute inset-0 w-full h-full -z-10 opacity-25 spin-slow">
+              {Array.from({ length: 18 }).map((_, i) => (
+                <line
+                  key={i}
+                  x1="300" y1="300" x2="300" y2="40"
+                  stroke="#F5DEB3" strokeWidth="2"
+                  transform={`rotate(${i * 20} 300 300)`}
+                />
               ))}
             </svg>
-            <svg aria-hidden viewBox="0 0 120 120" className="absolute right-3 top-3 w-20 opacity-50">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <path key={i} d={`M0 ${20 + i * 12} Q 30 ${30 + i * 12}, 60 ${20 + i * 12} T 120 ${20 + i * 12}`} stroke="#FBEFD4" strokeWidth="1.2" fill="none" opacity="0.7" />
-              ))}
-            </svg>
-            {/* Line-art icons (heart, onion, pot, sun, avocado) — echoing the storefront sign */}
-            <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 opacity-80" aria-hidden>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FBEFD4" strokeWidth="1.6"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z" /></svg>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FBEFD4" strokeWidth="1.6"><path d="M12 3c-1 2-1 3 0 4M7 9c-2 3-2 7 0 10s8 3 10 0 2-7 0-10-5-4-10 0z" /></svg>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FBEFD4" strokeWidth="1.6"><path d="M4 10h16v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8zM7 10V8h10v2M3 7h2M19 7h2" /></svg>
-            </div>
-            <div className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 opacity-80" aria-hidden>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FBEFD4" strokeWidth="1.4"><circle cx="12" cy="12" r="4" /><g strokeLinecap="round">{[0,45,90,135,180,225,270,315].map(a => <line key={a} x1="12" y1="3" x2="12" y2="5.5" transform={`rotate(${a} 12 12)`} />)}</g></svg>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FBEFD4" strokeWidth="1.6"><path d="M12 4c4 0 6 3 6 7s-3 9-6 9-6-5-6-9 2-7 6-7z" /><circle cx="12" cy="13" r="2" /></svg>
-              <div className="flex gap-1.5">
-                <span className="w-2 h-2 rounded-full" style={{ background: "#FBEFD4" }} />
-                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#FBEFD4" }} />
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#FBEFD4" }} />
-              </div>
-            </div>
 
-            {/* Center: TAMALES · sunflower · LOS GIRASOLES */}
-            <div className="relative text-center">
-              <p className="tracking-[0.55em] text-sm md:text-base" style={{ color: "#FBEFD4", fontFamily: "var(--font-bang)" }}>
-                T A M A L E S
-              </p>
-              <img
-                src={logo}
-                alt="Tamales Los Girasoles sunflower mark"
-                className="mx-auto my-2 w-20 md:w-24"
-                width={200}
-                height={200}
-                style={{ filter: "brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.4))" }}
-              />
-              <p className="tracking-[0.28em] text-2xl md:text-4xl" style={{ color: "#FBEFD4", fontFamily: "var(--font-display)" }}>
-                LOS GIRASOLES
-              </p>
-              <div className="mt-3 flex items-center justify-center gap-3">
-                <span className="h-px w-8 md:w-12" style={{ background: "#FBEFD4" }} />
-                <p className="text-[10px] md:text-xs tracking-[0.22em] uppercase" style={{ color: "#FBEFD4", fontFamily: "var(--font-bang)" }}>
-                  Tacos · Burritos · Tortas · Quesadillas · Elotes · Nachos
-                </p>
-                <span className="h-px w-8 md:w-12" style={{ background: "#FBEFD4" }} />
-              </div>
-            </div>
+            <img
+              src={tacoAlleyBadge}
+              alt="Tamales Los Girasoles · RT-38 Taco Alley badge"
+              width={1024}
+              height={1024}
+              className="relative w-full h-auto select-none bob"
+              style={{
+                mixBlendMode: "multiply",
+                filter:
+                  "drop-shadow(0 18px 30px rgba(0,0,0,0.55)) drop-shadow(0 0 60px rgba(255,140,60,0.45))",
+              }}
+            />
           </div>
+
+
 
 
 
