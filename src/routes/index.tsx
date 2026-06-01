@@ -216,6 +216,7 @@ function Hero() {
               hours="Mon–Sun · 10am – 9pm"
               phone="815-825-3069"
               accent="var(--burnt)"
+              showMap
             />
             <LocationCard
               img={foodTruck}
@@ -252,9 +253,11 @@ function Hero() {
   );
 }
 
-function LocationCard({ img, tilt, emoji, title, addr, hours, phone, accent, live }: {
-  img: string; tilt: string; emoji: string; title: string; addr: string; hours: string; phone: string; accent: string; live?: boolean;
+function LocationCard({ img, tilt, emoji, title, addr, hours, phone, accent, live, showMap }: {
+  img: string; tilt: string; emoji: string; title: string; addr: string; hours: string; phone: string; accent: string; live?: boolean; showMap?: boolean;
 }) {
+  const tacoTrailPath = "M 280 20 L 280 320 Q 285 360 330 372 L 780 336";
+  const runners = [0, -1.4, -2.8, -4.2, -5.6];
   return (
     <div className={`relative ${tilt} lift`}>
       <div className="rounded-2xl overflow-hidden border-4 shadow-pop-lg" style={{ borderColor: "var(--gold)", background: "var(--brown)" }}>
@@ -264,7 +267,43 @@ function LocationCard({ img, tilt, emoji, title, addr, hours, phone, accent, liv
           ))}
         </div>
         <div className="relative">
-          <img src={img} alt={title} className="w-full h-72 object-cover" loading="lazy" width={1024} height={576} />
+          {showMap ? (
+            <div
+              className="relative w-full h-72"
+              style={{
+                backgroundImage: `url(${plazaAerial})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at 78% 56%, rgba(255,80,40,0.35), transparent 40%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(20,8,0,0.35))" }}
+              />
+              <svg aria-hidden className="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none">
+                <path id={`tacoTrailPath-${title}`} d={tacoTrailPath} fill="none" stroke="var(--gold)" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="26 20" opacity="0.95" />
+                <path d={tacoTrailPath} fill="none" stroke="rgba(255, 105, 32, 0.65)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                {runners.map((delay, i) => (
+                  <text key={i} className="taco-runner-svg" x="0" y="0" fontSize="42">
+                    🌮
+                    <animateMotion dur="7s" begin={`${delay}s`} repeatCount="indefinite" rotate="0">
+                      <mpath href={`#tacoTrailPath-${title}`} />
+                    </animateMotion>
+                  </text>
+                ))}
+                <circle cx="780" cy="336" r="22" fill="rgba(0,0,0,0.45)" />
+                <circle cx="780" cy="336" r="16" fill="var(--burnt)" stroke="var(--cream)" strokeWidth="4" />
+                <circle cx="780" cy="336" r="6" fill="var(--cream)" opacity="0.9" />
+              </svg>
+              <span className="absolute top-3 right-3 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold"
+                style={{ background: "var(--burnt)", color: "white", fontFamily: "var(--font-bang)" }}>
+                🌮 FOLLOW THE TRAIL
+              </span>
+            </div>
+          ) : (
+            <img src={img} alt={title} className="w-full h-72 object-cover" loading="lazy" width={1024} height={576} />
+          )}
           {live && (
             <span className="absolute top-3 right-3 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold"
               style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>
@@ -1082,7 +1121,6 @@ function Index() {
       <Aztec />
       {/* 1. Where to find the truck */}
       <LocationsSection />
-      <FindUsMap />
       {/* 2. Today's specials + full menu */}
       <MenuBoard />
       {/* 3. Order it */}
