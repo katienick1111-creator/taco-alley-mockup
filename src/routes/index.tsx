@@ -217,7 +217,7 @@ function Hero() {
               title="The Restaurant"
               addr="817 W Lincoln Hwy · DeKalb, IL"
               hours="Mon–Sun · 10am – 9pm"
-              phone="815-825-3069"
+              phone="779-270-2160"
               accent="var(--burnt)"
               showMap
             />
@@ -240,7 +240,7 @@ function Hero() {
           style={{ borderColor: "var(--gold)", background: "rgba(44,26,14,0.7)" }}>
           <div className="p-4 text-center">
             <div className="text-xs uppercase tracking-widest" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Restaurant</div>
-            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>10 AM – 9 PM · 815-825-3069</div>
+            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>10 AM – 9 PM · 779-270-2160</div>
           </div>
           <div className="p-4 text-center">
             <div className="text-xs uppercase tracking-widest" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Food Truck</div>
@@ -1001,7 +1001,7 @@ function Footer() {
           <div>
             <h5 style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>Visit</h5>
             <p className="text-sm mt-2">817 W Lincoln Hwy<br/>DeKalb, IL 60115</p>
-            <p className="text-sm mt-2">🏠 815-825-3069 · 🚚 815-517-3718</p>
+            <p className="text-sm mt-2">🏠 779-270-2160 · 🚚 815-517-3718</p>
           </div>
           <div>
             <h5 style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>Hours</h5>
