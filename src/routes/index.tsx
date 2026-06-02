@@ -414,32 +414,42 @@ function OnlineOrdering() {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
-            {ITEMS.map((it, i) => (
-              <ItemCard key={it.name} item={it} delay={i * 0.08} oversized={it.name === "Birria Ramen"} niu={it.name === "Huskie Special"} />
-            ))}
-
-            {/* Oversized torn-paper camarones card spanning 2 cols */}
-            <div className="sm:col-span-2 relative rounded-2xl overflow-hidden border-4 lift" style={{ borderColor: "var(--gold)" }}>
-              <div className="grid sm:grid-cols-[1fr_1.2fr]">
-                <div className="relative">
-                  <img src={shrimpPlate} alt="Camarones combo" className="w-full h-64 object-cover" loading="lazy" width={896} height={896} />
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs text-white" style={{ background: "var(--chili)", fontFamily: "var(--font-bang)" }}>🔥 SIGNATURE</div>
-                </div>
-                <div className="p-5 relative" style={{ background: "var(--brown)" }}>
-                  <Pepper className="absolute -top-3 right-3 wiggle" />
-                  <div className="text-xs tracking-widest uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Camarones Combo</div>
-                  <h3 className="text-3xl mt-1" style={{ fontFamily: "var(--font-item)", color: "var(--cream)" }}>Camarones a la Diabla</h3>
-                  <p className="mt-2 text-sm" style={{ color: "var(--muted-foreground)" }}>
-                    Plump gulf shrimp tossed in Efraen's red chile sauce. Served with rice, beans, and warm tortillas.
-                  </p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="text-3xl" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>$16.50</div>
-                    <button className="px-5 py-2 rounded-full gradient-fiesta gradient-shift text-white text-lg" style={{ fontFamily: "var(--font-action)" }}>ADD +</button>
-                  </div>
+          {/* Signature Camarones — featured at top of menu */}
+          <div className="relative rounded-2xl overflow-hidden border-4 lift mb-6" style={{ borderColor: "var(--gold)" }}>
+            <div className="grid sm:grid-cols-[1fr_1.2fr]">
+              <div className="relative">
+                <img src={shrimpPlate} alt="Camarones combo" className="w-full h-64 object-cover" loading="lazy" width={896} height={896} />
+                <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs text-white" style={{ background: "var(--chili)", fontFamily: "var(--font-bang)" }}>🔥 SIGNATURE</div>
+              </div>
+              <div className="p-5 relative" style={{ background: "var(--brown)" }}>
+                <Pepper className="absolute -top-3 right-3 wiggle" />
+                <div className="text-xs tracking-widest uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Camarones Combo</div>
+                <h3 className="text-3xl mt-1" style={{ fontFamily: "var(--font-item)", color: "var(--cream)" }}>Camarones a la Diabla</h3>
+                <p className="mt-2 text-sm" style={{ color: "var(--muted-foreground)" }}>
+                  Plump gulf shrimp tossed in Efraen's red chile sauce. Served with rice, beans, and warm tortillas.
+                </p>
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="text-3xl" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>$16.50</div>
+                  <button className="px-5 py-2 rounded-full gradient-fiesta gradient-shift text-white text-lg" style={{ fontFamily: "var(--font-action)" }}>ADD +</button>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-5">
+            {ITEMS.filter((it) => it.name !== "Huskie Special").map((it, i) => (
+              <ItemCard key={it.name} item={it} delay={i * 0.08} oversized={it.name === "Birria Ramen"} niu={false} />
+            ))}
+          </div>
+
+          {/* Huskie Special — visually separated callout so it doesn't blend with the menu */}
+          <div className="mt-12 pt-8 border-t-2 border-dashed" style={{ borderColor: "rgba(200,16,46,0.5)" }}>
+            <div className="text-center mb-5">
+              <span className="inline-block px-4 py-1 rounded-full text-xs tracking-[0.3em] text-white" style={{ background: "#C8102E", fontFamily: "var(--font-bang)" }}>
+                🐺 NIU STUDENTS ONLY
+              </span>
+            </div>
+            <ItemCard item={ITEMS.find((it) => it.name === "Huskie Special")!} delay={0} niu />
           </div>
         </div>
       </div>
