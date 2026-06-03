@@ -23,10 +23,10 @@ import { HandDrawnScatter } from "@/components/HandDrawnIcons";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RT-38 Taco Alley × MYB Platform Mockup" },
-      { name: "description", content: "Pitch mockup: RT-38 Taco Alley / Tamales Los Girasoles on the Mind Ya Biz all-in-one digital platform — online ordering, food truck tracker, loyalty, and admin dashboard." },
-      { property: "og:title", content: "RT-38 Taco Alley × MYB Platform Mockup" },
-      { property: "og:description", content: "Family-owned Mexican restaurant & food truck in DeKalb, IL — powered by Mind Ya Biz." },
+      { title: "RT-38 Taco Alley · Tamales Los Girasoles · DeKalb, IL" },
+      { name: "description", content: "Family-owned Mexican restaurant & food truck in DeKalb, IL. Tacos, quesabirria, tamales, birria ramen and more. Dine in, pick up, or catch the truck at NIU." },
+      { property: "og:title", content: "RT-38 Taco Alley · Tamales Los Girasoles" },
+      { property: "og:description", content: "Family-owned Mexican restaurant & food truck in DeKalb, IL." },
       { property: "og:image", content: logo },
       { property: "og:type", content: "website" },
     ],
