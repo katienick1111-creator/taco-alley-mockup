@@ -1005,7 +1005,7 @@ function Footer() {
           <div>
             <img src={logo} alt="RT-38" className="w-32" width={128} height={128} />
             <p className="mt-3 text-sm" style={{ color: "var(--muted-foreground)" }}>
-              Family-owned · DeKalb County, IL · Powered by Mind Ya Biz.
+              Family-owned · DeKalb County, IL.
             </p>
           </div>
           <div>
