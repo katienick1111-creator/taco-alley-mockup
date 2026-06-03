@@ -235,22 +235,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Status strip */}
-        <div className="mt-10 rounded-2xl border-2 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x text-sm"
-          style={{ borderColor: "var(--gold)", background: "rgba(44,26,14,0.7)" }}>
-          <div className="p-4 text-center">
-            <div className="text-xs uppercase tracking-widest" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Restaurant</div>
-            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>10 AM – 9 PM · 779-270-2160</div>
-          </div>
-          <div className="p-4 text-center">
-            <div className="text-xs uppercase tracking-widest" style={{ color: "var(--gold)", fontFamily: "var(--font-bang)" }}>Food Truck</div>
-            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>📍 NIU Campus · 815-517-3718</div>
-          </div>
-          <div className="p-4 text-center">
-            <div className="text-xs uppercase tracking-widest" style={{ color: "var(--pink)", fontFamily: "var(--font-bang)" }}>Today</div>
-            <div className="mt-1" style={{ fontFamily: "var(--font-item)" }}>🔥 Pastor Quesadilla $11.99</div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -560,83 +544,6 @@ function DiagonalBanner() {
   );
 }
 
-/* ============== Locations expanded + Food Truck Tracker ============== */
-function LocationsSection() {
-  return (
-    <section className="relative overflow-hidden py-20 px-6" style={{ background: "var(--brown-deep)" }}>
-      <HandDrawnScatter count={16} opacity={0.12} seed={5} />
-      <div className="max-w-7xl mx-auto relative">
-
-        <div className="text-center mb-10">
-          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Find Us</p>
-          <h2 className="text-5xl md:text-6xl" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
-            LOCATIONS & <span style={{ color: "var(--gold)" }}>TRUCK TRACKER</span>
-          </h2>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Map illustration */}
-          <div className="relative rounded-2xl overflow-hidden border-4 p-6" style={{ borderColor: "var(--gold)", background: "linear-gradient(135deg, #1a3c2a, #0d2410)" }}>
-            <div className="absolute inset-0 opacity-30" style={{
-              backgroundImage: "linear-gradient(rgba(255,210,63,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,210,63,0.1) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-            }} />
-            <div className="relative h-80 flex items-center justify-center">
-              {/* Pins */}
-              <div className="absolute" style={{ top: "30%", left: "25%" }}>
-                <div className="w-6 h-6 rounded-full pulse-hot" style={{ background: "var(--burnt)" }} />
-                <div className="text-xs mt-1" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>Restaurant</div>
-              </div>
-              <div className="absolute" style={{ top: "55%", right: "20%" }}>
-                <div className="w-6 h-6 rounded-full pulse-dot" style={{ background: "var(--lime)" }} />
-                <div className="text-xs mt-1" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>🚚 Truck · NIU</div>
-              </div>
-              <svg viewBox="0 0 400 300" className="w-full h-full opacity-40">
-                <path d="M0,200 Q150,150 200,180 T400,160" stroke="#FFD23F" strokeWidth="3" fill="none" strokeDasharray="6 6" />
-                <path d="M100,0 L100,300" stroke="#F47B3E" strokeWidth="2" opacity="0.4" />
-                <path d="M300,0 L300,300" stroke="#F47B3E" strokeWidth="2" opacity="0.4" />
-              </svg>
-              <div className="absolute bottom-2 right-2 text-xs px-2 py-1 rounded" style={{ background: "var(--brown)", color: "var(--gold)", fontFamily: "var(--font-bang)" }}>
-                DeKalb County, IL
-              </div>
-            </div>
-          </div>
-
-          {/* Schedule */}
-          <div className="rounded-2xl border-4 p-6 space-y-4" style={{ borderColor: "var(--gold)", background: "var(--brown)" }}>
-            <h3 className="text-3xl flex items-center gap-2" style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>
-              🚚 Food Truck This Week
-            </h3>
-            {[
-              ["MON", "NIU Campus · MLK Commons", "11a–8p", true],
-              ["TUE", "Hopkins Park · DeKalb", "11a–7p"],
-              ["WED", "Sycamore Farmers Market", "3p–8p"],
-              ["THU", "NIU Campus · Engineering", "11a–8p"],
-              ["FRI", "Downtown DeKalb · Lincoln Hwy", "5p–10p"],
-              ["SAT", "Private Booking 🎉", "—"],
-            ].map(([d, loc, time, today]: any) => (
-              <div key={d as string} className={`flex items-center justify-between p-3 rounded-lg ${today ? "border-2" : ""}`}
-                style={{ background: today ? "var(--brown-deep)" : "transparent", borderColor: today ? "var(--burnt)" : undefined }}>
-                <div className="flex items-center gap-3">
-                  <span className="w-10 text-center" style={{ fontFamily: "var(--font-bang)", color: "var(--burnt)" }}>{d}</span>
-                  <span style={{ fontFamily: "var(--font-item)" }}>{loc}</span>
-                  {today && <span className="px-2 py-0.5 rounded-full text-[10px]" style={{ background: "var(--lime)", color: "#0d2410", fontFamily: "var(--font-bang)" }}>TODAY</span>}
-                </div>
-                <span className="text-sm" style={{ color: "var(--muted-foreground)" }}>{time}</span>
-              </div>
-            ))}
-            <div className="pt-3 mt-3 border-t flex items-center justify-between" style={{ borderColor: "var(--muted)" }}>
-              <div className="text-sm" style={{ color: "var(--muted-foreground)" }}>Book the truck for private events</div>
-              <a href="tel:815-517-3718" className="px-4 py-2 rounded-full gradient-fiesta text-white text-sm" style={{ fontFamily: "var(--font-action)" }}>
-                CALL 815-517-3718
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ============== Menu board — matches losgirasoles.com aesthetic ============== */
 function MenuItem({ name, desc, price }: { name: string; desc?: string; price?: string }) {
@@ -1017,8 +924,6 @@ function Index() {
       {/* 1. Hook */}
       <Hero />
       <Aztec />
-      {/* 1. Where to find the truck */}
-      <LocationsSection />
       {/* 3. Order it */}
       <OnlineOrdering />
       <DiagonalBanner />
