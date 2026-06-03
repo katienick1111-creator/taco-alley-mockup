@@ -287,11 +287,21 @@ function LocationCard({ img, tilt, emoji, title, addr, hours, phone, accent, liv
               <svg aria-hidden className="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none">
                 <path id={`tacoTrailPath-${title}`} d={tacoTrailPath} fill="none" stroke="var(--gold)" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="26 20" opacity="0.95" />
                 <path d={tacoTrailPath} fill="none" stroke="rgba(255, 105, 32, 0.65)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                <path id={`tacoTrailPathSouth-${title}`} d="M 280 320 L 280 600" fill="none" stroke="var(--gold)" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="26 20" opacity="0.95" />
+                <path d="M 280 320 L 280 600" fill="none" stroke="rgba(255, 105, 32, 0.65)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                 {runners.map((delay, i) => (
                   <text key={i} className="taco-runner-svg" x="0" y="0" fontSize="42">
                     🌮
                     <animateMotion dur="7s" begin={`${delay}s`} repeatCount="indefinite" rotate="0">
                       <mpath href={`#tacoTrailPath-${title}`} />
+                    </animateMotion>
+                  </text>
+                ))}
+                {runners.map((delay, i) => (
+                  <text key={`s-${i}`} className="taco-runner-svg" x="0" y="0" fontSize="42">
+                    🌮
+                    <animateMotion dur="5s" begin={`${delay * 0.7}s`} repeatCount="indefinite" rotate="0">
+                      <mpath href={`#tacoTrailPathSouth-${title}`} />
                     </animateMotion>
                   </text>
                 ))}
