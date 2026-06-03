@@ -874,9 +874,7 @@ function LoyaltyReviews() {
   );
 }
 
-/* ============== Footer + badge ============== */
-
-/* ============== Footer + badge ============== */
+/* ============== Footer ============== */
 function Footer() {
   return (
     <footer className="relative">
@@ -907,14 +905,6 @@ function Footer() {
   );
 }
 
-function MybBadge() {
-  return (
-    <div className="fixed bottom-4 right-4 z-50 px-4 py-2 rounded-lg border-2 shadow-glow"
-      style={{ background: "var(--brown)", borderColor: "var(--gold)", fontFamily: "var(--font-display)", color: "var(--gold)", letterSpacing: "0.08em" }}>
-      MIND YA BIZ × MOCKUP
-    </div>
-  );
-}
 
 /* ============== Find Us — Taco Trail Map ============== */
 function FindUsMap() {
