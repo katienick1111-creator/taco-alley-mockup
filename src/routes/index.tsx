@@ -187,10 +187,6 @@ function Hero() {
               <span className="w-3 h-3 rounded-full bg-white pulse-dot" />
               We're Open
             </span>
-            <a href="#order" className="px-7 py-3 rounded-full text-xl shadow-glow gradient-fiesta gradient-shift text-white border-4 border-gold lift"
-              style={{ fontFamily: "var(--font-action)", letterSpacing: "0.08em" }}>
-              ORDER NOW 🌮
-            </a>
             <a href="#menu" className="px-7 py-3 rounded-full text-xl border-4 lift"
               style={{ fontFamily: "var(--font-action)", borderColor: "var(--gold)", color: "var(--gold)", letterSpacing: "0.08em" }}>
               VIEW MENU
@@ -924,8 +920,8 @@ function Index() {
       {/* 1. Hook */}
       <Hero />
       <Aztec />
-      {/* 3. Order it */}
-      <OnlineOrdering />
+      {/* 3. Menu */}
+      <MenuBoard />
       <DiagonalBanner />
       <Aztec />
       {/* 4. Social proof */}
