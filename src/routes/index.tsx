@@ -1144,12 +1144,9 @@ function Index() {
       <Aztec />
       {/* 4. Social proof */}
       <LoyaltyReviews />
-      {/* 5. Pitch */}
-      <AdminDashboard />
-      {/* 6. Who we are */}
+      {/* 5. Who we are */}
       <FamilyStory />
       <Footer />
-      <MybBadge />
     </main>
   );
 }
