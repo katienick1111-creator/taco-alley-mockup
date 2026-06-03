@@ -1019,7 +1019,7 @@ function Footer() {
           </div>
         </div>
         <p className="text-center text-xs mt-10" style={{ color: "var(--muted-foreground)" }}>
-          © {new Date().getFullYear()} RT-38 Taco Alley / Tamales Los Girasoles · MYB Pitch Mockup
+          © {new Date().getFullYear()} RT-38 Taco Alley / Tamales Los Girasoles. All rights reserved.
         </p>
       </div>
     </footer>
