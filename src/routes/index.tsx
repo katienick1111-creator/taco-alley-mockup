@@ -707,46 +707,7 @@ function FamilyStory() {
 function LoyaltyReviews() {
   return (
     <section className="py-20 px-6" style={{ background: "var(--brown-deep)" }}>
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
-        {/* Punch card */}
-        <div className="rounded-2xl border-4 p-6" style={{ borderColor: "var(--gold)", background: "var(--brown)" }}>
-          <p className="text-xs tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Loyalty</p>
-          <h3 className="text-4xl mt-1" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>TACO PUNCH CARD</h3>
-          <p className="text-sm mt-1" style={{ color: "var(--muted-foreground)" }}>9 tacos = 1 free · stamped automatically with every order.</p>
-
-          <div className="mt-5 grid grid-cols-5 gap-3">
-            {Array.from({ length: 10 }).map((_, i) => {
-              const stamped = i < 6;
-              const free = i === 9;
-              return (
-                <div key={i} className="aspect-square rounded-full flex items-center justify-center border-2"
-                  style={{ borderColor: free ? "var(--chili)" : "var(--gold)", background: stamped ? "rgba(244,123,62,0.15)" : "transparent" }}>
-                  {stamped ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)", fontSize: "1.5rem" }}>✓</span> : free ? <span style={{ fontFamily: "var(--font-bang)", color: "var(--chili)" }}>FREE</span> : <span style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-bang)" }}>{i + 1}</span>}
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="mt-6 grid grid-cols-3 gap-2 text-center text-xs">
-            {[["🥉 Friend", "0+"], ["🥈 Family", "10+"], ["🥇 Regular", "25+"]].map(([t, c]) => (
-              <div key={t} className="p-2 rounded-lg border" style={{ borderColor: "var(--gold)" }}>
-                <div style={{ fontFamily: "var(--font-marker)", color: "var(--gold)" }}>{t}</div>
-                <div style={{ color: "var(--muted-foreground)" }}>{c} orders</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-5 coupon-edge p-4 rounded-lg flex items-center justify-between" style={{ background: "var(--brown-deep)" }}>
-            <div>
-              <div style={{ fontFamily: "var(--font-marker)", color: "var(--pink)" }}>🎂 Birthday gift</div>
-              <div className="text-sm" style={{ color: "var(--muted-foreground)" }}>Free churro cheesecake on your day</div>
-            </div>
-            <div className="w-16 h-16 rounded grid place-items-center text-[10px]" style={{ background: "white", color: "black", fontFamily: "var(--font-bang)" }}>
-              [ QR ]
-            </div>
-          </div>
-        </div>
-
+      <div className="max-w-7xl mx-auto">
         {/* Reviews chalkboard with sopes polaroid */}
         <div className="relative">
           <div className="chalkboard p-6 md:p-8">
