@@ -357,7 +357,7 @@ function OnlineOrdering() {
           <Star className="absolute -bottom-3 -left-3 spin-slow" color="#6B2D9C" />
         </div>
         <div>
-          <p className="text-sm tracking-[0.4em] uppercase" style={{ color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>Online Ordering</p>
+          
           <h2 className="text-5xl md:text-7xl mt-2" style={{ fontFamily: "var(--font-display)", color: "var(--cream)" }}>
             ORDER<br/>
             <span style={{ color: "var(--burnt)" }}>FRESH.</span> <span style={{ color: "var(--gold)" }}>FAST.</span>
@@ -418,9 +418,8 @@ function OnlineOrdering() {
                 <p className="mt-2 text-sm" style={{ color: "var(--muted-foreground)" }}>
                   Plump gulf shrimp tossed in Efraen's red chile sauce. Served with rice, beans, and warm tortillas.
                 </p>
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4">
                   <div className="text-3xl" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>$16.50</div>
-                  <button className="px-5 py-2 rounded-full gradient-fiesta gradient-shift text-white text-lg" style={{ fontFamily: "var(--font-action)" }}>ADD +</button>
                 </div>
               </div>
             </div>
@@ -506,12 +505,8 @@ function ItemCard({ item, delay, oversized, niu }: { item: typeof ITEMS[number];
             <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: "var(--chili)", color: "white", fontFamily: "var(--font-bang)" }}>{item.tag}</span>
           </div>
           <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>{item.desc}</p>
-          <div className="mt-3 flex items-center justify-between">
+          <div className="mt-3">
             <div className="text-2xl" style={{ fontFamily: "var(--font-display)", color: "var(--gold)" }}>${item.price}</div>
-            <button className="text-sm px-4 py-1.5 rounded-full border-2 hover:bg-[var(--hot)] hover:text-white transition"
-              style={{ borderColor: "var(--burnt)", color: "var(--burnt)", fontFamily: "var(--font-bang)" }}>
-              ADD +
-            </button>
           </div>
         </div>
       </div>
@@ -921,7 +916,7 @@ function Index() {
       <Hero />
       <Aztec />
       {/* 3. Menu */}
-      <MenuBoard />
+      <OnlineOrdering />
       <DiagonalBanner />
       <Aztec />
       {/* 4. Social proof */}
